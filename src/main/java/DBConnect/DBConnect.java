@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBConnect {
 	private final String serverName = "QUANGHUY";
-	private final String dbName = "Discover";
+	private final String dbName = "ECOMWEB";
 	private final String portNumber = "1433";
 	private final String instance = "";
 	private final String userID = "sa";
