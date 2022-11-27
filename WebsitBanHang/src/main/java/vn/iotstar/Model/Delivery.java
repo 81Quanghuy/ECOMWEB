@@ -1,7 +1,8 @@
-package vn.iotstar.Entity;
+package vn.iotstar.Model;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,27 +20,44 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Builder
-@Table(name = "Style")
-public class Style {
+@Table(name = "Delivery")
+public class Delivery {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@Column(name = "name")
     private String name;
-    private int category_id;
-    private Byte is_deleted;
+	
+	@Column(name = "price")
+    private int price;
+	
+	
+	@Column(name = "desciption")
+    private String desciption;
+	
+	@Column(name = "is_deleted")
+    private  Byte is_deleted;
+	
+	@Column(name = "createAt")
     private Date createAt;
+	
+	@Column(name = "updateAt")
     private Date updateAt;
-	public Style(int id, String name, int category_id, Byte is_deleted, Date createAt, Date updateAt) {
+	
+	public Delivery(long id, String name, String desciption, int price, Byte is_deleted, Date createAt,
+			Date updateAt) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.category_id = category_id;
+		this.desciption = desciption;
+		this.price = price;
 		this.is_deleted = is_deleted;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
-	public Style() {
+	public Delivery() {
 		super();
 	}
 	public long getId() {
@@ -54,11 +72,17 @@ public class Style {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getCategory_id() {
-		return category_id;
+	public String getDesciption() {
+		return desciption;
 	}
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
+	public void setDesciption(String desciption) {
+		this.desciption = desciption;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public Byte getIs_deleted() {
 		return is_deleted;

@@ -25,7 +25,7 @@ public class Comisssion {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 	
 	
 	@Column(name = "name")
@@ -46,10 +46,10 @@ public class Comisssion {
 	@Column(name = "updateAt")
     private Date updateAt;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -88,7 +88,7 @@ public class Comisssion {
 	public void setUpdateAt(Date updateAt) {
 		this.updateAt = updateAt;
 	}
-	public Comisssion(int id, String name, float cost, String desciption, Byte is_deleted, Date createAt,
+	public Comisssion(long id, String name, float cost, String desciption, Byte is_deleted, Date createAt,
 			Date updateAt) {
 		super();
 		this.id = id;

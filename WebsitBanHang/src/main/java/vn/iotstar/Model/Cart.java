@@ -1,7 +1,8 @@
-package vn.iotstar.Entity;
+package vn.iotstar.Model;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,27 +20,35 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Builder
-@Table(name = "Style")
-public class Style {
+@Table(name = "Cart")
+public class Cart {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-    private String name;
-    private int category_id;
-    private Byte is_deleted;
+    private long id;
+	
+	@Column(name ="user_id")
+    private int user_id;
+	
+	@Column(name ="store_id")
+    private int store_id;
+	
+	@Column(name ="create_date")
     private Date createAt;
+	
+	@Column(name = "updateAt")
     private Date updateAt;
-	public Style(int id, String name, int category_id, Byte is_deleted, Date createAt, Date updateAt) {
+    
+    
+    public Cart(int id, int user_id, int store_id, Date createAt, Date updateAt) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.category_id = category_id;
-		this.is_deleted = is_deleted;
+		this.user_id = user_id;
+		this.store_id = store_id;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
-	public Style() {
+	public Cart() {
 		super();
 	}
 	public long getId() {
@@ -48,23 +57,17 @@ public class Style {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public int getUser_id() {
+		return user_id;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
-	public int getCategory_id() {
-		return category_id;
+	public int getStore_id() {
+		return store_id;
 	}
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
-	}
-	public Byte getIs_deleted() {
-		return is_deleted;
-	}
-	public void setIs_deleted(Byte is_deleted) {
-		this.is_deleted = is_deleted;
+	public void setStore_id(int store_id) {
+		this.store_id = store_id;
 	}
 	public Date getCreateAt() {
 		return createAt;

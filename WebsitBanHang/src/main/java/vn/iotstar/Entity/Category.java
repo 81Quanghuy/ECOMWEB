@@ -27,7 +27,7 @@ public class Category {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	@Column(name = "name")
     private String name;
@@ -46,10 +46,10 @@ public class Category {
 	
 	@Column(name = "updateAt")
     private Date updateAt;
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -88,7 +88,7 @@ public class Category {
 	public void setUpdateAt(Date updateAt) {
 		this.updateAt = updateAt;
 	}
-	public Category(int id, String name, int category_id, String image, Byte is_delete, Date createAt, Date updateAt) {
+	public Category(long id, String name, int category_id, String image, Byte is_delete, Date createAt, Date updateAt) {
 		super();
 		this.id = id;
 		this.name = name;

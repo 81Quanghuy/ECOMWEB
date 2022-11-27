@@ -1,4 +1,4 @@
-package vn.iotstar.Entity;
+package vn.iotstar.Model;
 
 import java.sql.Date;
 

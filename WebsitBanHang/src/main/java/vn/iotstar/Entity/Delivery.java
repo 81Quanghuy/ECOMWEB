@@ -25,7 +25,7 @@ public class Delivery {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	@Column(name = "name")
     private String name;
@@ -46,7 +46,7 @@ public class Delivery {
 	@Column(name = "updateAt")
     private Date updateAt;
 	
-	public Delivery(int id, String name, String desciption, int price, Byte is_deleted, Date createAt,
+	public Delivery(long id, String name, String desciption, int price, Byte is_deleted, Date createAt,
 			Date updateAt) {
 		super();
 		this.id = id;
@@ -60,10 +60,10 @@ public class Delivery {
 	public Delivery() {
 		super();
 	}
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
