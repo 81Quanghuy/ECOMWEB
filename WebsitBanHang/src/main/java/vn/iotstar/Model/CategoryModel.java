@@ -1,8 +1,9 @@
-package vn.iotstar.Entity;
+package vn.iotstar.Model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,41 +15,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+public class CategoryModel {
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Entity
-@Builder
-@Table(name = "Style")
-public class Style implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
     private String name;
     private int category_id;
-    private Byte is_deleted;
+    private String image;
+    private Byte is_delete;
     private Date createAt;
     private Date updateAt;
-	public Style(int id, String name, int category_id, Byte is_deleted, Date createAt, Date updateAt) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.category_id = category_id;
-		this.is_deleted = is_deleted;
-		this.createAt = createAt;
-		this.updateAt = updateAt;
-	}
-	public Style() {
-		super();
-	}
 	public long getId() {
 		return id;
 	}
@@ -67,11 +42,17 @@ public class Style implements Serializable{
 	public void setCategory_id(int category_id) {
 		this.category_id = category_id;
 	}
-	public Byte getIs_deleted() {
-		return is_deleted;
+	public String getImage() {
+		return image;
 	}
-	public void setIs_deleted(Byte is_deleted) {
-		this.is_deleted = is_deleted;
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public Byte getIs_delete() {
+		return is_delete;
+	}
+	public void setIs_delete(Byte is_delete) {
+		this.is_delete = is_delete;
 	}
 	public Date getCreateAt() {
 		return createAt;
@@ -85,5 +66,19 @@ public class Style implements Serializable{
 	public void setUpdateAt(Date updateAt) {
 		this.updateAt = updateAt;
 	}
-
+	public CategoryModel(long id, String name, int category_id, String image, Byte is_delete, Date createAt, Date updateAt) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.category_id = category_id;
+		this.image = image;
+		this.is_delete = is_delete;
+		this.createAt = createAt;
+		this.updateAt = updateAt;
+	}
+	public CategoryModel() {
+		super();
+	}
+    
+    
 }

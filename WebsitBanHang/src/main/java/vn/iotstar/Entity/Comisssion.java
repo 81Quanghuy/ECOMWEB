@@ -1,5 +1,6 @@
 package vn.iotstar.Entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -21,7 +22,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder
 @Table(name = "Comission")
-public class Comisssion {
+public class Comisssion implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

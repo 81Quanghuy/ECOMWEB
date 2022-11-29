@@ -1,8 +1,8 @@
-package vn.iotstar.Entity;
+package vn.iotstar.Model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,39 +14,28 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Entity
-@Builder
-@Table(name = "Style")
-public class Style implements Serializable{
+public class DeliveryModel {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
     private String name;
-    private int category_id;
-    private Byte is_deleted;
+    private int price;
+    private String desciption;
+    private  Byte is_deleted;
     private Date createAt;
     private Date updateAt;
-	public Style(int id, String name, int category_id, Byte is_deleted, Date createAt, Date updateAt) {
+	
+	public DeliveryModel(long id, String name, String desciption, int price, Byte is_deleted, Date createAt,
+			Date updateAt) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.category_id = category_id;
+		this.desciption = desciption;
+		this.price = price;
 		this.is_deleted = is_deleted;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
-	public Style() {
+	public DeliveryModel() {
 		super();
 	}
 	public long getId() {
@@ -61,11 +50,17 @@ public class Style implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getCategory_id() {
-		return category_id;
+	public String getDesciption() {
+		return desciption;
 	}
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
+	public void setDesciption(String desciption) {
+		this.desciption = desciption;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public Byte getIs_deleted() {
 		return is_deleted;

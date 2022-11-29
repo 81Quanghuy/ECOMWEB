@@ -1,6 +1,5 @@
-package vn.iotstar.Entity;
+package vn.iotstar.Model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -14,30 +13,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Entity
-@Builder
-@Table(name = "Style")
-public class Style implements Serializable{
+public class StyleModel {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
     private String name;
     private int category_id;
     private Byte is_deleted;
     private Date createAt;
     private Date updateAt;
-	public Style(int id, String name, int category_id, Byte is_deleted, Date createAt, Date updateAt) {
+	public StyleModel(int id, String name, int category_id, Byte is_deleted, Date createAt, Date updateAt) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,7 +30,7 @@ public class Style implements Serializable{
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
-	public Style() {
+	public StyleModel() {
 		super();
 	}
 	public long getId() {

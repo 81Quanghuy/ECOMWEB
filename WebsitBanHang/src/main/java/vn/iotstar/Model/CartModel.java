@@ -1,6 +1,5 @@
-package vn.iotstar.Entity;
+package vn.iotstar.Model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -16,37 +15,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Entity
-@Builder
-@Table(name = "Cart")
-public class Cart implements Serializable{
+public class CartModel {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-	
-	@Column(name ="user_id")
     private int user_id;
-	
-	@Column(name ="store_id")
     private int store_id;
-	
-	@Column(name ="create_date")
     private Date createAt;
-	
-	@Column(name = "updateAt")
     private Date updateAt;
     
     
-    public Cart(int id, int user_id, int store_id, Date createAt, Date updateAt) {
+    public CartModel(int id, int user_id, int store_id, Date createAt, Date updateAt) {
 		super();
 		this.id = id;
 		this.user_id = user_id;
@@ -54,7 +32,7 @@ public class Cart implements Serializable{
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
-	public Cart() {
+	public CartModel() {
 		super();
 	}
 	public long getId() {

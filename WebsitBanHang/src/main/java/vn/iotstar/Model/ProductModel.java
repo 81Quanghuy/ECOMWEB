@@ -1,6 +1,5 @@
-package vn.iotstar.Entity;
+package vn.iotstar.Model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -14,21 +13,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Entity
-@Builder
-@Table(name = "Product")
-public class Product implements Serializable{
+public class ProductModel {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
     private String name;
     private String slug;
@@ -46,7 +32,7 @@ public class Product implements Serializable{
     private int rating;
     private Date createAt;
     private Date updateAt;
-	public Product(long id, String name, String slug, String desciption, float price, float promotionaPrice,
+	public ProductModel(long id, String name, String slug, String desciption, float price, float promotionaPrice,
 			int quantity, int slod, Byte is_active, Byte is_selling, String listImage, int categoryId,
 			String style_Values, int storeid, int rating, Date createAt, Date updateAt) {
 		super();
@@ -68,7 +54,7 @@ public class Product implements Serializable{
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 	}
-	public Product() {
+	public ProductModel() {
 		super();
 	}
 	public long getId() {

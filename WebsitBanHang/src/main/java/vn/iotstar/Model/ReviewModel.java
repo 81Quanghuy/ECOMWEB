@@ -1,6 +1,5 @@
-package vn.iotstar.Entity;
+package vn.iotstar.Model;
 
-import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -14,21 +13,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+public class ReviewModel {
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
-@Entity
-@Builder
-@Table(name = "Review")
-public class Review implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private int user_id;
 	private int product_id;
@@ -39,7 +25,7 @@ public class Review implements Serializable{
 	private Date createAt;
 	private Date updateAt;
 
-	public Review(long id, int user_id, int product_id, int store_id, int order_id, String content, int stars,
+	public ReviewModel(long id, int user_id, int product_id, int store_id, int order_id, String content, int stars,
 			Date createAt, Date updateAt) {
 		super();
 		this.id = id;
@@ -53,7 +39,7 @@ public class Review implements Serializable{
 		this.updateAt = updateAt;
 	}
 
-	public Review() {
+	public ReviewModel() {
 		super();
 	}
 

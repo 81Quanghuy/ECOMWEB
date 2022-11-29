@@ -1,5 +1,6 @@
 package vn.iotstar.Entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -21,8 +22,13 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder
 @Table(name = "Delivery")
-public class Delivery {
+public class Delivery implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
