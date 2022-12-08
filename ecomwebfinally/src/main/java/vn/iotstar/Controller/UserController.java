@@ -39,10 +39,11 @@ public class UserController {
 	ServletContext application;
 
 	@GetMapping("")
-	public String list(ModelMap model) {
-		List<User> user = userService.findAll();
-		model.addAttribute("users", user);
-		return"user/list";
+	public ModelAndView List(ModelMap model, HttpSession sesson) {
+
+		List<User> users = userService.findAll();
+		model.addAttribute("users", users);
+		return new ModelAndView("user/user/list", model);
 	}
 
 	@GetMapping("/add")

@@ -2,6 +2,7 @@ package vn.iotstar.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -39,5 +40,7 @@ public interface IOrderService {
 	<S extends Order> Optional<S> findOne(Example<S> example);
 
 	<S extends Order> S save(S entity);
+
+	Float sumOder(List<Order> oders);
 
 }

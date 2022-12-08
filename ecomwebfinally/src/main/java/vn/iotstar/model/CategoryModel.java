@@ -2,8 +2,6 @@ package vn.iotstar.model;
 
 import java.sql.Date;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +16,5 @@ public class CategoryModel {
 	private Date createat;
 	private Date updateat;
 	private Boolean isdeleted;
-	private MultipartFile imageFile;
 	private Boolean isEdit = false;
 }

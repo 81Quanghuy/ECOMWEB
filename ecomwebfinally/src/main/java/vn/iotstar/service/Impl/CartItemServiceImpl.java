@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import vn.iotstar.entity.Cart;
 import vn.iotstar.entity.CartItem;
 import vn.iotstar.Repository.CartItemRepository;
 import vn.iotstar.service.ICartItemService;
@@ -20,11 +19,6 @@ import vn.iotstar.service.ICartItemService;
 public class CartItemServiceImpl implements ICartItemService {
 	@Autowired
 	CartItemRepository CartItemRepository;
-
-	@Override
-	public List<CartItem> findByCart(Cart cart) {
-		return CartItemRepository.findByCart(cart);
-	}
 
 	@Override
 	public <S extends CartItem> S save(S entity) {

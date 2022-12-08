@@ -12,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.entity.Cart;
-import vn.iotstar.entity.User;
 import vn.iotstar.Repository.CartRepository;
 import vn.iotstar.service.ICartService;
 
@@ -26,19 +25,10 @@ public class CartServiceImpl implements ICartService {
 		return CartRepository.save(entity);
 	}
 
-	
-
 	@Override
 	public <S extends Cart> Optional<S> findOne(Example<S> example) {
 		return CartRepository.findOne(example);
 	}
-
-	@Override
-	public List<Cart> findByUser(User user) {
-		return CartRepository.findByUser(user);
-	}
-
-
 
 	@Override
 	public List<Cart> findAll() {
