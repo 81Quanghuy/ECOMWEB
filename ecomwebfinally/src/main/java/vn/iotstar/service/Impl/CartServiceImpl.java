@@ -12,13 +12,26 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.entity.Cart;
+import vn.iotstar.entity.CartItem;
+import vn.iotstar.entity.Product;
+import vn.iotstar.entity.User;
+import vn.iotstar.Repository.CartItemRepository;
 import vn.iotstar.Repository.CartRepository;
+import vn.iotstar.Repository.ProductRepository;
+import vn.iotstar.service.ICartItemService;
 import vn.iotstar.service.ICartService;
+import vn.iotstar.service.IProductService;
 
 @Service
 public class CartServiceImpl implements ICartService {
 	@Autowired
 	CartRepository CartRepository;
+
+	@Autowired
+	ICartItemService cartItemService;
+
+	@Autowired
+	IProductService productService;
 
 	@Override
 	public <S extends Cart> S save(S entity) {
@@ -26,8 +39,28 @@ public class CartServiceImpl implements ICartService {
 	}
 
 	@Override
+	public Float SumCart(List<Cart> cart) {
+		List<CartItem> cartItems = cartItemService.findByCart(cart.get(0));
+		float Sum = 0;
+		if (cartItems.size() > 0) {
+
+			for (CartItem cartItem : cartItems) {
+				Sum += cartItem.getCount() * cartItem.getProduct().getPrice();
+			}
+
+		}
+		return Sum;
+
+	}
+
+	@Override
 	public <S extends Cart> Optional<S> findOne(Example<S> example) {
 		return CartRepository.findOne(example);
+	}
+
+	@Override
+	public List<Cart> findByUser(User user) {
+		return CartRepository.findByUser(user);
 	}
 
 	@Override

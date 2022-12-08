@@ -4,20 +4,22 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import vn.iotstar.Repository.OrderRepository;
 import vn.iotstar.entity.Order;
+import vn.iotstar.Repository.OrderRepository;
 import vn.iotstar.service.IOrderService;
-
 @Service
 public class OrderServiceImpl implements IOrderService {
 	@Autowired
 	OrderRepository orderRepository;
+	
+	
 
 	@Override
 	public <S extends Order> S save(S entity) {
@@ -89,14 +91,5 @@ public class OrderServiceImpl implements IOrderService {
 	public void deleteAll() {
 		orderRepository.deleteAll();
 	}
-
-	@Override
-	public Float sumOder(List<Order> oders) {
-		Float price = (float) 0;
-		for (Order order : oders) {
-			price = price + order.getPrice();
-		}
-		return price;
-	}
-
+	
 }

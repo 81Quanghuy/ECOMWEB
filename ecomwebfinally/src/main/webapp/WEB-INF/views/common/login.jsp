@@ -1,110 +1,74 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Laptop Shop - Đăng nhập</title>
-<link rel="stylesheet" href="Frontend/css/login.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<title>Login</title>
+<!-- CSS only -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
 
 </head>
 
 <body>
-
-
-	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-	<div class="login-page">
-		<div class="form">
-			<h2 class="form-signin-heading" style="text-align: center">LaptopShop
-				- Đăng nhập</h2>
-			<hr>
-			<c:if test="${param.error != null}">
-				<div class="alert alert-danger">
-					<p>Tên đăng nhập hoặc mật khẩu không đúng.</p>
+	<section class="vh-100">
+		<h2>${message}</h2>
+		<div class="container py-5 h-100">
+			<div
+				class="row d-flex align-items-center justify-content-center h-100">
+				<div class="col-md-8 col-lg-7 col-xl-6">
+					<img
+						src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+						class="img-fluid" alt="Phone image">
 				</div>
-			</c:if>
-			<c:if test="${param.logout != null}">
-				<div class="alert alert-success">
-					<p>Bạn đã đăng xuất thành công.</p>
+				<div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+					<form action="/login" method="post" enctype="multipart/form-data">
+						<!-- Email input -->
+						<div class="form-outline mb-4">
+							<input type="text" id="form1Example13"
+								class="form-control form-control-lg" placeholder="MSSV or email"
+								name="username" /> <label class="form-label"
+								for="form1Example13">Username</label> >
+							<div class="form-outline mb-4">
+								<input type="password" id="form1Example23"
+									class="form-control form-control-lg" name="password" /> <label
+									for="form1Example23">Password</label>
+							</div>
+							<button type="submit" class="btn btn-primary btn-lg btn-block">Sign
+								in</button>
+
+							<!--  <div class="d-flex justify-content-around align-items-center mb-4">
+							
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value=""
+									id="form1Example3" checked /> <label class="form-check-label"
+									for="form1Example3"> Remember me </label>
+							</div>
+							<a href="#!">Forgot password?</a>
+						</div> -->
+							<!-- 
+						
+						<div class="divider d-flex align-items-center my-4">
+							<p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
+						</div>
+
+						<a class="btn btn-primary btn-lg btn-block"
+							style="background-color: #3b5998" href="#!" role="button"> <i
+							class="fab fa-facebook-f me-2"></i>Continue with Facebook
+						</a> <a class="btn btn-primary btn-lg btn-block"
+							style="background-color: #55acee" href="#!" role="button"> <i
+							class="fab fa-twitter me-2"></i>Continue with Google
+						</a> -->
+					</form>
 				</div>
-			</c:if>
-			<c:if test="${param.accessDenied != null}">
-				<div class="alert alert-danger">
-					<p>Bạn không có quyền truy cập vào trang này</p>
-				</div>
-			</c:if>
-
-			<form class="login-form" method="POST" action="${contextPath}/login">
-
-				<input type="text" placeholder="Email" name="email"
-					required="required" style="padding: 10px;" /> <input
-					type="password" placeholder="Mật khẩu" name="password"
-					required="required" style="padding: 10px;" /> <input type="hidden"
-					name="${_csrf.parameterName}" value="${_csrf.token}" /> <label
-					style="padding-right: 130px; font-size: 15px;" id="label">
-					<input type="checkbox" class="form-check-input" id=""
-					name="remember-me"> Duy trì đăng nhập
-				</label> <input id="submit" type="submit" value="ĐĂNG NHẬP">
-				<p class="message" style="font-size: 18; padding-top: 10px">
-					Chưa có tài khoản? <a href="<c:url value='/register'/> ">Tạo
-						tài khoản mới</a>
-				</p>
-			</form>
-		</div>
-	</div>
-
-
-	<%-- <div class="main-w3layouts wrapper">
-		<h1>ĐĂNG NHẬP</h1>
-		<div class="main-agileinfo">
-			<div class="agileits-top">
-
-				<c:if test="${param.error != null}">
-					<div class="alert alert-danger">
-						<p>Tên đăng nhập hoặc mật khẩu không đúng.</p>
-					</div>
-				</c:if>
-				<c:if test="${param.logout != null}">
-					<div class="alert alert-success">
-						<p>Bạn đã đăng xuất thành công.</p>
-					</div>
-				</c:if>
-				<c:if test="${param.accessDenied != null}">
-					<div class="alert alert-danger">
-						<p>Bạn không có quyền truy cập vào trang này</p>
-					</div>
-				</c:if>
-
-				<!-- cái required có sẵn, nó bắt mấy lỗi cơ bản, có thể xóa đi rồi validate = javascript cũng đc -->
-				<form method="POST" action="${contextPath}/login">
-					<input class="text" type="text" name="email"
-						placeholder="Tên đăng nhập" required> <input class="text"
-						type="password" name="password" placeholder="Mật khẩu" required>
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" /> <input type="submit" value="ĐĂNG NHẬP">
-				</form>
-				<p>
-					Chưa có Tài Khoản? <a href="${contextPath}/register"> Đăng ký!</a>
-				</p>
 			</div>
 		</div>
-		<!-- copyright -->
-		<div class="colorlibcopy-agile">
-			<p>© 2018 All rights reserved | Design by Group 14 - Hanoi
-				University of Science and Technology</p>
-		</div>
-	</div> --%>
-	<script
-		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
+	</section>
 </body>
+
 </html>
+

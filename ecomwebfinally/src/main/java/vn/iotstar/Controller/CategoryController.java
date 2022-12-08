@@ -1,11 +1,13 @@
 package vn.iotstar.Controller;
 
+import java.nio.file.Path;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -36,6 +38,9 @@ public class CategoryController {
 
 	@Autowired
 	ICategoryService categoryService;
+
+	@Autowired
+	ServletContext application;
 
 	@RequestMapping("")
 	public String list(ModelMap model) {
@@ -72,7 +77,20 @@ public class CategoryController {
 		 * if (result.hasErrors()) { return new
 		 * ModelAndView("admin/categories/addOrEdit"); }
 		 */
+		if (!(cate.getImageFile().isEmpty())) {
+			String path = application.getRealPath("/");
 
+			try {
+
+				cate.setImage(cate.getImageFile().getOriginalFilename());
+				String filePath = path + "/resources/images/seller/" + cate.getImage();
+				cate.getImageFile().transferTo(Path.of(filePath));
+				cate.setImageFile(null);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		BeanUtils.copyProperties(cate, entity); // do du lieu tu model sang entity
 		long millis = System.currentTimeMillis();
 		Date datet = new Date(millis);

@@ -62,7 +62,7 @@ public class ReviewController {
 		}).toList();
 	}
 
-	@RequestMapping("")
+	@GetMapping("")
 	public String list(ModelMap model) {
 
 		// gọi hàm findAll() trong service

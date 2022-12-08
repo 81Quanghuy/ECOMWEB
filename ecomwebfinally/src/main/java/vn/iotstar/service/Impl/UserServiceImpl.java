@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.entity.User;
+
 import vn.iotstar.Repository.UserRepository;
 import vn.iotstar.service.IUserService;
 
@@ -86,9 +87,8 @@ public class UserServiceImpl implements IUserService {
 		return UserRepository.getById(id);
 	}
 
-	@Override
-	public User findOneByUsername(String username) {
-		return UserRepository.findOneByUsername(username);
+	public List<User> findByUsername(String username) {
+		return UserRepository.findByUsername(username);
 	}
 
 	@Override
@@ -96,9 +96,14 @@ public class UserServiceImpl implements IUserService {
 		UserRepository.deleteAll();
 	}
 
-	@Override
-	public List<User> findByRoleContaining(String role) {
-		return UserRepository.findByRoleContaining(role);
+	public User login(String username, String password) {
+		List<User> user = UserRepository.findByUsername(username);
+
+		if (user.size() > 0) {
+			if (user.get(0).getPassword().equals(password))
+				return user.get(0);
+		}
+		return null;
 	}
 
 }

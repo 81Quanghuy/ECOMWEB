@@ -57,7 +57,4 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Transaction> transactions;
 
-	@OneToOne(mappedBy = "user")
-	private Filter filter;
-
 }

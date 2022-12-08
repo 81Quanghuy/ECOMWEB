@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Example;
 
+import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Product;
 
 public interface IProductService {
@@ -32,5 +33,7 @@ public interface IProductService {
 	<S extends Product> S save(S entity);
 
 	List<Product> findBynameContaining(String name);
+
+	List<Product> findByCartItem(CartItem cartItem);
 
 }

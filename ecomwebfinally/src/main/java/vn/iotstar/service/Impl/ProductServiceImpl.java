@@ -8,6 +8,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.Repository.ProductRepository;
+import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Product;
 import vn.iotstar.service.IProductService;
 @Service
@@ -76,6 +77,11 @@ public class ProductServiceImpl implements IProductService{
 	@Override
 	public void deleteAll() {
 		productRepository.deleteAll();
+	}
+
+	@Override
+	public List<Product> findByCartItem(CartItem cartItem) {
+		return productRepository.findByCartItem(cartItem);
 	}
 
 	
