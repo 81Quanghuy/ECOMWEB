@@ -33,7 +33,7 @@ import vn.iotstar.service.IProductService;
 import vn.iotstar.service.IStoreService;
 
 @Controller
-@RequestMapping("/product")
+@RequestMapping("admin/product")
 public class ProductController {
 	@Autowired
 	IProductService productService;

@@ -3,189 +3,138 @@
 
 <%@ include file="/common/taglib.jsp"%>
 
-<!doctype html>
-<html lang="en">
-<head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Bootstrap CSS -->
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<title>Hello, world!</title>
-</head>
-<body>
-
-	<section class="row">
-
-		<div class="col mt-4">
-
-			<div class="card">
-
-				<div class="card-header">List Category</div>
-
-				<div class="card-body">
-
-					<!-- Hiển thông báo -->
-
-					<c:if test="${message != null}">
-
-						<div class="alert alert-primary" role="alert">
-
-							<i>${message}</i>
-
-						</div>
-
-					</c:if>
-
-					<!-- Hêt thông báo -->
-
-					<!-- Search -->
-					<div class="row mt-2 mb-2">
-						<div class="col-md-6">
-							<form action="/admin/categories/searchpagenated">
-								<div class="input-group">
-									<input type="text" class="form-control ml-2" name="name1"
-										id="name1" placeholder="Nhap tu khoa tim kiem">
-									<button class="btn btn-outline-primary ml-2">Search</button>
-								</div>
-							</form>
-						</div>
-
-						<div class="col-md-6">
-							<div class="float-right">
-								<a class="btn btn-outline-success" href="/admin/categories/add">Add
-									New Category</a>
-							</div>
-						</div>
-
-					</div>
-					<c:if test="${!categoryPage.hasContent()}">
+<div id="main">
+	<!-- Recent Sales -->
+	<div class="col-12">
+		<div class="card recent-sales overflow-auto">
 
 
-						<div class="row">
-							<div class="col">
-								<div class="arlet arlet-danger">Not Find Category</div>
+			<!--  Sử dụng vòng lặp lấy order -->
+			<div class="card-body">
+				<h5 class="card-title">Danh Sách Loại Sản Phẩm</h5>
+				<table class="table table-borderless datatable">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th>Ảnh</th>
+							<th>Loại Sản Phẩm</th>
+							<th>Mã Loại Sản Phẩm</th>
+							<th>Trạng Thái</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
 
-							</div>
+						<c:forEach items="${categories}" var="cate" varStatus="STT">
+							<tr>
+								<th scope="row"><a href="#">${STT.index+1}</a></th>
 
-						</div>
-					</c:if>
+								<td>${cate.image}</td>
+								<td>${cate.name}</td>
 
+								<td><a href="#" class="text-primary">${cate.id}</a></td>
 
-					<c:if test="${categoryPage.hasContent()}">
-						<!-- List -->
+								<%-- 			<td>${category.isdeleted ? 'Actived' : 'Deleted'}</td> --%>
 
-						<table class="table table-striped table-responsive">
+								<td><c:if test="${cate.isdeleted == true}">
+										<span class="badge bg-success">Active</span>
+									</c:if> <c:if test="${cate.isdeleted == false}">
+										<span class="badge bg-danger">Not Active</span>
+									</c:if></td>
 
-							<thead class="thead-inverse">
+								<td><a href="/admin/categories/view/${cate.id}"
+									class="btn btn-outline-info"><i class="fa fa-info"></i></a> <a
+									href="/admin/categories/edit/${cate.id}"
+									class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
 
-								<tr>
-									<th>Ảnh</th>
-									<th>Mã Loại Sản Phẩm</th>
-									<th>Loại Sản Phẩm</th>
-									<th>Ngày Tạo</th>
-									<th>Trạng Thái</th>
-									<th>Action</th>
-								</tr>
+									<a href="/admin/categories/delete/${cate.id}"
+									class="btn btn-outline-danger"><i class="fa fa-trash"></i></a></td>
+							</tr>
 
-							</thead>
+							<!-- 
+							<tr>
+								<th scope="row"><a href="#">#2</a></th>
+								<td>Bridie Kessler</td>
+								<td><a href="#" class="text-primary">Blanditiis dolor
+										omnis similique</a></td>
+								<td>$47</td>
+								<td><span class="badge bg-warning">Pending</span></td>
+							</tr>
+							<tr>
+								<th scope="row"><a href="#">#3</a></th>
+								<td>Ashleigh Langosh</td>
+								<td><a href="#" class="text-primary">At recusandae
+										consectetur</a></td>
+								<td>$147</td>
+								<td><span class="badge bg-success">Approved</span></td>
+							</tr>
+							<tr>
+								<th scope="row"><a href="#">#4</a></th>
+								<td>Angus Grady</td>
+								<td><a href="#" class="text-primar">Ut voluptatem id
+										earum et</a></td>
+								<td>$67</td>
+								<td><span class="badge bg-danger">Rejected</span></td>
+							</tr>
+							<tr>
+								<th scope="row"><a href="#">#5</a></th>
+								<td>Raheem Lehner</td>
+								<td><a href="#" class="text-primary">Sunt similique
+										distinctio</a></td>
+								<td>$165</td>
+								<td><span class="badge bg-success">Approved</span></td>
+							</tr>
+							<tr>
+								<th scope="row"><a href="#">#6</a></th>
+								<td>Brandon Jacob</td>
+								<td><a href="#" class="text-primary">At praesentium
+										minu</a></td>
+								<td>$64</td>
+								<td><span class="badge bg-success">Approved</span></td>
+							</tr>
+							<tr>
+								<th scope="row"><a href="#">#7</a></th>
+								<td>Bridie Kessler</td>
+								<td><a href="#" class="text-primary">Blanditiis dolor
+										omnis similique</a></td>
+								<td>$47</td>
+								<td><span class="badge bg-warning">Pending</span></td>
+							</tr>
+							<tr>
+								<th scope="row"><a href="#">#8</a></th>
+								<td>Ashleigh Langosh</td>
+								<td><a href="#" class="text-primary">At recusandae
+										consectetur</a></td>
+								<td>$147</td>
+								<td><span class="badge bg-success">Approved</span></td>
+							</tr>
+							<tr>
+								<th scope="row"><a href="#">#9</a></th>
+								<td>Angus Grady</td>
+								<td><a href="#" class="text-primar">Ut voluptatem id
+										earum et</a></td>
+								<td>$67</td>
+								<td><span class="badge bg-danger">Rejected</span></td>
+							</tr>
+							<tr>
+								<th scope="row"><a href="#">#10</a></th>
+								<td>Raheem Lehner</td>
+								<td><a href="#" class="text-primary">Sunt similique
+										distinctio</a></td>
+								<td>$165</td>
+								<td><span class="badge bg-success">Approved</span></td>
+							</tr> -->
 
-							<tbody>
+						</c:forEach>
+					</tbody>
+				</table>
 
-								<c:forEach items="${categoryPage.content}" var="category">
-
-									<tr>
-
-										<td scope="row">${category.image}</td>
-										<td>${category.id}</td>
-										<td>${category.name}</td>
-										<td>${category.createat}</td>
-										<td>${category.isdeleted ? 'Actived' : 'Deleted'}</td>
-
-										<td><a href="/admin/categories/view/${category.id}"
-											class="btn btn-outline-info"><i class="fa fa-info"></i></a> <a
-											href="/admin/categories/edit/${category.id}"
-											class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
-
-											<a href="/admin/categories/delete/${category.id}"
-											class="btn btn-outline-danger"><i class="fa fa-trash"></i></a></td>
-
-									</tr>
-
-								</c:forEach>
-
-							</tbody>
-
-
-
-						</table>
-
-					</c:if>
-
-
-					<!-- Phan trang Pageable-->
-
-
-					<!-- end of pageable -->
-
-					<!-- Phân trang  -->
-					<c:if test="${categoryPage.totalPages > 0}">
-
-						<nav aria-label="Page navigation">
-							<ul class="pagination">
-								<li
-									class="${1==categoryPage.number + 1  ? 'page-item active' : 'page-item' }">
-									<a class="page-link"
-									href="<c:url value='/admin/categories/list?name=${name}&size=${categoryPage.size}&page=${pageNumber}'/>"
-									tabindex="-1" aria-disabled="true">First</a>
-								</li>
-
-
-								<c:forEach items="${pageNumbers}" var="pageNumber">
-									<c:if test="${categoryPage.totalPages >1}">
-										<li
-											class="${pageNumber == categoryPage.number +1 ? 'page-item active' : 'page-item'}">
-											<a class="page-link"
-											href="<c:url value='/admin/categories/list?name=${name}&size=${categoryPage.size}&page=${pageNumber}'/>">${pageNumber}</a>
-										</li>
-									</c:if>
-								</c:forEach>
-
-
-
-								<li
-									class="${categoryPage.totalPages == categoryPage.number + 1 ? 'page-item active' : 'page-item'}">
-									<a class="page-link"
-									href="<c:url value='/admin/categories/list?name=${name}&size=${categoryPage.size}&page=${categoryPage.totalPages}'/>">Last</a>
-								</li>
-
-							</ul>
-						</nav>
-					</c:if>
-
-				</div>
+				<a href="/admin/categories/add" type="button"
+					class="btn btn-outline-secondary">Thêm Loại Sản Phẩm</a>
 
 			</div>
 
 		</div>
-
-	</section>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
-
-</body>
-</html>
+	</div>
+	<!-- End Recent Sales -->
+</div>

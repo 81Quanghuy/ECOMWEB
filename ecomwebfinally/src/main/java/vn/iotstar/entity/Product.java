@@ -23,7 +23,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "product")
 public class Product {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -31,7 +30,7 @@ public class Product {
 	private String name;
 	private String desciption;
 	private Double price;
-	private Double promotionaprice;
+	private Double promotionaprice; // Giá khuyến mãi
 	private Integer quantity;
 	private Integer sold;
 	private Boolean isselling;
@@ -48,7 +47,7 @@ public class Product {
 	private Store store;
 
 	private Integer rating;
-	
+
 	private Date createat;
 	private Date updateat;
 
