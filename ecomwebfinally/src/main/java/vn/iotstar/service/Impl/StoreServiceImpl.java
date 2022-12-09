@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.entity.Store;
+import vn.iotstar.entity.User;
 import vn.iotstar.Repository.StoreRepository;
 import vn.iotstar.service.IStoreService;
 @Service
@@ -24,6 +25,11 @@ public class StoreServiceImpl implements IStoreService {
 	@Override
 	public <S extends Store> S save(S entity) {
 		return StoreRepository.save(entity);
+	}
+
+	@Override
+	public List<Store> findByUser(User user) {
+		return StoreRepository.findByUser(user);
 	}
 
 	@Override
