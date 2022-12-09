@@ -23,8 +23,8 @@
 			<nav class="limiter-menu-desktop container">
 
 				<!-- Logo desktop -->
-				<a href="/" class="logo"> <img
-					src="${URL}images/icons/logo-01.png" alt="IMG-LOGO">
+				<a href="/" class=""> <img src="${URL}images/icons/logo-01.png"
+					alt="IMG-LOGO">
 				</a>
 
 				<!-- Menu desktop -->
@@ -33,16 +33,17 @@
 						<li class="active-menu"><a href="/">Trang chủ</a></li>
 						<li><a href="/store">Các cửa hàng</a></li>
 
-						<li class="label1" data-label1="hot"><a>Sản phẩm nổi bật</a>
+						<li><a href="#">Loại sản phẩm</a>
 							<ul class="sub-menu">
 								<c:forEach items="${categories}" var="item">
-									<li><a href="category/hot/${item.id}">${item.name}</a></li>
+									<li><a href="category/${item.id}">${item.name}</a></li>
 								</c:forEach>
 							</ul></li>
 
 						<li><a href="/blog">Bài viết</a></li>
 
-						<li><a href="/about">Giới thiệu</a></li>
+						<li class="label1" data-label1="hot"><a href="/product/hot">Sản
+								phẩm nổi bật</a></li>
 
 						<li><a href="/contact">Contact</a></li>
 					</ul>
@@ -61,16 +62,43 @@
 						<i class="zmdi zmdi-shopping-cart"></i>
 					</div>
 
-					<c:if test="${user != null}">
-						<a href="/profile"><img alt="" src="${user.avatar}"
-							style="width: 37px; height: 37px; border-radius: 50%;"> </a>
-					</c:if>
-					<c:if test="${user == null}">
-						<a href="login">Đăng nhập</a>
-						<p style="padding: 10px;">|</p>
-						<a href="regiter">Đăng ký</a>
-					</c:if>
+					<ul class="main-menu">
 
+						<c:if test="${ user!= null}">
+							<li><a
+								class="nav-link nav-profile d-flex align-items-center pe-0"
+								href="/user/profile/${user.id}" data-bs-toggle="dropdown"> <c:if
+										test="${user.avatar.substring(0,4).equals('http')}">
+										<img src="${user.avatar}" alt="Profile" class="rounded-circle"
+											style="width: 37px; height: 37px; border-radius: 50%;">
+									</c:if> <c:if test="${!user.avatar.substring(0,4).equals('http')}">
+										<img src="/images/user/${user.avatar}" alt="Profile"
+											class="rounded-circle"
+											style="width: 37px; height: 37px; border-radius: 50%;">
+									</c:if> <span class="d-none d-md-block dropdown-toggle ps-2">${admin.name}</span>
+							</a> <!-- End Profile Iamge Icon -->
+
+								<ul class="sub-menu"
+									style="right: 0; top: 76%; left: -150%; border-radius: 5px;">
+									<li><a href="/user/profile/${user.id}">${user.firstName}
+											${user.lastName}</a></li>
+									<c:if test="${store == null}">
+										<li><a href="/store/register">Trở thành người bán </a></li>
+									</c:if>
+									<c:if test="${store != null}">
+										<li><a href="/store/${store.id}">Cửa hàng của tôi </a></li>
+									</c:if>
+									<li><a href="/logout">Đăng xuất</a></li>
+								</ul></li>
+
+
+						</c:if>
+						<c:if test="${user == null}">
+							<a href="/login">Đăng nhập</a>
+							<p style="padding: 10px;">|</p>
+							<a href="/resgiter">Đăng ký</a>
+						</c:if>
+					</ul>
 				</div>
 			</nav>
 		</div>
@@ -192,8 +220,7 @@
 						<div class="header-cart-item-img">
 							<c:if
 								test="${!cartItem.product.listimage.substring(0,4).equals('http')}">
-								<img src="/images/admin/product/${cartItem.product.listimage}"
-									alt="IMG">
+								<img src="/images/admin/${cartItem.product.listimage}" alt="IMG">
 							</c:if>
 							<c:if
 								test="${cartItem.product.listimage.substring(0,4).equals('http')}">
@@ -217,11 +244,11 @@
 				<div class="header-cart-total w-full p-tb-40">Total:${total}</div>
 
 				<div class="header-cart-buttons flex-w w-full">
-					<a href="cart/${cart.id}"
+					<a href="/cart/${cart.id}"
 						class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-						View Cart </a> <a href="cart/buy/${cart.id}"
+						Giỏ hàng </a> <a href="/order"
 						class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-						Check Out </a>
+						Đơn hàng </a>
 				</div>
 			</div>
 		</div>

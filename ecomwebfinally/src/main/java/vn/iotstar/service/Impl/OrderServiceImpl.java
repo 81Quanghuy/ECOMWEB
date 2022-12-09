@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.entity.Order;
+import vn.iotstar.entity.User;
 import vn.iotstar.Repository.OrderRepository;
 import vn.iotstar.service.IOrderService;
 
@@ -28,6 +29,11 @@ public class OrderServiceImpl implements IOrderService {
 	@Override
 	public <S extends Order> Optional<S> findOne(Example<S> example) {
 		return orderRepository.findOne(example);
+	}
+
+	@Override
+	public List<Order> findByUser(User user) {
+		return orderRepository.findByUser(user);
 	}
 
 	@Override

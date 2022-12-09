@@ -78,21 +78,21 @@ public class OrderController {
 		}).toList();
 	}
 
-	@RequestMapping("")
-	public String list(ModelMap model) {
-
-		// gọi hàm findAll() trong service
-
-		List<Order> list = orderService.findAll();
-
-		// chuyển dữ liệu từ list lên biến views
-
-		model.addAttribute("orders", list);
-
-		return "seller/orders/list";
-
-	}
-
+	/*
+	 * @RequestMapping("") public String list(ModelMap model) {
+	 * 
+	 * // gọi hàm findAll() trong service
+	 * 
+	 * List<Order> list = orderService.findAll();
+	 * 
+	 * // chuyển dữ liệu từ list lên biến views
+	 * 
+	 * model.addAttribute("orders", list);
+	 * 
+	 * return "seller/orders/list";
+	 * 
+	 * }
+	 */
 	@GetMapping("add")
 	public String Add(ModelMap model) {
 		OrderModel order = new OrderModel();

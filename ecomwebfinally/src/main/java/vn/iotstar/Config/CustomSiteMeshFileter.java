@@ -10,9 +10,8 @@ public class CustomSiteMeshFileter extends ConfigurableSiteMeshFilter {
 	@Override
 	protected void applyCustomConfiguration(SiteMeshFilterBuilder builder) {
 		builder.addDecoratorPath("/seller/*", "/decorators/seller.jsp")
-				.addDecoratorPath("/admin/*", "/decorators/admin.jsp")
-				.addDecoratorPath("/*", "/decorators/user.jsp")
+				.addDecoratorPath("/admin/*", "/decorators/admin.jsp").addDecoratorPath("/*", "/decorators/user.jsp")
 
-				.addExcludedPath("/login*");
+				.addExcludedPath("/login*").addExcludedPath("/resgiter*");
 	}
 }

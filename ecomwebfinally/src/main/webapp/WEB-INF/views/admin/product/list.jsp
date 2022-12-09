@@ -37,8 +37,7 @@
 							<tr>
 								<td scope="row">${product.id}</td>
 								<td>${product.name}</td>
-								<td><c:url
-										value="/images/admin/product/${product.listimage}"
+								<td><c:url value="/images/admin/${product.listimage}"
 										var="imgUrl"></c:url> <img width="100px" height="100px"
 									name="imageFile" src="${imgUrl}"></td>
 								<td>${product.price}</td>

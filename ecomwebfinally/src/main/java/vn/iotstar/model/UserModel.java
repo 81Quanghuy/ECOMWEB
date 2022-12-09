@@ -21,7 +21,7 @@ public class UserModel {
 	private String phone;
 	private String username;
 	private String password;// mật khẩu mã hóa
-	private Boolean role;// mặt định là user, là admin hoặc user của 1 shop tạo ra
+	private String role;// mặt định là user, là admin hoặc user của 1 shop tạo ra
 	private String address;
 	private String avatar;
 	private Boolean isSeller;
@@ -30,5 +30,11 @@ public class UserModel {
 	private Date updateat;
 	private Boolean isActive;
 	private Boolean isEdit = false;
+
+	public UserModel(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
 
 }
