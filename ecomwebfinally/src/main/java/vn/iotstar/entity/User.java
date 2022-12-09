@@ -3,6 +3,7 @@ package vn.iotstar.entity;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +28,9 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
 
+	@Column(length = 20, columnDefinition = "nvarchar(20) not null")
 	private String firstName;
+	@Column(length = 20, columnDefinition = "nvarchar(20) not null")
 	private String lastName;
 
 	private String email;

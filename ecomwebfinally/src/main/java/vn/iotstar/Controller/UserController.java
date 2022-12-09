@@ -29,7 +29,7 @@ import vn.iotstar.model.UserModel;
 import vn.iotstar.service.IUserService;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController {
 
 	@Autowired
@@ -42,7 +42,7 @@ public class UserController {
 	public String list(ModelMap model) {
 		List<User> user = userService.findAll();
 		model.addAttribute("users", user);
-		return"user/list";
+		return"admin/user/list";
 	}
 
 	@GetMapping("/add")
@@ -50,7 +50,7 @@ public class UserController {
 		UserModel user = new UserModel();
 		user.setIsEdit(false);
 		model.addAttribute("user", user);
-		return "user/user/addOrEdit";
+		return "admin/user/addOrEdit";
 
 	}
 
@@ -63,7 +63,7 @@ public class UserController {
 			BeanUtils.copyProperties(entity, user);
 			user.setIsEdit(true);
 			model.addAttribute("user", user);
-			return new ModelAndView("user/user/addOrEdit", model);
+			return new ModelAndView("admin/user/addOrEdit", model);
 		}
 		model.addAttribute("message", "User không tồn tại");
 		return new ModelAndView("redirect:/user", model);
@@ -104,13 +104,13 @@ public class UserController {
 		}
 
 		userService.save(entity);
-		return new ModelAndView("redirect:/user", model);
+		return new ModelAndView("redirect:/admin/user", model);
 
 	}
 
 	@GetMapping("delete/{id}")
 	public ModelAndView delete(ModelMap model, @PathVariable("id") Integer id) {
 		userService.deleteById(id);
-		return new ModelAndView("redirect:/user", model);
+		return new ModelAndView("redirect:/admin/user", model);
 	}
 }

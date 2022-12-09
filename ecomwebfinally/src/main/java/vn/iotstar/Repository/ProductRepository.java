@@ -12,5 +12,6 @@ import vn.iotstar.entity.Product;
 public interface ProductRepository extends JpaRepository <Product,Integer>{
 
 	List<Product> findBynameContaining(String name);
-	List<Product> findByCartItem(CartItem cartItem);
+	List<Product> findByCartItem(CartItem cartItem);	
+	public List<Product> findAllByOrderBySoldDesc();
 }

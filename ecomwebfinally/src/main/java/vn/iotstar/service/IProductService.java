@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 
 import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Product;
@@ -35,5 +36,11 @@ public interface IProductService {
 	List<Product> findBynameContaining(String name);
 
 	List<Product> findByCartItem(CartItem cartItem);
+
+	<S extends Product> List<S> findAll(Example<S> example, Sort sort);
+
+	List<Product> findAll(Sort sort);
+
+	List<Product> findAllByOrderBySoldDesc();
 
 }

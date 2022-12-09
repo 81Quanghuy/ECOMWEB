@@ -106,4 +106,14 @@ public class UserServiceImpl implements IUserService {
 		return null;
 	}
 
+	@Override
+	public List<User> findByRoleContaining(String role) {
+		return UserRepository.findByRoleContaining(role);
+	}
+
+	@Override
+	public String getFullName(User user) {
+		return user.getFirstName()+user.getLastName();
+	}
+
 }

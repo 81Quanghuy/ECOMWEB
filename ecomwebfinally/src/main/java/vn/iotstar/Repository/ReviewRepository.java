@@ -7,5 +7,6 @@ import vn.iotstar.entity.Review;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
+	
 
 }

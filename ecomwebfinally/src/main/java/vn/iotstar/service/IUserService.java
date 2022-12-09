@@ -43,4 +43,8 @@ public interface IUserService {
 
 	
 	User login(String username, String password);
+	
+	List<User> findByRoleContaining(String role);
+	
+	String getFullName(User user);
 }

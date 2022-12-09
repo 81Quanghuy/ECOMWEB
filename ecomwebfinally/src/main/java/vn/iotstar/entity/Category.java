@@ -3,6 +3,7 @@ package vn.iotstar.entity;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,10 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(length = 200, columnDefinition = "nvarchar(200) not null")
 	private String name;
+	
 	private String image;
 	private Date createat;
 	private Date updateat;

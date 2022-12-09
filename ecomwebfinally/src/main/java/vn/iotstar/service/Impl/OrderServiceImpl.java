@@ -92,4 +92,13 @@ public class OrderServiceImpl implements IOrderService {
 		orderRepository.deleteAll();
 	}
 	
+	@Override
+	public Float sumOder(List<Order> oders) {
+		Float price = (float) 0;
+		for (Order order : oders) {
+			price = price + order.getPrice();
+		}
+		return price;
+	}
+	
 }

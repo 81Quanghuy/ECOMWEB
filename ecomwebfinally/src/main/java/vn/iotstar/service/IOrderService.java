@@ -40,4 +40,6 @@ public interface IOrderService {
 
 	<S extends Order> S save(S entity);
 
+	Float sumOder(List<Order> oders);
+
 }

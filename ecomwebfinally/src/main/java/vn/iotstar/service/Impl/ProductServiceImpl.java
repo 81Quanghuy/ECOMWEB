@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.Repository.ProductRepository;
@@ -83,7 +84,24 @@ public class ProductServiceImpl implements IProductService{
 	public List<Product> findByCartItem(CartItem cartItem) {
 		return productRepository.findByCartItem(cartItem);
 	}
-
 	
+	@Override
+	public List<Product> findAll(Sort sort) {
+		return productRepository.findAll(sort);
+	}
+
+	@Override
+	public <S extends Product> List<S> findAll(Example<S> example, Sort sort) {
+		return productRepository.findAll(example, sort);
+	}
+
+	@Override
+	public List<Product> findAllByOrderBySoldDesc() {
+		// TODO Auto-generated method stub
+		return productRepository.findAllByOrderBySoldDesc();
+	}
+
+
+
 	
 }
