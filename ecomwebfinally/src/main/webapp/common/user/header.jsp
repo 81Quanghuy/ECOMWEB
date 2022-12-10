@@ -40,7 +40,6 @@
 								</c:forEach>
 							</ul></li>
 
-						<li><a href="/blog">Bài viết</a></li>
 
 						<li class="label1" data-label1="hot"><a href="/product/hot">Sản
 								phẩm nổi bật</a></li>
@@ -244,7 +243,7 @@
 				<div class="header-cart-total w-full p-tb-40">Total:${total}</div>
 
 				<div class="header-cart-buttons flex-w w-full">
-					<a href="/cart/${cart.id}"
+					<a href="/cart"
 						class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 						Giỏ hàng </a> <a href="/order"
 						class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
