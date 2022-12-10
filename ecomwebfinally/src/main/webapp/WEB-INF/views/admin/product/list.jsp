@@ -37,6 +37,7 @@
 							<tr>
 								<td scope="row">${product.id}</td>
 								<td>${product.name}</td>
+
 								<td><c:url
 										value="/resources/images/admin/product/${product.listimage}"
 										var="imgUrl"></c:url> <img width="100px" height="100px"

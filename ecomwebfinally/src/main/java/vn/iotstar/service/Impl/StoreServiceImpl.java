@@ -28,6 +28,11 @@ public class StoreServiceImpl implements IStoreService {
 	}
 
 	@Override
+	public List<Store> findByUser(User user) {
+		return StoreRepository.findByUser(user);
+	}
+
+	@Override
 	public <S extends Store> Optional<S> findOne(Example<S> example) {
 		return StoreRepository.findOne(example);
 	}

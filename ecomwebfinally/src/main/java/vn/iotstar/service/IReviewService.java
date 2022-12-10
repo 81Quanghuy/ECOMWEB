@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Review;
 
 public interface IReviewService {
@@ -39,5 +40,7 @@ public interface IReviewService {
 	<S extends Review> Optional<S> findOne(Example<S> example);
 
 	<S extends Review> S save(S entity);
+
+	List<Review> findByProduct(Product product);
 
 }

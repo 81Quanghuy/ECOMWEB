@@ -34,4 +34,6 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
 
 	List<Store> getStoreByUser(User user);
 
+	List<Store> findByUser(User user);
+
 }

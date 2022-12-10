@@ -7,6 +7,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
 
 import vn.iotstar.entity.CartItem;
+import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 
@@ -59,5 +60,7 @@ public interface IProductService {
 	List<Product> getLatestProduct();
 
 	List<Product> findTop3ByOrderBySoldDesc();
+
+	List<Product> findByCategory(Category category);
 
 }

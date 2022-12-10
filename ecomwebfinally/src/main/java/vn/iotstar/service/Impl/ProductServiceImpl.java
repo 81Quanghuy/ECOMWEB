@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import vn.iotstar.Repository.ProductRepository;
 import vn.iotstar.entity.CartItem;
+import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.service.IProductService;
@@ -24,6 +25,11 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public List<Product> findBynameContaining(String name) {
 		return productRepository.findBynameContaining(name);
+	}
+
+	@Override
+	public List<Product> findByCategory(Category category) {
+		return productRepository.findByCategory(category);
 	}
 
 	@Override

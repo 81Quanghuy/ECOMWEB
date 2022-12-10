@@ -22,14 +22,13 @@ public class StorageProperties {
 
 	@Autowired
 	ServletContext application;
-  
 
-	@RequestMapping(value = "images/admin/product/{photo}", method = RequestMethod.GET)
+	@RequestMapping(value = "images/admin/{photo}", method = RequestMethod.GET)
 	@ResponseBody()
 	public ResponseEntity<ByteArrayResource> getImageAdmin(@PathVariable("photo") String photo) {
 		if (!photo.equals("") || photo != null) {
 			try {
-				Path filename = Paths.get("src/main/webapp/resources/images/admin/product", photo);
+				Path filename = Paths.get("src/main/webapp/resources/images/admin", photo);
 				byte[] buffer = Files.readAllBytes(filename);
 				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
 				return ResponseEntity.ok().contentLength(buffer.length)
@@ -48,6 +47,24 @@ public class StorageProperties {
 		if (!photo.equals("") || photo != null) {
 			try {
 				Path filename = Paths.get("src/main/webapp/resources/images/seller", photo);
+				byte[] buffer = Files.readAllBytes(filename);
+				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+				return ResponseEntity.ok().contentLength(buffer.length)
+						.contentType(MediaType.parseMediaType("image/png")).body(byteArrayResource);
+			} catch (Exception e) {
+
+			}
+		}
+		return ResponseEntity.badRequest().build();
+
+	}
+
+	@RequestMapping(value = "images/user/{photo}", method = RequestMethod.GET)
+	@ResponseBody()
+	public ResponseEntity<ByteArrayResource> getImageUser(@PathVariable("photo") String photo) {
+		if (!photo.equals("") || photo != null) {
+			try {
+				Path filename = Paths.get("src/main/webapp/resources/images/user", photo);
 				byte[] buffer = Files.readAllBytes(filename);
 				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
 				return ResponseEntity.ok().contentLength(buffer.length)

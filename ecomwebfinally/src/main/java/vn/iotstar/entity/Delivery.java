@@ -28,7 +28,7 @@ public class Delivery {
 
 	@Column(length = 200, columnDefinition = "nvarchar(200) not null")
 	private String name;
-	private Double price;
+	private Float price;
 	private String desciption;
 	private Boolean isdeleted;
 	private Date createat;

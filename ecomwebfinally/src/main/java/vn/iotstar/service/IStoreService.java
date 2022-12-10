@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 
@@ -52,5 +51,6 @@ public interface IStoreService {
 
 	List<Store> getStoreByUser(User user);
 
-	
+	List<Store> findByUser(User user);
+
 }

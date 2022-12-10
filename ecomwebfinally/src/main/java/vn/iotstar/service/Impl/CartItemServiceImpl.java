@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import vn.iotstar.entity.Cart;
 import vn.iotstar.entity.CartItem;
+import vn.iotstar.entity.Product;
 import vn.iotstar.Repository.CartItemRepository;
 import vn.iotstar.service.ICartItemService;
 
@@ -24,6 +25,11 @@ public class CartItemServiceImpl implements ICartItemService {
 	@Override
 	public List<CartItem> findByCart(Cart cart) {
 		return CartItemRepository.findByCart(cart);
+	}
+
+	@Override
+	public List<CartItem> findByProduct(Product product) {
+		return CartItemRepository.findByProduct(product);
 	}
 
 	@Override

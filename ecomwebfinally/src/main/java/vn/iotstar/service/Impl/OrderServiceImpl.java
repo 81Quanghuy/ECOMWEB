@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import vn.iotstar.Repository.OrderRepository;
 import vn.iotstar.entity.Order;
 import vn.iotstar.entity.Store;
-import vn.iotstar.Repository.OrderRepository;
+import vn.iotstar.entity.User;
 import vn.iotstar.service.IOrderService;
 
 @Service
@@ -29,6 +29,11 @@ public class OrderServiceImpl implements IOrderService {
 	@Override
 	public <S extends Order> Optional<S> findOne(Example<S> example) {
 		return orderRepository.findOne(example);
+	}
+
+	@Override
+	public List<Order> findByUser(User user) {
+		return orderRepository.findByUser(user);
 	}
 
 	@Override

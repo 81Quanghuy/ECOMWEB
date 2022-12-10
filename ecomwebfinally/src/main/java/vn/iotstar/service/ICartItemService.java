@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 
 import vn.iotstar.entity.Cart;
 import vn.iotstar.entity.CartItem;
+import vn.iotstar.entity.Product;
 
 public interface ICartItemService {
 
@@ -42,5 +43,7 @@ public interface ICartItemService {
 	<S extends CartItem> S save(S entity);
 
 	List<CartItem> findByCart(Cart cart);
+
+	List<CartItem> findByProduct(Product product);
 
 }

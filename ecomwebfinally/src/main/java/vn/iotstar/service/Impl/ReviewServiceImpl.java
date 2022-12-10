@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Review;
 import vn.iotstar.Repository.ReviewRepository;
 import vn.iotstar.service.IReviewService;
@@ -23,6 +24,11 @@ public class ReviewServiceImpl implements IReviewService {
 	@Override
 	public <S extends Review> S save(S entity) {
 		return ReviewRepository.save(entity);
+	}
+
+	@Override
+	public List<Review> findByProduct(Product product) {
+		return ReviewRepository.findByProduct(product);
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class DeliveryModel {
 	private Integer id;
 	private String name;
-	private Double price;
+	private Float price;
 	private String desciption;
 	private Boolean isdeleted;
 	private Date createat;
