@@ -71,7 +71,11 @@
 						<div class="size-209 m-3">
 							<span class="mtext-110 cl2">Tổng tiền : $${total} </span>
 						</div>
-
+						<c:if test="${cartItems.size() >0}">
+							<a
+								class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer "
+								href="/order/add">Mua hàng</a>
+						</c:if>
 					</div>
 				</div>
 			</c:if>
@@ -81,91 +85,16 @@
 				</div>
 			</c:if>
 		</div>
-		<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-			<div
-				class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-				<h4 class="mtext-109 cl2 p-b-30">Cart Totals</h4>
-
-				<div class="flex-w flex-t bor12 p-b-13">
-					<div class="size-208">
-						<span class="stext-110 cl2"> Subtotal: </span>
-					</div>
-
-					<div class="size-209">
-						<span class="mtext-110 cl2"> $${total}</span>
-					</div>
-				</div>
-
-				<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-					<div class="size-208 w-full-ssm">
-						<span class="stext-110 cl2"> Địa chỉ giao hàng: </span>
-						<div class="bor8 bg0 m-b-22">
-							<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text"
-								name="address" placeholder="ADDRESS">
-						</div>
-					</div>
-
-					<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-						<div class="p-t-15">
-							<form action="/add/delivery">
-								<label for="cars">Chọn đơn vị vận chuyển:</label> <select
-									name="delivery" id="delivery">
-									<c:forEach items="${deliveries}" var="item">
-										<option value="${item.id}">${item.name}</option>
-									</c:forEach>
-								</select> <br> <br>
-								<!-- <button type="submit">Xác nhận</button> -->
-							</form>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="flex-w flex-t p-t-27 p-b-33">
-					<div class="size-208">
-						<span class="mtext-101 cl2"> Total: </span>
-					</div>
-
-					<div class="size-209 p-t-1">
-						<span class="mtext-110 cl2" name="sumtotals"> ${total}</span>
-					</div>
-				</div>
-
-				<c:if test="${cartItems.size() >0}">
-					<a
-						class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer "
-						href="/order/add">Mua hàng</a>
-				</c:if>
-			</div>
-		</div>
 	</div>
 
-
 </c:if>
-<c:if test="${cart==null}">
-	<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-		<div
-			class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-			<h4 class="mtext-109 cl2 p-b-30">Chưa có giỏ hàng</h4>
-
-			<div class="flex-w flex-t bor12 p-b-13">
-				<div class="">
-					<span class="stext-110 cl2">Bạn cần phải đăng nhập vào hệ
-						thống để thưc hiện mua hàng. </span>
-				</div>
-				<div class=""
-					style="margin-top: 20px; display: flex; width: 100%; justify-content: space-around;">
-					<div
-						class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-						<a href="/login">Đăng nhập</a>
-					</div>
-					<div
-						class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-						<a href="/resgiter">Đăng ký</a>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
-</c:if>
+<div>
+	<form action="/action_page.php">
+		<label for="cars">Choose a car:</label> <select name="cars" id="cars">
+			<option value="volvo">Volvo</option>
+			<option value="saab">Saab</option>
+			<option value="opel">Opel</option>
+			<option value="audi">Audi</option>
+		</select> <br> <br> <input type="submit" value="Submit">
+	</form>
+</div>

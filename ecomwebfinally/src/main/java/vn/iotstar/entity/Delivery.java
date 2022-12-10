@@ -25,10 +25,10 @@ public class Delivery {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(length = 200, columnDefinition = "nvarchar(200) not null")
 	private String name;
-	private Double price;
+	private Float price;
 	private String desciption;
 	private Boolean isdeleted;
 
