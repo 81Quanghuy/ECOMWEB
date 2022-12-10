@@ -60,7 +60,7 @@
 					</tbody>
 				</table>
 
-				<a href="/admin/orders/add" type="button"
+				<a href="/admin/categories/add" type="button"
 					class="btn btn-outline-secondary">Thêm Loại Sản Phẩm</a>
 
 			</div>

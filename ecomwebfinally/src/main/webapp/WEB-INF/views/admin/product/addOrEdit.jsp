@@ -26,6 +26,7 @@
 					<label for="name" class="form-lablel"> Tên Sản Phẩm:</label> <br>
 					<input type="text" value="${product.name}" name="name">
 				</div>
+				
 				<div class="mb-3">
 					<label for="desciption" class="form-lablel"> Mô tả:</label> <br>
 					<input type="text" value="${product.desciption}" name="desciption">
