@@ -11,16 +11,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.Repository.StoreRepository;
 import vn.iotstar.service.IStoreService;
+
 @Service
 public class StoreServiceImpl implements IStoreService {
 	@Autowired
 	StoreRepository StoreRepository;
-	
-	
 
 	@Override
 	public <S extends Store> S save(S entity) {
@@ -97,5 +97,32 @@ public class StoreServiceImpl implements IStoreService {
 	public void deleteAll() {
 		StoreRepository.deleteAll();
 	}
-	
+
+	@Override
+	public Store findByUserContaining(User user) {
+		// TODO Auto-generated method stub
+		return (Store) StoreRepository.findByUserContaining(user);
+	}
+
+	@Override
+	public String findStoreOfUser(List<Store> stores, Integer id) {
+
+		for (Store store : stores) {
+			if (store.getUser().getId().equals(id)) {
+				return store.getName();
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public Store findByNameContaining(String name) {
+		return StoreRepository.findByNameContaining(name);
+	}
+
+	@Override
+	public List<Store> getStoreByUser(User user) {
+		return StoreRepository.getStoreByUser(user);
+	}
+
 }

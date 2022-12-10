@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import vn.iotstar.entity.Order;
-import vn.iotstar.entity.User;
 import vn.iotstar.Repository.OrderRepository;
+import vn.iotstar.entity.Order;
+import vn.iotstar.entity.Store;
+import vn.iotstar.entity.User;
 import vn.iotstar.service.IOrderService;
 
 @Service
@@ -105,4 +105,10 @@ public class OrderServiceImpl implements IOrderService {
 		}
 		return price;
 	}
+
+	// Hàm lấy order theo store
+	public List<Order> getOrderByStore(Store store) {
+		return orderRepository.getOrderByStore(store);
+	}
+
 }

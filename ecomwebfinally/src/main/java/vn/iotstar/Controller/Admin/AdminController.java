@@ -34,10 +34,10 @@ public class AdminController {
 
 	@Autowired
 	IOrderService orderService;
-	
+
 	@Autowired
 	IFilterService filterService;
-	
+
 	@Autowired
 	IProductService productService;
 
@@ -63,28 +63,26 @@ public class AdminController {
 		// truyền lên số lượng đơn hàng.
 		model.addAttribute("odercount", count); //
 
-		model.addAttribute("countuser",  countUser());
-		model.addAttribute("countadmin",  countAdmin());
-		model.addAttribute("countseller",  countSeller());
+		model.addAttribute("countuser", countUser());
+		model.addAttribute("countadmin", countAdmin());
+		model.addAttribute("countseller", countSeller());
 		// Doanh Thu = số tiền bán được hôm nay
 
 		Float doanhthu = orderService.sumOder(orderService.findAll());
 		model.addAttribute("doanhthu", doanhthu);
-		
+
 		List<Filter> filters = filterService.findAll();
-		
+
 		model.addAttribute("filters", filters);
-		List<Product> product = productService.findAllByOrderBySoldDesc();
-		model.addAttribute("products",product);
-		
+		List<Product> product = productService.getLatestProduct();
+		model.addAttribute("products", product);
+
 		return "admin/include/homeAdmin";
 	}
 
 	public User getSessionUser(HttpServletRequest request) {
 		return (User) request.getSession().getAttribute("loggedInUser");
 	}
-	
-	
 
 	public Integer countUser() {
 		Integer count = 0;
@@ -93,7 +91,7 @@ public class AdminController {
 		count = entity.size();
 		return count;
 	}
-	
+
 	public Integer countAdmin() {
 		Integer count = 0;
 		// Role = 1 là user tùy chỉnh sau này
@@ -101,7 +99,7 @@ public class AdminController {
 		count = entity.size();
 		return count;
 	}
-	
+
 	public Integer countSeller() {
 		Integer count = 0;
 		// Role = 1 là user tùy chỉnh sau này
@@ -110,17 +108,17 @@ public class AdminController {
 		return count;
 	}
 
-	@RequestMapping("/orders")
+	@RequestMapping("/orders") 
 	public String list(ModelMap model) {
 
 		// gọi hàm findAll() trong service
 
 		List<Order> list = orderService.findAll();
-
 		// chuyển dữ liệu từ list lên biến views
 
 		model.addAttribute("orders", list);
 		return "admin/orders/list";
-
 	}
+	
+	
 }

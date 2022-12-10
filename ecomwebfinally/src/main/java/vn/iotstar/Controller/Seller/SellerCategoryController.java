@@ -1,4 +1,4 @@
-package vn.iotstar.Controller;
+package vn.iotstar.Controller.Seller;
 
 import java.nio.file.Path;
 import java.sql.Date;
@@ -29,14 +29,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.iotstar.entity.Category;
-import vn.iotstar.entity.User;
 import vn.iotstar.model.CategoryModel;
-import vn.iotstar.model.UserModel;
 import vn.iotstar.service.ICategoryService;
 
 @Controller
-@RequestMapping("admin/categories")
-public class CategoryController {
+@RequestMapping("seller/categories")
+public class SellerCategoryController {
 
 	@Autowired
 	ICategoryService categoryService;
@@ -55,7 +53,7 @@ public class CategoryController {
 
 		model.addAttribute("categories", list);
 
-		return "admin/categories/list";
+		return "seller/categories/list";
 
 	}
 
@@ -65,87 +63,58 @@ public class CategoryController {
 		cate.setIsEdit(false);
 		model.addAttribute("categories", cate);
 
-		return "admin/categories/addOrEdit";
+		return "seller/categories/addOrEdit";
 
 	}
 
 	@PostMapping("saveOrUpdate")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("category") CategoryModel cate,
-			BindingResult result) {
-		Category entity = new Category();
+			BindingResult result) // Tra ve chuoi result
+	{
 
-		if (!cate.getImageFile().isEmpty()) {
+		Category entity = new Category();
+		/*
+		 * if (result.hasErrors()) { return new
+		 * ModelAndView("admin/categories/addOrEdit"); }
+		 */
+		if (!(cate.getImageFile().isEmpty())) {
 			String path = application.getRealPath("/");
 
 			try {
+
 				cate.setImage(cate.getImageFile().getOriginalFilename());
-				String filePath = path + "/resources/images/user/" + cate.getImage();
+				String filePath = path + "/resources/images/seller/" + cate.getImage();
 				cate.getImageFile().transferTo(Path.of(filePath));
 				cate.setImageFile(null);
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		BeanUtils.copyProperties(cate, entity);
+		BeanUtils.copyProperties(cate, entity); // do du lieu tu model sang entity
 		long millis = System.currentTimeMillis();
-		Date date = new Date(millis);
+		Date datet = new Date(millis);
+		if (cate.getIsEdit().equals(true)) {
+			entity.setUpdateat(datet);
 
-		if (cate.getIsEdit()) {
-			entity.setUpdateat(date);
 		} else {
-			entity.setCreateat(date);
-			entity.setUpdateat(date);
+			entity.setCreateat(datet);
+			entity.setUpdateat(datet);
 		}
 
 		categoryService.save(entity);
-		return new ModelAndView("redirect:/admin/categories", model);
+
+		String message = "";
+		if (cate.getIsEdit() == true) {
+			message = "Category Update succesfull !";
+		} else {
+			message = "Category Create Successfull !";
+		}
+
+		model.addAttribute("message", message);
+		return new ModelAndView("redirect:/seller/categories", model);
 
 	}
-//
-//	@PostMapping("saveOrUpdate")
-//	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("category") CategoryModel cate,
-//			BindingResult result) // Tra ve chuoi result
-//	{
-//
-//		Category entity = new Category();
-//		if (!(cate.getImageFile().isEmpty())) {
-//			String path = application.getRealPath("/");
-//
-//			try {
-//
-//				cate.setImage(cate.getImageFile().getOriginalFilename());
-//				String filePath = path + "/resources/images/admin/" + cate.getImage();
-//				cate.getImageFile().transferTo(Path.of(filePath));
-//				cate.setImageFile(null);
-//
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		BeanUtils.copyProperties(cate, entity); // do du lieu tu model sang entity
-//		long millis = System.currentTimeMillis();
-//		Date datet = new Date(millis);
-//		if (cate.getIsEdit().equals(true)) {
-//			entity.setUpdateat(datet);
-//
-//		} else {
-//			entity.setCreateat(datet);
-//			entity.setUpdateat(datet);
-//		}
-//
-//		categoryService.save(entity);
-//
-//		String message = "";
-//		if (cate.getIsEdit() == true) {
-//			message = "Category Update succesfull !";
-//		} else {
-//			message = "Category Create Successfull !";
-//		}
-//
-//		model.addAttribute("message", message);
-//		return new ModelAndView("redirect:/admin/categories", model);
-//
-//	}
 
 	@GetMapping("edit/{id}")
 	public ModelAndView edit(ModelMap model, @PathVariable("id") Integer categoryId) {
@@ -157,10 +126,10 @@ public class CategoryController {
 			BeanUtils.copyProperties(entity, cate);
 			cate.setIsEdit(true);
 			model.addAttribute("category", cate);
-			return new ModelAndView("/admin/categories/addOrEdit", model);
+			return new ModelAndView("/seller/categories/addOrEdit", model);
 		}
 		model.addAttribute("message", "Category is not vaild !!!");
-		return new ModelAndView("redirect:/admin/categories", model);
+		return new ModelAndView("redirect:/seller/categories", model);
 
 	}
 
@@ -169,7 +138,7 @@ public class CategoryController {
 		categoryService.deleteById(id);
 		model.addAttribute("message", "Category Delete Succesfull !!!");
 
-		return new ModelAndView("redirect:/admin/categories", model);
+		return new ModelAndView("redirect:/seller/categories", model);
 
 	}
 
@@ -183,7 +152,7 @@ public class CategoryController {
 			list = categoryService.findAll();
 		}
 		model.addAttribute("categories", list);
-		return "admin/categories/search";
+		return "seller/categories/search";
 
 	}
 
@@ -222,7 +191,7 @@ public class CategoryController {
 		}
 
 		model.addAttribute("categoryPage", resultPage);
-		return "admin/categories/list";
+		return "seller/categories/list";
 
 	}
 

@@ -9,7 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import vn.iotstar.entity.Order;
+<<<<<<< HEAD
+import vn.iotstar.entity.Store;
+=======
 import vn.iotstar.entity.User;
+
 
 public interface IOrderService {
 
@@ -42,6 +46,8 @@ public interface IOrderService {
 	<S extends Order> S save(S entity);
 
 	Float sumOder(List<Order> oders);
+
+	List<Order> getOrderByStore(Store store);
 
 	List<Order> findByUser(User user);
 

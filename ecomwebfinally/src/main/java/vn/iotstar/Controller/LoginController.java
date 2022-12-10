@@ -61,10 +61,10 @@ public class LoginController {
 		session.setAttribute("user", user);
 		model.addAttribute("user", user);
 		if (user.getRole().equals("ROLE_ADMIN")) {
-			return new ModelAndView("redirect:/admin", model);
+			return new ModelAndView("redirect:/admin/home", model);
 		}
 		if (user.getRole().equals("ROLE_SELLER")) {
-			return new ModelAndView("redirect:/seller", model);
+			return new ModelAndView("redirect:/seller/home", model);
 		}
 		if (user.getRole().equals("ROLE_USER")) {
 			return new ModelAndView("redirect:/", model);

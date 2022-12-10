@@ -1,3 +1,4 @@
+
 package vn.iotstar.service;
 
 import java.util.List;
@@ -40,6 +41,15 @@ public interface IStoreService {
 	<S extends Store> Optional<S> findOne(Example<S> example);
 
 	<S extends Store> S save(S entity);
+
+	// List<Store> findByUserContaining(List<User> user);
+	Store findByUserContaining(User user);
+
+	Store findByNameContaining(String name);
+
+	String findStoreOfUser(List<Store> stores, Integer id);
+
+	List<Store> getStoreByUser(User user);
 
 	List<Store> findByUser(User user);
 

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 
@@ -15,7 +16,11 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
 
 	// Tìm Kiếm theo nội dung tên from Store where Storename
 
-	List<Store> findByNameContaining(String name);
+	// List<Store> findByNameContaining(String name);
+
+	// List<Store> findByNameContaining(String name);
+
+	Store findByUserContaining(User user);
 
 	//
 	Store findOneByName(String name);
@@ -25,5 +30,10 @@ public interface StoreRepository extends JpaRepository<Store, Integer> {
 	// Ham phan trang
 	Page<Store> findByNameContaining(String name, Pageable pageable);
 
+	Store findByNameContaining(String name);
+
+	List<Store> getStoreByUser(User user);
+
 	List<Store> findByUser(User user);
+
 }

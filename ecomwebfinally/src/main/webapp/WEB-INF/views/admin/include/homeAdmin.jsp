@@ -292,7 +292,7 @@
 
 							<div class="card-body pb-0">
 								<h5 class="card-title">
-									Top Bán Chạy <span>| Hôm Nay</span>
+									Sản Phẩm Mới Nhất <span>| Hôm Nay</span>
 								</h5>
 
 								<table class="table table-borderless">
@@ -302,7 +302,7 @@
 											<th scope="col">Product</th>
 											<th scope="col">Price</th>
 											<th scope="col">Sold</th>
-											<th scope="col">Revenue</th>
+											<th scope="col">Rating</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -322,7 +322,7 @@
 											
 											<td class="fw-bold">${product.sold}</td>
 											
-											<td>$5,828</td>
+											<td>${product.rating }</td>
 										</tr>
 										<!-- <tr>
 											<th scope="row"><a href="#"><img
@@ -369,8 +369,8 @@
 						</div>
 					</div>
 					<!-- End Top Selling -->
-
-					<!-- Reports -->
+					<!-- 
+					Reports
 					<div class="col-12">
 						<div class="card">
 
@@ -393,7 +393,7 @@
 									Báo Cáo <span>/Hôm Nay</span>
 								</h5>
 
-								<!-- Line Chart -->
+								Line Chart
 								<div id="reportsChart"></div>
 
 								<script>
@@ -448,12 +448,12 @@
                       }).render();
                     });
                   </script>
-								<!-- End Line Chart -->
+								End Line Chart
 
 							</div>
 
 						</div>
-					</div>
+					</div> -->
 					<!-- End Reports -->
 
 
@@ -580,7 +580,7 @@
 						</ul>
 					</div>
 
-					<div class="card-body pb-0">
+					<!-- 			<div class="card-body pb-0">
 						<h5 class="card-title">
 							Ngân Sách <span>| Theo Tháng</span>
 						</h5>
@@ -640,9 +640,9 @@
 
 					</div>
 				</div>
-				<!-- End Budget Report -->
-
-				<!-- Website Traffic -->
+				End Budget Report
+ -->
+					<!-- Website Traffic -->
 				<div class="card">
 					<div class="filter">
 						<a class="icon" href="#" data-bs-toggle="dropdown"><i

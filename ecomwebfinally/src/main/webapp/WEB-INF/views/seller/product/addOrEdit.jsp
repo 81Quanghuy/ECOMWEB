@@ -3,13 +3,10 @@
 
 <%@ include file="/common/taglib.jsp"%>
 
-
-
 <section id="main" class="container">
-
 	<div class="col mt-4">
-		<form action=<c:url value = "/seller/product/saveofUpdate"/> method="POST"
-			enctype="multipart/form-data">
+		<form action=<c:url value = "/seller/product/saveofUpdate"/>
+			method="POST" enctype="multipart/form-data">
 			<div class="card">
 				<div class="card-header">
 					<h2>${product.isEdit ? 'Edit' : 'Add'}</h2>
@@ -80,13 +77,12 @@
 					<option ${product.isselling == false ? 'selected':'' }
 						value="false">Chưa Mở bán</option>
 				</select>
-
 			</div>
-
 			<div class="card-footer text-muted">
-				<a href=<c:url value="/product/add"/> class="btn btn-secondary"><i
-					class="fas fa-new"></i>New</a> <a href=<c:url value="/product"/>
-					class="btn btn-success"><i class="fas bars"></i>Quay lại</a>
+				<a href=<c:url value="/seller/product/add"/>
+					class="btn btn-secondary"><i class="fas fa-new"></i>New</a> <a
+					href=<c:url value="/seller/product"/> class="btn btn-success"><i
+					class="fas bars"></i>Quay lại</a>
 				<button class="btn btn-primary" type="submit">
 					<i class="fas fa-save"></i>
 					<!-- true là cập nhật -->
@@ -97,12 +93,8 @@
 					<c:if test="${!product.isEdit }">
 						<span>Save</span>
 					</c:if>
-
 				</button>
 			</div>
-
 		</form>
-
 	</div>
-
 </section>

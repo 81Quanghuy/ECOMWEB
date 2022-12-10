@@ -33,68 +33,77 @@ Bootstrap CSS
 
 			</div>
 			<div class="card-body">
+				<div class="form-group">
+					<label for="images">Images:</label> <input type="file"
+						class="form-control" name="imageFile" id="imageFile" />
+				</div>
 
-				<%-- 	<div class="form-group">
-						<label for="images">Images:</label> <input type="file"
-							class="form-control" name="imageFile" id="imageFile" />
-					</div>
+
+				<div class="mb-3">
 					<input type="text" class="form-control" name="image" id="image"
-						value="${admin.image}" hidden="true" />
-					<div class="mb-3"> --%>
-				<label for="categoryId" class="form-lablel">Mã Loại Sản
-					Phẩm:</label> <input type="hidden" value="${category.isEdit}"> <input
-					type="text" class="form-control" readonly="readonly" name="id"
-					value="${category.id}" id="id" aria-describedby="id"
-					placeholder="Id" />
-			</div>
+						value="${category.image}" />
+				</div>
 
-			<div class="mb-3">
-				<label for="categoryname" class="form-lablel"> Tên Loại Sản
-					Phẩm:</label> <input type="text" value="${category.name}" id="name"
-					name="name" aria-describedby="nane" placeholder="Name">
-			</div>
 
-			<div class="mb-3">
-				<label for="createat" class="form-lablel">Ngày Tạo :</label> <input
-					type=date value="${category.createat}" id="createat"
-					name="createat" readonly="readonly">
+				<div class="mb-3">
 
-			</div>
-			<div class="mb-3">
-				<label for="updateat" class="form-lablel">Ngày Cập Nhật :</label> <input
-					type="date" value="${category.updateat}" id="updateat"
-					readonly="readonly" name="updateat">
 
-			</div>
+					<label for="categoryId" class="form-lablel">Mã Loại Sản
+						Phẩm:</label> <input type="hidden" value="${category.isEdit}"> <input
+						type="text" class="form-control" readonly="readonly" name="id"
+						value="${category.id}" id="id" aria-describedby="id"
+						placeholder="Id" />
+				</div>
 
-			<div class="mb-3">
-				<label for="Satus" class="form-lablel">Status:</label> <select
-					class="form-select" name="isdeleted"
-					aria-describedby="categorycodeid" id="isdeleted">
+				<div class="mb-3">
+					<label for="categoryname" class="form-lablel"> Tên Loại Sản
+						Phẩm:</label> <input type="text" value="${category.name}" id="name"
+						name="name" aria-describedby="nane" placeholder="Name">
+				</div>
 
-					<option ${category.isdeleted == true ? 'selected':'' } value="true">Active</option>
-					<option ${category.isdeleted == false ? 'selected':'' }
-						value="false">Not Active</option>
-				</select>
+				<div class="mb-3">
+					<label for="createat" class="form-lablel">Ngày Tạo :</label> <input
+						type=date value="${category.createat}" id="createat"
+						name="createat" readonly="readonly">
 
-			</div>
+				</div>
+				<div class="mb-3">
+					<label for="updateat" class="form-lablel">Ngày Cập Nhật :</label> <input
+						type="date" value="${category.updateat}" id="updateat"
+						readonly="readonly" name="updateat">
 
-			<div class="card-footer text-muted">
-				<a href=<c:url value="/seller/categories/add"/>
-					class="btn btn-secondary"><i class="fas fa-new"></i>New</a> <a
-					href=<c:url value="/seller/categories"/> class="btn btn-success"><i
-					class="fas bars"></i>List Category</a>
-				<button class="btn btn-primary" type="submit">
-					<i class="fas fa-save"></i>
-					<c:if test="${category.isEdit }">
-						<span>Update</span>
-					</c:if>
+				</div>
 
-					<c:if test="${!category.isEdit }">
-						<span>Save</span>
-					</c:if>
+				<div class="mb-3">
+					<label for="Satus" class="form-lablel">Status:</label> <select
+						class="form-select" name="isdeleted"
+						aria-describedby="categorycodeid" id="isdeleted">
 
-				</button>
+						<option ${category.isdeleted == true ? 'selected':'' }
+							value="true">Active</option>
+						<option ${category.isdeleted == false ? 'selected':'' }
+							value="false">Not Active</option>
+					</select>
+
+				</div>
+
+				<div class="card-footer text-muted">
+					<a href=<c:url value="/seller/categories/add"/>
+						class="btn btn-secondary"><i class="fas fa-new"></i>New</a> <a
+						href=<c:url value="/seller/categories"/> class="btn btn-success"><i
+						class="fas bars"></i>List Category</a>
+					<button class="btn btn-primary" type="submit">
+						<i class="fas fa-save"></i>
+						<c:if test="${category.isEdit }">
+							<span>Update</span>
+						</c:if>
+
+						<c:if test="${!category.isEdit }">
+							<span>Save</span>
+						</c:if>
+
+					</button>
+				</div>
 			</div>
 		</form>
 

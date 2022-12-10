@@ -1,119 +1,132 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
-<nav id="sidebar" class="sidebar-wrapper">
-	<div class="sidebar-content">
-		<div class="sidebar-brand">
-			<a href="#">pro sidebar</a>
-			<div id="close-sidebar">
-				<i class="fas fa-times"></i>
-			</div>
-		</div>
-		<div class="sidebar-header">
-			<div class="user-pic">
-				<img class="img-responsive img-rounded"
-					src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
-					alt="User picture">
-			</div>
-			<div class="user-info">
-				<span class="user-name">Jhon <strong>Smith</strong>
-				</span> <span class="user-role">Administrator</span> <span
-					class="user-status"> <i class="fa fa-circle"></i> <span>Online</span>
-				</span>
-			</div>
-		</div>
-		<!-- sidebar-header  -->
-		<div class="sidebar-search">
-			<div>
-				<div class="input-group">
-					<input type="text" class="form-control search-menu"
-						placeholder="Search...">
-					<div class="input-group-append">
-						<span class="input-group-text"> <i class="fa fa-search"
-							aria-hidden="true"></i>
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- sidebar-search  -->
-		<div class="sidebar-menu">
-			<ul>
-				<li class="header-menu"><span>General</span></li>
-				<li class="sidebar-dropdown"><a href="#"> <i
-						class="fa fa-tachometer-alt"></i> <span>Dashboard</span> <span
-						class="badge badge-pill badge-warning">New</span>
-				</a>
-					<div class="sidebar-submenu">
-						<ul>
-							<li><a href="#">Dashboard 1 <span
-									class="badge badge-pill badge-success">Pro</span>
-							</a></li>
-							<li><a href="#">Dashboard 2</a></li>
-							<li><a href="#">Dashboard 3</a></li>
-						</ul>
-					</div></li>
-				<li class="sidebar-dropdown"><a href="#"> <i
-						class="fa fa-shopping-cart"></i> <span>E-commerce</span> <span
-						class="badge badge-pill badge-danger">3</span>
-				</a>
-					<div class="sidebar-submenu">
-						<ul>
-							<li><a href="#">Products </a></li>
-							<li><a href="#">Orders</a></li>
-							<li><a href="#">Credit cart</a></li>
-						</ul>
-					</div></li>
-				<li class="sidebar-dropdown"><a href="#"> <i
-						class="far fa-gem"></i> <span>Components</span>
-				</a>
-					<div class="sidebar-submenu">
-						<ul>
-							<li><a href="#">General</a></li>
-							<li><a href="#">Panels</a></li>
-							<li><a href="#">Tables</a></li>
-							<li><a href="#">Icons</a></li>
-							<li><a href="#">Forms</a></li>
-						</ul>
-					</div></li>
-				<li class="sidebar-dropdown"><a href="#"> <i
-						class="fa fa-chart-line"></i> <span>Charts</span>
-				</a>
-					<div class="sidebar-submenu">
-						<ul>
-							<li><a href="#">Pie chart</a></li>
-							<li><a href="#">Line chart</a></li>
-							<li><a href="#">Bar chart</a></li>
-							<li><a href="#">Histogram</a></li>
-						</ul>
-					</div></li>
-				<li class="sidebar-dropdown"><a href="#"> <i
-						class="fa fa-globe"></i> <span>Maps</span>
-				</a>
-					<div class="sidebar-submenu">
-						<ul>
-							<li><a href="#">Google maps</a></li>
-							<li><a href="#">Open street map</a></li>
-						</ul>
-					</div></li>
-				<li class="header-menu"><span>Extra</span></li>
-				<li><a href="#"> <i class="fa fa-book"></i> <span>Documentation</span>
-						<span class="badge badge-pill badge-primary">Beta</span>
-				</a></li>
-				<li><a href="#"> <i class="fa fa-calendar"></i> <span>Calendar</span>
-				</a></li>
-				<li><a href="#"> <i class="fa fa-folder"></i> <span>Examples</span>
-				</a></li>
-			</ul>
-		</div>
-		<!-- sidebar-menu  -->
-	</div>
-	<!-- sidebar-content  -->
-	<div class="sidebar-footer">
-		<a href="#"> <i class="fa fa-bell"></i> <span
-			class="badge badge-pill badge-warning notification">3</span>
-		</a> <a href="#"> <i class="fa fa-envelope"></i> <span
-			class="badge badge-pill badge-success notification">7</span>
-		</a> <a href="#"> <i class="fa fa-cog"></i> <span class="badge-sonar"></span>
-		</a> <a href="#"> <i class="fa fa-power-off"></i>
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+	<ul class="sidebar-nav" id="sidebar-nav">
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="/seller/home"> <i class="bi bi-grid"></i> <span>Trang
+					Chủ</span>
+		</a></li>
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="/seller/categories"> <i class="bi bi-menu-button-wide"></i>
+				<span>Loại Sản Phẩm</span>
+		</a></li>
+
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="/seller/product"> <i class="bi bi-journal-text"></i> <span>
+					Sản Phẩm</span>
+		</a></li>
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="/seller/orders"> <i
+				class="bi bi-layout-text-window-reverse"></i> <span> Đơn Hàng</span>
+		</a></li>
+
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="/seller/deliveries"> <i class="bi bi-card-list"></i> <span>Đơn
+					Vị Vận Chuyển</span>
+		</a></li>
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="/seller/store"> <i class="bi bi-envelope"></i> <span>Gian
+					Hàng</span>
+		</a></li>
+		<!-- 	<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+				<i class="bi bi-layout-text-window-reverse"></i><span>Quản Lý
+					Điểm</span><i class="bi bi-chevron-down ms-auto"></i>
 		</a>
-	</div>
-</nav>
+			<ul id="tables-nav" class="nav-content collapse "
+				data-bs-parent="#sidebar-nav">
+				<li><a href="/admin/grade"> <i class="bi bi-circle"></i><span>
+							Danh Sách Điểm</span>
+				</a></li>
+				<li><a href="/admin/grade/add"> <i class="bi bi-circle"></i><span>Nhập
+							Điểm</span>
+				</a></li>
+			</ul></li>
+		End Tables Nav
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+				<i class="bi bi-bar-chart"></i><span>Lớp Học</span><i
+				class="bi bi-chevron-down ms-auto"></i>
+		</a>
+			<ul id="charts-nav" class="nav-content collapse "
+				data-bs-parent="#sidebar-nav">
+				<li><a href="/admin/studentclass"> <i class="bi bi-circle"></i><span>Danh
+							Sách Lớp</span>
+				</a></li>
+				<li><a href="charts-apexcharts.html"> <i
+						class="bi bi-circle"></i><span>Thêm Lớp Học</span>
+				</a></li>
+			</ul></li>
+		End Charts Nav
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#"> <i
+				class="bi bi-gem"></i><span>Môn Học</span><i
+				class="bi bi-chevron-down ms-auto"></i>
+		</a>
+			<ul id="icons-nav" class="nav-content collapse "
+				data-bs-parent="#sidebar-nav">
+				<li><a href="/admin/subject"> <i class="bi bi-circle"></i><span>
+							Danh Sách Môn</span>
+				</a></li>
+				<li><a href="/admin/subject/add"> <i class="bi bi-circle"></i><span>Thêm
+							Môn Học</span>
+				</a></li>
+			</ul></li>
+		End Icons Nav
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-target="#icons-nav1" data-bs-toggle="collapse" href="#">
+				<i class="bi bi-card-list"></i><span>Chuyên Ngành</span><i
+				class="bi bi-chevron-down ms-auto"></i>
+		</a>
+			<ul id="icons-nav1" class="nav-content collapse "
+				data-bs-parent="#sidebar-nav">
+				<li><a href="/admin/faculty"> <i class="bi bi-circle"></i><span>Danh
+							Sách Chuyên Ngành </span>
+				</a></li>
+				<li><a href="/admin/faculty/add"> <i class="bi bi-circle"></i><span>
+							Thêm Chuyên Ngành</span>
+				</a>
+			</ul></li> -->
+
+		<li class="nav-heading">Trang</li>
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="/seller/profile/${seller.id}"> <i class="bi bi-person"></i> <span>Thông
+					Tin Cá Nhân</span>
+		</a></li>
+		<!-- End Profile Page Nav -->
+
+		<!-- 		<li class="nav-item"><a class="nav-link collapsed"
+			href="/admin/error"> <i class="bi bi-question-circle"></i> <span>F.A.Q</span>
+		</a></li> -->
+		<!-- End F.A.Q Page Nav -->
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="/seller/infoStore/${user.id}"> <i class="bi bi-envelope"></i> <span>Thông
+					Tin Gian Hàng</span>
+		</a></li>
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="/seller/reviews"> <i class="bi bi-envelope"></i> <span>Quản
+					Lý Đánh Giá</span>
+		</a></li>
+		<!-- End Register Page Nav -->
+
+		<li class="nav-item"><a class="nav-link collapsed" href="/logout">
+				<i class="bi bi-box-arrow-in-right"></i> <span>Login Out</span>
+		</a></li>
+	</ul>
+</aside>
+<!-- End Sidebar-->

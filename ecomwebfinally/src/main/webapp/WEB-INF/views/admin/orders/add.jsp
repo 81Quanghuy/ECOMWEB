@@ -54,7 +54,6 @@
 						<label for="price" class="form-lablel">Price :</label> <input
 							type="text" value="${order.price}" id="price" name="price">
 					</div>
-
 					<button type="submit" class="btn btn-primary">Update</button>
 				</div>
 		</form>

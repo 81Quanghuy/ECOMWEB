@@ -31,7 +31,6 @@ public class Delivery {
 	private Float price;
 	private String desciption;
 	private Boolean isdeleted;
-
 	private Date createat;
 	private Date updateat;
 

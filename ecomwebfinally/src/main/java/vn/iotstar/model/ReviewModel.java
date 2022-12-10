@@ -20,4 +20,9 @@ public class ReviewModel {
 	private Date updateat;
 	private Boolean isEdit = false;
 	
+	@Override
+	public String toString() {
+		return "Đánh Giá [id=" + id + ", Nội dung=" + content + ", cho sản phẩm =" + productid + ", rating ="
+				+ rating + " /5 vào ngày :" + createat + "]";
+	}
 }

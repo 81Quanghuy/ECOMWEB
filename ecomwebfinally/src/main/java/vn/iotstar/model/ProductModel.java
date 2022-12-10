@@ -30,4 +30,6 @@ public class ProductModel {
     
     private Boolean isEdit = false;
     
+
+    
 }

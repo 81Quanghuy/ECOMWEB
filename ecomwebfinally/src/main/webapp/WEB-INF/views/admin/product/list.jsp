@@ -37,7 +37,9 @@
 							<tr>
 								<td scope="row">${product.id}</td>
 								<td>${product.name}</td>
-								<td><c:url value="/images/admin/${product.listimage}"
+
+								<td><c:url
+										value="/resources/images/admin/product/${product.listimage}"
 										var="imgUrl"></c:url> <img width="100px" height="100px"
 									name="imageFile" src="${imgUrl}"></td>
 								<td>${product.price}</td>
@@ -53,7 +55,7 @@
 								<%-- <td>${product.updateat}</td> --%>
 								<td>
 									<!-- Button trigger modal --> <a
-									href="/product/edit/${product.id}"
+									href="/admin/product/edit/${product.id}"
 									class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
 
 									<%-- <a href="/admin/categories/delete/${category.categoryId}"
@@ -83,7 +85,7 @@
 												data-bs-dismiss="modal">Close</button>
 											<!-- <button type="button" class="btn btn-primary" >Yes</button> -->
 											<a class="btn btn-primary"
-												href="/product/delete/${product.id}"
+												href="/admin/product/delete/${product.id}"
 												class="btn btn-outline-danger">Yes</a>
 										</div>
 									</div>
