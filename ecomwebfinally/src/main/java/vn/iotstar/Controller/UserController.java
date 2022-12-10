@@ -75,11 +75,6 @@ public class UserController {
 			BindingResult result) {
 		User entity = new User();
 
-		/*
-		 * if (result.hasErrors()) { model.addAttribute("message", "Có lỗi"); return new
-		 * ModelAndView("redirect:/user", model); }
-		 */
-
 		if (!user.getAvatarFile().isEmpty()) {
 			String path = application.getRealPath("/");
 

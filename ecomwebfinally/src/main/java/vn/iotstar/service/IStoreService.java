@@ -1,3 +1,4 @@
+
 package vn.iotstar.service;
 
 import java.util.List;
@@ -8,7 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
+import vn.iotstar.entity.User;
 
 public interface IStoreService {
 
@@ -40,4 +43,14 @@ public interface IStoreService {
 
 	<S extends Store> S save(S entity);
 
+	// List<Store> findByUserContaining(List<User> user);
+	Store findByUserContaining(User user);
+
+	Store findByNameContaining(String name);
+
+	String findStoreOfUser(List<Store> stores, Integer id);
+
+	List<Store> getStoreByUser(User user);
+
+	
 }

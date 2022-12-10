@@ -1,15 +1,16 @@
-package vn.iotstar.Controller;
+package vn.iotstar.Controller.Seller;
 
 import java.io.IOException;
-
 import java.nio.file.Path;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,22 +23,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
-import org.springframework.beans.BeanUtils;
 
 import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
-import vn.iotstar.model.CategoryModel;
+import vn.iotstar.entity.User;
 import vn.iotstar.model.ProductModel;
-import vn.iotstar.model.StoreModel;
 import vn.iotstar.service.ICategoryService;
 import vn.iotstar.service.IProductService;
 import vn.iotstar.service.IStoreService;
+import vn.iotstar.service.IUserService;
 
 @Controller
-@RequestMapping("admin/product")
-public class ProductController {
+@RequestMapping("seller/product")
+public class SellerProductController {
 	@Autowired
 	IProductService productService;
 	@Autowired
@@ -49,37 +48,27 @@ public class ProductController {
 	@Autowired
 	IStoreService storeService;
 
-	@ModelAttribute("categories")
-	public List<CategoryModel> getCategories() {
-		return categoryService.findAll().stream().map(item -> {
-			CategoryModel cate = new CategoryModel();
-			BeanUtils.copyProperties(item, cate);
-			return cate;
-		}).toList();
-	}
+	@Autowired
+	IUserService userService;
 
-	@ModelAttribute("stores")
-	public List<StoreModel> getStores() {
-		return storeService.findAll().stream().map(item -> {
-			StoreModel cate = new StoreModel();
-			BeanUtils.copyProperties(item, cate);
-			return cate;
-		}).toList();
-	}
-
-	@GetMapping("")
-	public String list(ModelMap model) {
-		List<Product> page = productService.findAll();
+	// Get Sản Phẩm By Store
+	@GetMapping("/{id}")
+	public String list(ModelMap model, HttpSession session, @PathVariable("id") Integer id) {
+		// String username = (String) session.getAttribute("user");
+		String nameStore = storeService.findStoreOfUser(storeService.findAll(), id);
+		Store store = storeService.findByNameContaining(nameStore);
+		List<Product> page = productService.getProductByStore(store);
 		model.addAttribute("product", page);
-		return "admin/product/list";
+		return "seller/product/list";
 	}
-
+	
 	@GetMapping("add")
-	public String add(ModelMap model) {
+	public String add(ModelMap model, HttpSession session) {
 		ProductModel product = new ProductModel();
 		product.setIsEdit(false);
+		
 		model.addAttribute("product", product);
-		return "admin/product/addOrEdit";
+		return "seller/product/addOrEdit";
 	}
 
 	@GetMapping("edit/{id}")
@@ -93,10 +82,10 @@ public class ProductController {
 			product.setCategoryid(entity.getCategory().getId());
 			product.setStoreid(entity.getStore().getId());
 			model.addAttribute("product", product);
-			return new ModelAndView("admin/product/addOrEdit", model);
+			return new ModelAndView("seller/product/addOrEdit", model);
 		}
 		model.addAttribute("error", "Product không tồn tại");
-		return new ModelAndView("redirec:/admin/product", model);
+		return new ModelAndView("redirec:/seller/product", model);
 
 	}
 
@@ -104,12 +93,6 @@ public class ProductController {
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("product") ProductModel product,
 			BindingResult result) {
 		Product entity = new Product();
-
-		/*
-		 * // Nếu ko có giá trị gì lỗi if (result.hasErrors()) {
-		 * model.addAttribute("error", "Có lỗi"); return new
-		 * ModelAndView("product/addOrEdit"); }
-		 */
 
 		if (!product.getListImageFile().isEmpty()) {
 			String path = application.getRealPath("/");
@@ -141,15 +124,17 @@ public class ProductController {
 			entity.setCreateat(date);
 			entity.setUpdateat(date);
 		}
+		
+		
 
 		productService.save(entity);
-		return new ModelAndView("redirect:/admin/product", model);
+		return new ModelAndView("redirect:/seller/product", model);
 	}
 
 	@GetMapping("delete/{id}")
 	public ModelAndView delete(ModelMap model, @PathVariable("id") int id) {
 		productService.deleteById(id);
-		return new ModelAndView("redirect:/admin/product", model);
+		return new ModelAndView("redirect:/seller/product", model);
 
 	}
 
@@ -163,7 +148,7 @@ public class ProductController {
 		}
 		model.addAttribute("product", list);
 
-		return "admin/product/list";
+		return "seller/product/list";
 	}
 
 }

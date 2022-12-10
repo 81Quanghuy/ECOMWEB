@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 
 import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Product;
+import vn.iotstar.entity.Store;
 
 public interface IProductService {
 
@@ -42,5 +43,21 @@ public interface IProductService {
 	List<Product> findAll(Sort sort);
 
 	List<Product> findAllByOrderBySoldDesc();
+
+	List<Product> getProductByStore(Store store);
+
+	List<Product> findProductByStore(Store store);
+
+	List<Product> findTop3BySoldOrderByPriceDesc(Integer sold);
+
+	List<Product> getTop3(List<Product> product);
+
+	// public Page<Product> getAllSanPhamByFilter(SearchProductObject object, int
+	// page, int limit);
+
+	// List<Product> findFirst12ByNameContainingIgnoreCaseOrderByIdDesc(String dm);
+	List<Product> getLatestProduct();
+
+	List<Product> findTop3ByOrderBySoldDesc();
 
 }

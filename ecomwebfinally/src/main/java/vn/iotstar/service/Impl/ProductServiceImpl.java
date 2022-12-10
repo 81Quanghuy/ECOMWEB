@@ -11,12 +11,15 @@ import org.springframework.stereotype.Service;
 import vn.iotstar.Repository.ProductRepository;
 import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Product;
+import vn.iotstar.entity.Store;
 import vn.iotstar.service.IProductService;
+
 @Service
-public class ProductServiceImpl implements IProductService{
+public class ProductServiceImpl implements IProductService {
 
 	@Autowired
 	ProductRepository productRepository;
+	private List<Product> list;
 
 	@Override
 	public List<Product> findBynameContaining(String name) {
@@ -84,7 +87,7 @@ public class ProductServiceImpl implements IProductService{
 	public List<Product> findByCartItem(CartItem cartItem) {
 		return productRepository.findByCartItem(cartItem);
 	}
-	
+
 	@Override
 	public List<Product> findAll(Sort sort) {
 		return productRepository.findAll(sort);
@@ -101,7 +104,44 @@ public class ProductServiceImpl implements IProductService{
 		return productRepository.findAllByOrderBySoldDesc();
 	}
 
+	@Override
+	public List<Product> findProductByStore(Store store) {
+		// TODO Auto-generated method stub
+		return productRepository.findProductByStore(store);
+	}
 
+	@Override
+	public List<Product> getProductByStore(Store store) {
+		// TODO Auto-generated method stub
+		return productRepository.getProductByStore(store);
+	}
 
-	
+	public List<Product> findTop3BySoldOrderByPriceDesc(Integer sold) {
+		return productRepository.findTop3BySoldOrderByPriceDesc(sold);
+	}
+
+	@Override
+	public List<Product> getTop3(List<Product> product) {
+		int i = 1;
+
+		for (Product pro : product) {
+			if (i <= 3) {
+
+				list.add(pro);
+			}
+			i++;
+		}
+		return list;
+	}
+
+	@Override
+	public List<Product> getLatestProduct() {
+		return productRepository.findFirst12ByCategoryNameContainingIgnoreCaseOrderByIdDesc("Áo");
+	}
+
+	@Override
+	public List<Product> findTop3ByOrderBySoldDesc() {
+		return productRepository.findTop3ByOrderBySoldDesc();
+	}
+
 }

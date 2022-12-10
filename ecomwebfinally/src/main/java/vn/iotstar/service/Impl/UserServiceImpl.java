@@ -87,6 +87,7 @@ public class UserServiceImpl implements IUserService {
 		return UserRepository.getById(id);
 	}
 
+
 	public List<User> findByUsername(String username) {
 		return UserRepository.findByUsername(username);
 	}

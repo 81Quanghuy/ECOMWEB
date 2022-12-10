@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.entity.Order;
+import vn.iotstar.entity.Store;
 import vn.iotstar.Repository.OrderRepository;
 import vn.iotstar.service.IOrderService;
 
@@ -99,4 +100,10 @@ public class OrderServiceImpl implements IOrderService {
 		}
 		return price;
 	}
+
+	// Hàm lấy order theo store
+	public List<Order> getOrderByStore(Store store) {
+		return orderRepository.getOrderByStore(store);
+	}
+
 }

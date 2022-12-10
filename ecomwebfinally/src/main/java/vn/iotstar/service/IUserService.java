@@ -47,4 +47,6 @@ public interface IUserService {
 	List<User> findByRoleContaining(String role);
 	
 	String getFullName(User user);
+	
+	List<User> findByUsername(String username);
 }

@@ -29,7 +29,11 @@
 							<tr>
 								<th scope="row"><a href="#">${STT.index+1}</a></th>
 
-								<td>${cate.image}</td>
+
+								<td><c:url value="/resources/images/user/${cate.image}"
+										var="imgUrl"></c:url> <img width="100px" height="100px"
+									src="${imgUrl}"></td>
+
 								<td>${cate.name}</td>
 
 								<td><a href="#" class="text-primary">${cate.id}</a></td>
@@ -51,85 +55,12 @@
 									class="btn btn-outline-danger"><i class="fa fa-trash"></i></a></td>
 							</tr>
 
-							<!-- 
-							<tr>
-								<th scope="row"><a href="#">#2</a></th>
-								<td>Bridie Kessler</td>
-								<td><a href="#" class="text-primary">Blanditiis dolor
-										omnis similique</a></td>
-								<td>$47</td>
-								<td><span class="badge bg-warning">Pending</span></td>
-							</tr>
-							<tr>
-								<th scope="row"><a href="#">#3</a></th>
-								<td>Ashleigh Langosh</td>
-								<td><a href="#" class="text-primary">At recusandae
-										consectetur</a></td>
-								<td>$147</td>
-								<td><span class="badge bg-success">Approved</span></td>
-							</tr>
-							<tr>
-								<th scope="row"><a href="#">#4</a></th>
-								<td>Angus Grady</td>
-								<td><a href="#" class="text-primar">Ut voluptatem id
-										earum et</a></td>
-								<td>$67</td>
-								<td><span class="badge bg-danger">Rejected</span></td>
-							</tr>
-							<tr>
-								<th scope="row"><a href="#">#5</a></th>
-								<td>Raheem Lehner</td>
-								<td><a href="#" class="text-primary">Sunt similique
-										distinctio</a></td>
-								<td>$165</td>
-								<td><span class="badge bg-success">Approved</span></td>
-							</tr>
-							<tr>
-								<th scope="row"><a href="#">#6</a></th>
-								<td>Brandon Jacob</td>
-								<td><a href="#" class="text-primary">At praesentium
-										minu</a></td>
-								<td>$64</td>
-								<td><span class="badge bg-success">Approved</span></td>
-							</tr>
-							<tr>
-								<th scope="row"><a href="#">#7</a></th>
-								<td>Bridie Kessler</td>
-								<td><a href="#" class="text-primary">Blanditiis dolor
-										omnis similique</a></td>
-								<td>$47</td>
-								<td><span class="badge bg-warning">Pending</span></td>
-							</tr>
-							<tr>
-								<th scope="row"><a href="#">#8</a></th>
-								<td>Ashleigh Langosh</td>
-								<td><a href="#" class="text-primary">At recusandae
-										consectetur</a></td>
-								<td>$147</td>
-								<td><span class="badge bg-success">Approved</span></td>
-							</tr>
-							<tr>
-								<th scope="row"><a href="#">#9</a></th>
-								<td>Angus Grady</td>
-								<td><a href="#" class="text-primar">Ut voluptatem id
-										earum et</a></td>
-								<td>$67</td>
-								<td><span class="badge bg-danger">Rejected</span></td>
-							</tr>
-							<tr>
-								<th scope="row"><a href="#">#10</a></th>
-								<td>Raheem Lehner</td>
-								<td><a href="#" class="text-primary">Sunt similique
-										distinctio</a></td>
-								<td>$165</td>
-								<td><span class="badge bg-success">Approved</span></td>
-							</tr> -->
 
 						</c:forEach>
 					</tbody>
 				</table>
 
-				<a href="/admin/categories/add" type="button"
+				<a href="/admin/orders/add" type="button"
 					class="btn btn-outline-secondary">Thêm Loại Sản Phẩm</a>
 
 			</div>

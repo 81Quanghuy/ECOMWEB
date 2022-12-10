@@ -29,7 +29,10 @@
 							<tr>
 								<th scope="row"><a href="#">${STT.index+1}</a></th>
 
-								<td>${cate.image}</td>
+								<td><c:url value="/images/admin/${category.image}"
+										var="imgUrl"></c:url> <img width="100px" height="100px"
+									name="imageFile" src="${imgUrl}"></td>
+
 								<td>${cate.name}</td>
 
 								<td><a href="#" class="text-primary">${cate.id}</a></td>

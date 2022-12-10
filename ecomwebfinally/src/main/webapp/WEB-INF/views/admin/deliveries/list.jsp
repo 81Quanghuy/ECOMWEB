@@ -59,7 +59,7 @@
 
 
 				</table>
-				<a href="/admin/categories/add" type="button"
+				<a href="/admin/deliveries/add" type="button"
 					class="btn btn-outline-secondary">Đơn Vị Vận Chuyển Mới</a>
 
 

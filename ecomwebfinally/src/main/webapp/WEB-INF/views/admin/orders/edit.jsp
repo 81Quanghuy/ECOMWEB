@@ -21,7 +21,7 @@
 		<div class="col mt-4">
 			<div class="card-header py-3"></div>
 
-			<form action=<c:url value="/seller/orders/saveOrUpdate" />
+			<form action=<c:url value="/admin/orders/saveOrUpdate" />
 				method="POST" enctype="multipart/form-data">
 				<div class="card-body mx-auto">
 					<div class="mb-3">
