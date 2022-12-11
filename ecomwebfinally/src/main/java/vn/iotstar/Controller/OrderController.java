@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 //package vn.iotstar.Controller;
 //
 //import java.sql.Date;
@@ -180,7 +180,7 @@
 //	// "name" từ phần views truyền xuống
 //	// required=false: không nhập hiện ra list ban đầu
 //}
-=======
+
 package vn.iotstar.Controller;
 
 import java.sql.Date;
@@ -362,4 +362,4 @@ public class OrderController {
 	// "name" từ phần views truyền xuống
 	// required=false: không nhập hiện ra list ban đầu
 }
->>>>>>> 5df5b8447b9c1120828a3a3db71036507391d3ad
+

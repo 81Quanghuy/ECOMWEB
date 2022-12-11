@@ -9,11 +9,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import vn.iotstar.entity.Order;
-<<<<<<< HEAD
-import vn.iotstar.entity.Store;
-=======
-import vn.iotstar.entity.User;
 
+import vn.iotstar.entity.Store;
+
+import vn.iotstar.entity.User;
 
 public interface IOrderService {
 
