@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -30,9 +29,9 @@ public class OrderItem {
 	@JoinColumn(name = "orderid")
 	private Order order;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "productid")
-	private Product product;
+	Product product;
 
 	private Integer count;
 	private Date createat;

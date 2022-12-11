@@ -13,6 +13,8 @@ import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 
 
+import vn.iotstar.entity.User;
+
 public interface IOrderService {
 
 	void deleteAll();
