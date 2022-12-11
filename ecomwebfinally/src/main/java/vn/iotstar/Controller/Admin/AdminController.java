@@ -74,7 +74,7 @@ public class AdminController {
 		List<Filter> filters = filterService.findAll();
 
 		model.addAttribute("filters", filters);
-		List<Product> product = productService.getLatestProduct();
+		List<Product> product = productService.findTop3ByOrderBySoldDesc();
 		model.addAttribute("products", product);
 
 		return "admin/include/homeAdmin";
@@ -108,7 +108,7 @@ public class AdminController {
 		return count;
 	}
 
-	@RequestMapping("/orders") 
+	@RequestMapping("orders") 
 	public String list(ModelMap model) {
 
 		// gọi hàm findAll() trong service

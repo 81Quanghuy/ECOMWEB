@@ -23,7 +23,6 @@
 									<h2 class="ltext-201 cl0 p-t-19 p-b-43 respon1">${item.bio}
 									</h2>
 								</div>
-
 								<div class="layer-slick1 animated visible-false"
 									data-appear="slideInUp" data-delay="1600">
 									<a href="store/${item.id}"
@@ -106,20 +105,14 @@
 								<div class="block1-txt-child2 p-b-4 trans-05">
 									<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
 								</div>
-
 							</a>
 						</div>
 					</c:if>
 				</div>
 			</c:forEach>
-
-
-
 		</div>
 	</div>
 </div>
-
-
 <!-- Product -->
 <section class="bg0 p-t-23 p-b-140">
 	<div class="container">

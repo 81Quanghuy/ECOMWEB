@@ -94,7 +94,7 @@ public class ProductDetailController {
 					check = true;
 			}
 		}
-		//List review
+		// List review
 		List<Review> reviews = reviewService.findByProduct(product);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("checkreview", check);
@@ -142,5 +142,17 @@ public class ProductDetailController {
 		session.removeAttribute("productid");
 		return new ModelAndView("redirect:/product/detail/" + productid, model);
 
+	}
+
+	@RequestMapping("hot")
+	public String getProducthot(ModelMap model) {
+
+		// gọi hàm findAll() trong service
+
+		List<Product> list = productService.findTop10ByOrderBySoldDesc();
+		// chuyển dữ liệu từ list lên biến views
+
+		model.addAttribute("products", list);
+		return "admin/orders/list";
 	}
 }
