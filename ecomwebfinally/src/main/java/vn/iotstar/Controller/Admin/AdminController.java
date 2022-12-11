@@ -108,7 +108,7 @@ public class AdminController {
 		return count;
 	}
 
-	@RequestMapping("/orders") 
+	@RequestMapping("orders") 
 	public String list(ModelMap model) {
 
 		// gọi hàm findAll() trong service

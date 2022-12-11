@@ -14,15 +14,8 @@ import vn.iotstar.entity.User;
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Integer> {
 
-	// Tìm Kiếm theo nội dung tên from Store where Storename
-
-	// List<Store> findByNameContaining(String name);
-
-	// List<Store> findByNameContaining(String name);
-
 	Store findByUserContaining(User user);
 
-	//
 	Store findOneByName(String name);
 
 	// Tìm kiếm và Phân trang

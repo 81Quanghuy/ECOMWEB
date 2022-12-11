@@ -5,14 +5,19 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import com.querydsl.core.BooleanBuilder;
 
 import vn.iotstar.Repository.ProductRepository;
 import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
+import vn.iotstar.model.SearchProductObject;
 import vn.iotstar.service.IProductService;
 
 @Service
@@ -149,5 +154,62 @@ public class ProductServiceImpl implements IProductService {
 	public List<Product> findTop3ByOrderBySoldDesc() {
 		return productRepository.findTop3ByOrderBySoldDesc();
 	}
+
+	@Override
+	public List<Product> findTop10ByOrderBySoldDesc() {
+		// TODO Auto-generated method stub
+		return productRepository.findTop10ByOrderBySoldDesc();
+	}
+
+//	@Override
+//	public Page<Product> getAllSanPhamByFilter(SearchProductObject object, int page, int limit) {
+//
+//		BooleanBuilder builder = new BooleanBuilder();
+//		Double price = object.getPrice();
+//		
+//
+//		// sắp xếp theo giá
+//		Sort sort = Sort.by(Direction.ASC, "price"); // mặc định tăng dần
+//		if (object.getSapXepTheoGia().equals("desc")) { // giảm dần
+//			sort = Sort.by(Direction.DESC, "price");
+//		}
+//
+//		if (!object.getCategoryid().equals("") && object.getCategoryid() != null) {
+//			builder.and(QProduct .name.danhMuc.eq(productRepository.findById(Integer.parseInt(object.getCategoryid())).get()));
+//		}
+//
+//		if (!object.getStoreid().equals("") && object.getStoreid() != null) {
+//			builder.and(QSanPham.sanPham.hangSanXuat
+//					.eq(hangSanXuatRepo.findById(Long.parseLong(object.getHangSXId())).get()));
+//		}
+//
+//		// tim theo don gia
+//		switch (price) {
+//		case "duoi-2-trieu":
+//			builder.and(QSanPham.sanPham.donGia.lt(2000000));
+//			break;
+//
+//		case "2-trieu-den-4-trieu":
+//			builder.and(QSanPham.sanPham.donGia.between(2000000, 4000000));
+//			break;
+//
+//		case "4-trieu-den-6-trieu":
+//			builder.and(QSanPham.sanPham.donGia.between(4000000, 6000000));
+//			break;
+//
+//		case "6-trieu-den-10-trieu":
+//			builder.and(QSanPham.sanPham.donGia.between(6000000, 10000000));
+//			break;
+//
+//		case "tren-10-trieu":
+//			builder.and(QSanPham.sanPham.donGia.gt(10000000));
+//			break;
+//
+//		default:
+//			break;
+//		}
+//		return sanPhamRepo.findAll(builder, PageRequest.of(page, limit, sort));
+//		return null;
+//	}
 
 }
