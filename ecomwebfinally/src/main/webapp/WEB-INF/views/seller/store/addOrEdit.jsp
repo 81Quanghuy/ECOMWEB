@@ -73,8 +73,6 @@
 					</select>
 
 				</div>
-
-
 				<div class="card-footer text-muted">
 					<a href=<c:url value="/admin/store/addOrEdit"/>
 						class="btn btn-secondary"><i class="fas fa-new"></i>New</a> <a

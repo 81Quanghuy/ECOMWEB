@@ -1,8 +1,6 @@
 package vn.iotstar.service.Impl;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import vn.iotstar.Repository.OrderRepository;
 import vn.iotstar.entity.Order;
-import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.service.IOrderService;
@@ -171,6 +168,12 @@ public class OrderServiceImpl implements IOrderService {
 			}
 		}
 		return totalPrice;
+	}
+
+	@Override
+	public List<Order> findAllByOrderByCreateatDesc() {
+		// TODO Auto-generated method stub
+		return (List<Order>) orderRepository.findAllByOrderByCreateatDesc();
 	}
 
 }

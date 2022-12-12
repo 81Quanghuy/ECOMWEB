@@ -6,15 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import vn.iotstar.Repository.IFilterRepository;
 import vn.iotstar.entity.Filter;
 import vn.iotstar.entity.Order;
 import vn.iotstar.entity.Product;
@@ -108,7 +105,7 @@ public class AdminController {
 		return count;
 	}
 
-	@RequestMapping("orders") 
+	@RequestMapping("orders")
 	public String list(ModelMap model) {
 
 		// gọi hàm findAll() trong service
@@ -119,6 +116,17 @@ public class AdminController {
 		model.addAttribute("orders", list);
 		return "admin/orders/list";
 	}
-	
-	
+
+	@RequestMapping("seller")
+	public String listseller(ModelMap model) {
+
+		// gọi hàm findAll() trong service
+
+		List<User> list = userService.findByRoleContaining("ROLE_SELLER");
+		// chuyển dữ liệu từ list lên biến views
+
+		model.addAttribute("users", list);
+		return "admin/user/list";
+	}
+
 }

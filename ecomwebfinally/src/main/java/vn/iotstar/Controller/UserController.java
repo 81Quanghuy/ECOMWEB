@@ -40,9 +40,9 @@ public class UserController {
 
 	@GetMapping("")
 	public String list(ModelMap model) {
-		List<User> user = userService.findAll();
+		List<User> user = userService.findByRoleContaining("ROLE_USER");
 		model.addAttribute("users", user);
-		return"admin/user/list";
+		return "admin/user/list";
 	}
 
 	@GetMapping("/add")

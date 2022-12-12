@@ -146,13 +146,10 @@ public class ProductDetailController {
 
 	@RequestMapping("hot")
 	public String getProducthot(ModelMap model) {
-
 		// gọi hàm findAll() trong service
-
 		List<Product> list = productService.findTop10ByOrderBySoldDesc();
 		// chuyển dữ liệu từ list lên biến views
-
 		model.addAttribute("products", list);
-		return "admin/orders/list";
+		return "user/producthot";
 	}
 }

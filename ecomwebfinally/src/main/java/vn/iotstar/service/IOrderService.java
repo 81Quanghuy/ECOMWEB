@@ -54,4 +54,6 @@ public interface IOrderService {
 
 	Float getPrice12Month(List<Order> oders, Integer id, Integer limit);
 
+	List<Order> findAllByOrderByCreateatDesc();
+
 }

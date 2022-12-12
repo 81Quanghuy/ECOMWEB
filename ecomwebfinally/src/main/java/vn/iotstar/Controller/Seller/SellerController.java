@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import vn.iotstar.entity.Filter;
+import vn.iotstar.entity.Order;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Review;
 import vn.iotstar.entity.Store;
@@ -87,6 +88,9 @@ public class SellerController {
 
 		Float doanhthu = orderService.getTotalPrice(orderService.findAll(), seller.getStores().getId());
 		model.addAttribute("doanhthu", doanhthu);
+		
+		List<Order> listoders = orderService.findAllByOrderByCreateatDesc();
+		model.addAttribute("listoder", listoders);
 
 		List<Filter> filters = filterService.findAll();
 

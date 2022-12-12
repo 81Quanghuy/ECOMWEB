@@ -37,6 +37,21 @@
 			href="/admin/store"> <i class="bi bi-envelope"></i> <span>Gian
 					Hàng</span>
 		</a></li>
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+				<i class="bi bi-layout-text-window-reverse"></i><span>Quản Lý
+					Tài Khoản</span><i class="bi bi-chevron-down ms-auto"></i>
+		</a>
+			<ul id="tables-nav" class="nav-content collapse "
+				data-bs-parent="#sidebar-nav">
+				<li><a href="/admin/user"> <i class="bi bi-circle"></i><span>
+							Người Dùng</span>
+				</a></li>
+				<li><a href="/admin/seller"> <i class="bi bi-circle"></i><span>Seller</span>
+				</a></li>
+			</ul></li>
+		<!-- End Tables Nav -->
 		<!-- 	<li class="nav-item"><a class="nav-link collapsed"
 			data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
 				<i class="bi bi-layout-text-window-reverse"></i><span>Quản Lý
@@ -114,7 +129,8 @@
 		<!-- End F.A.Q Page Nav -->
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="/admin/user"> <i class="bi bi-envelope"></i> <span>Người Dùng</span>
+			href="/admin/user"> <i class="bi bi-envelope"></i> <span>Người
+					Dùng</span>
 		</a></li>
 		<!-- End Register Page Nav -->
 
