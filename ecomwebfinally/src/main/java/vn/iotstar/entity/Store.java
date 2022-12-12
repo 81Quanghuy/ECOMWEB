@@ -32,6 +32,7 @@ public class Store {
 	private String name;
 
 	private String bio;// mô tả
+	private String about;
 	// private Integer ownerId;// từ user nào id user
 	@OneToOne
 	@JoinColumn(name = "ownerid")

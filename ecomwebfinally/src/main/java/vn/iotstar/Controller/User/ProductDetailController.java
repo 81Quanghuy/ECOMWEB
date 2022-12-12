@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.iotstar.entity.Cart;
 import vn.iotstar.entity.CartItem;
+import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Order;
 import vn.iotstar.entity.OrderItem;
 import vn.iotstar.entity.Product;
@@ -146,6 +147,23 @@ public class ProductDetailController {
 
 	@RequestMapping("hot")
 	public String getProducthot(ModelMap model) {
+		User user = (User) session.getAttribute("user");
+		List<Cart> cart = cartService.findByUser(user);
+		List<CartItem> cartItem;
+		if (cart.size() > 0) {
+
+			cartItem = cart.get(0).getCartItems();
+			model.addAttribute("cartItems", cartItem);
+			model.addAttribute("total", cartService.SumCart(cart));
+			model.addAttribute("cart", cart.get(0));
+		} else {
+			cartItem = cartItemService.findByCart(null);
+		}
+		model.addAttribute("cartitem", cartItem.size());
+
+		List<Category> categories = categoryService.findAll();
+		model.addAttribute("categories", categories);
+		
 		// gọi hàm findAll() trong service
 		List<Product> list = productService.findTop10ByOrderBySoldDesc();
 		// chuyển dữ liệu từ list lên biến views

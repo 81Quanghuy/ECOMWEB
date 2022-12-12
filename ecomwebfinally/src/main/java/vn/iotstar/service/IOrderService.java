@@ -56,4 +56,8 @@ public interface IOrderService {
 
 	List<Order> findAllByOrderByCreateatDesc();
 
+	Float SumOrder(List<Order> Order);
+
+	List<Order> findByIsactive(Boolean isactive);
+
 }

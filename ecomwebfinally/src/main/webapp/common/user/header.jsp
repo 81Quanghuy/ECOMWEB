@@ -36,7 +36,7 @@
 						<li><a href="#">Loại sản phẩm</a>
 							<ul class="sub-menu">
 								<c:forEach items="${categories}" var="item">
-									<li><a href="category/${item.id}">${item.name}</a></li>
+									<li><a href="/category/${item.id}">${item.name}</a></li>
 								</c:forEach>
 							</ul></li>
 
@@ -85,7 +85,7 @@
 										<li><a href="/store/register">Trở thành người bán </a></li>
 									</c:if>
 									<c:if test="${store != null}">
-										<li><a href="/store/${store.id}">Cửa hàng của tôi </a></li>
+										<li><a href="/seller/home">Cửa hàng của tôi </a></li>
 									</c:if>
 									<li><a href="/logout">Đăng xuất</a></li>
 								</ul></li>

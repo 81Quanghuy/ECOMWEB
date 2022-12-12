@@ -13,6 +13,7 @@ import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuer
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.Repository.OrderItemRepository;
+import vn.iotstar.entity.Order;
 import vn.iotstar.entity.OrderItem;
 import vn.iotstar.service.IOrderItemService;
 
@@ -21,6 +22,11 @@ public class OrderItemServiceImpl implements IOrderItemService {
 
 	@Autowired
 	OrderItemRepository orderItemRepository;
+
+	@Override
+	public List<OrderItem> findByOrder(Order Order) {
+		return orderItemRepository.findByOrder(Order);
+	}
 
 	@Override
 	public <S extends OrderItem> S save(S entity) {

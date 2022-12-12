@@ -122,6 +122,9 @@
 			href="/seller/reviews"> <i class="bi bi-envelope"></i> <span>Quản
 					Lý Đánh Giá</span>
 		</a></li>
+		<li class="nav-item"><a class="nav-link collapsed" href="/">
+				<i class="bi bi-grid"></i> <span>Quay laị trang mua hàng</span>
+		</a></li>
 		<!-- End Register Page Nav -->
 
 		<li class="nav-item"><a class="nav-link collapsed" href="/logout">

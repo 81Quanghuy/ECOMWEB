@@ -2,6 +2,7 @@ package vn.iotstar.Controller.User;
 
 import java.nio.file.Path;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -15,6 +16,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import vn.iotstar.entity.Cart;
 import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Category;
+import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.model.StoreModel;
@@ -33,7 +36,6 @@ import vn.iotstar.service.IStoreService;
 import vn.iotstar.service.IUserService;
 
 @Controller
-@RequestMapping("store")
 public class StoreControllerUser {
 
 	@Autowired
@@ -59,11 +61,11 @@ public class StoreControllerUser {
 
 	@Autowired
 	ServletContext application;
-	
-	@Autowired 
+
+	@Autowired
 	HttpSession session;
 
-	@GetMapping("")
+	@GetMapping("store")
 	public ModelAndView Store(ModelMap model, HttpSession sesson) {
 
 		User user = (User) sesson.getAttribute("user");
@@ -82,18 +84,18 @@ public class StoreControllerUser {
 
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
-		List<Store> store = storeSerivce.findAll();
+		List<Store> store = storeSerivce.findByIsactive(true);
 		model.addAttribute("stores", store);
 
 		return new ModelAndView("store/list");
 	}
 
-	@GetMapping("register")
+	@GetMapping("store/register")
 	public String Register() {
 		return "user/store-register";
 	}
 
-	@PostMapping("register")
+	@PostMapping("store/register")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("store") StoreModel store,
 			BindingResult result) {
 		Store entity = new Store();
@@ -132,7 +134,7 @@ public class StoreControllerUser {
 			entity.setUpdaeat(date);
 		}
 
-		User user = (User)session.getAttribute("user");
+		User user = (User) session.getAttribute("user");
 		entity.setUser(user);
 		storeSerivce.save(entity);
 		String message = "";
@@ -146,6 +148,62 @@ public class StoreControllerUser {
 		return new ModelAndView("redirect:/store", model);
 
 	}
-	
-	
+
+	@RequestMapping("store/{id}")
+	public ModelAndView StoreDetail(ModelMap model,@PathVariable("id") Integer id) {
+		User user = (User) session.getAttribute("user");
+		List<Cart> cart = cartService.findByUser(user);
+		List<CartItem> cartItem;
+		if (cart.size() > 0) {
+
+			cartItem = cart.get(0).getCartItems();
+			model.addAttribute("cartItems", cartItem);
+			model.addAttribute("total", cartService.SumCart(cart));
+			model.addAttribute("cart", cart.get(0));
+		} else {
+			cartItem = cartItemService.findByCart(null);
+		}
+		model.addAttribute("cartitem", cartItem.size());
+
+		List<Category> categories = categoryService.findAll();
+		model.addAttribute("categories", categories);
+		
+		
+		Store store = storeSerivce.getById(id);
+		model.addAttribute("store", store);
+		List<Product> products = productService.findProductByStore(store);
+		model.addAttribute("products", products);
+		return new ModelAndView("store/detail", model);
+	}
+
+	@RequestMapping("store/category/{id}")
+	public ModelAndView StoreCategory(ModelMap model, @PathVariable("id") Integer id) {
+		User user = (User) session.getAttribute("user");
+		List<Cart> cart = cartService.findByUser(user);
+		List<CartItem> cartItem;
+		if (cart.size() > 0) {
+
+			cartItem = cart.get(0).getCartItems();
+			model.addAttribute("cartItems", cartItem);
+			model.addAttribute("total", cartService.SumCart(cart));
+			model.addAttribute("cart", cart.get(0));
+		} else {
+			cartItem = cartItemService.findByCart(null);
+		}
+		model.addAttribute("cartitem", cartItem.size());
+
+		List<Category> categories = categoryService.findAll();
+		List<Store> stores = storeSerivce.findByIsactive(true);
+		List<Store> storeCate = new ArrayList<Store>();
+		for (Store store : stores) {
+			if (storeSerivce.findStorebyCategory(store, id).equals(true)) {
+				storeCate.add(store);
+			}
+		}
+		if (storeCate.size() > 0) {
+			model.addAttribute("stores", storeCate);
+		}
+		model.addAttribute("categories", categories);
+		return new ModelAndView("store/store-category", model);
+	}
 }

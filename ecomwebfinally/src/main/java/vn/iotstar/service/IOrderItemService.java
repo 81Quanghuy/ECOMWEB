@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 
+import vn.iotstar.entity.Order;
 import vn.iotstar.entity.OrderItem;
 
 public interface IOrderItemService {
@@ -43,6 +44,8 @@ public interface IOrderItemService {
 	<S extends OrderItem> Optional<S> findOne(Example<S> example);
 
 	<S extends OrderItem> S save(S entity);
+
+	List<OrderItem> findByOrder(Order Order);
 
 
 }
