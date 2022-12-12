@@ -35,7 +35,7 @@ import vn.iotstar.service.IUserService;
 
 @Controller
 
-@RequestMapping("seller/orders")
+@RequestMapping("seller1/orders")
 public class SellerOrderController {
 	@Autowired
 	IOrderService orderService;

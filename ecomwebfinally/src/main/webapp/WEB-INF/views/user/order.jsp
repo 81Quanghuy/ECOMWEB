@@ -59,6 +59,15 @@
 
 								</table>
 							</div>
+							<div class="flex-w flex-t p-t-27 p-b-33">
+								<div class="size-208">
+									<span class="mtext-101 cl2"> Total: </span>
+								</div>
+
+								<div class="size-209 p-t-1">
+									<span class="mtext-110 cl2"> ${total}</span>
+								</div>
+							</div>
 						</div>
 					</div>
 				</c:if>

@@ -82,8 +82,7 @@
 			</c:if>
 		</div>
 		<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-			<div
-				class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+			<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-lr-0-xl p-lr-15-sm">
 				<h4 class="mtext-109 cl2 p-b-30">Cart Totals</h4>
 
 				<div class="flex-w flex-t bor12 p-b-13">
@@ -96,46 +95,44 @@
 					</div>
 				</div>
 
-				<div class="flex-w flex-t bor12 p-t-15 p-b-30">
+				<div class="flex-w flex-t bor12 p-t-15 p-b-30"
+					style="flex-direction: column;">
 					<div class="size-208 w-full-ssm">
-						<span class="stext-110 cl2"> Địa chỉ giao hàng: </span>
-						<div class="bor8 bg0 m-b-22">
-							<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text"
-								name="address" placeholder="ADDRESS">
-						</div>
+						<span class="stext-110 cl2"> Giao hàng: </span>
+
 					</div>
 
-					<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
+					<div class="p-r-18 p-r-0-sm w-full-ssm">
 						<div class="p-t-15">
-							<form action="/add/delivery">
-								<label for="cars">Chọn đơn vị vận chuyển:</label> <select
-									name="delivery" id="delivery">
-									<c:forEach items="${deliveries}" var="item">
-										<option value="${item.id}">${item.name}</option>
-									</c:forEach>
-								</select> <br> <br>
-								<!-- <button type="submit">Xác nhận</button> -->
+							<form action="/order/add">
+								<label for="cars">Địa chỉ nhận hàng:</label>
+								<div class="bor8 bg0 m-b-22">
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text"
+										name="address" placeholder="ADDRESS">
+								</div>
+								<div class="" style="display: flex; flex-direction: column;">
+									<label for="cars">Chọn đơn vị vận chuyển:</label> <select
+										name="delivery" id="delivery" style="padding: 10px;">
+										<c:forEach items="${deliveries}" var="item">
+											<option value="${item.id}">${item.name}
+												${item.desciption}. Price:${item.price}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<c:if test="${cartItems.size() >0}">
+									<button
+										class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer "
+										type="submit">Mua hàng</button>
+								</c:if>
 							</form>
 						</div>
 
 					</div>
 				</div>
 
-				<div class="flex-w flex-t p-t-27 p-b-33">
-					<div class="size-208">
-						<span class="mtext-101 cl2"> Total: </span>
-					</div>
 
-					<div class="size-209 p-t-1">
-						<span class="mtext-110 cl2" name="sumtotals"> ${total}</span>
-					</div>
-				</div>
 
-				<c:if test="${cartItems.size() >0}">
-					<a
-						class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer "
-						href="/order/add">Mua hàng</a>
-				</c:if>
+
 			</div>
 		</div>
 	</div>

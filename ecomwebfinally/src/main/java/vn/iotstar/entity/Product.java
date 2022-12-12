@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -50,17 +49,17 @@ public class Product {
 	private Store store;
 
 	private Integer rating;
-	
+
 	private Date createat;
 	private Date updateat;
 
-	@OneToOne(mappedBy = "product")
-	OrderItem orderItem;
+	@OneToMany(mappedBy = "product")
+	List<OrderItem> orderItem;
 
 	@OneToMany(mappedBy = "product")
 	List<Review> reviews;
 
-	@OneToOne(mappedBy = "product")
-	private CartItem cartItem;
+	@OneToMany(mappedBy = "product")
+	List<CartItem> cartItem;
 
 }

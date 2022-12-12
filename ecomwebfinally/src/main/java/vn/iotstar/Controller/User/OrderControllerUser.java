@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -103,9 +102,9 @@ public class OrderControllerUser {
 		if (cart.size() > 0) {
 
 			Float sumTotal = cartService.SumCart(cart);
-			int deviveryId = 1;/* Integer.parseInt(req.getParameter("delivery")); */
+			int deviveryId = Integer.parseInt(req.getParameter("delivery"));
 
-			String address = "Hà nội"; /* req.getParameter("address"); */
+			String address = req.getParameter("address");
 			Delivery delivery = deliveryService.getById(deviveryId);
 
 			Order order = orders.get(0);
