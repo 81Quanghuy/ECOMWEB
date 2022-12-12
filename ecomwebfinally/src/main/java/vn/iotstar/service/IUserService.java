@@ -8,7 +8,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-
 import vn.iotstar.entity.User;
 
 public interface IUserService {
@@ -41,12 +40,13 @@ public interface IUserService {
 
 	<S extends User> S save(S entity);
 
-	
 	User login(String username, String password);
-	
+
 	List<User> findByRoleContaining(String role);
-	
+
 	String getFullName(User user);
-	
+
 	List<User> findByUsername(String username);
+
+	List<User> getNewUser(List<User> users);
 }

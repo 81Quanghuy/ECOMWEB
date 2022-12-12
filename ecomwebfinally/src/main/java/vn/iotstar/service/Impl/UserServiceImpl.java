@@ -1,5 +1,7 @@
 package vn.iotstar.service.Impl;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,7 +89,6 @@ public class UserServiceImpl implements IUserService {
 		return UserRepository.getById(id);
 	}
 
-
 	public List<User> findByUsername(String username) {
 		return UserRepository.findByUsername(username);
 	}
@@ -114,7 +115,26 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public String getFullName(User user) {
-		return user.getFirstName()+user.getLastName();
+		return user.getFirstName() + user.getLastName();
+	}
+
+	@Override
+	public List<User> getNewUser(List<User> users) {
+
+		List<User> temp = new ArrayList<User>();
+
+		long millis = System.currentTimeMillis();
+		Date date = new Date(millis);
+
+		for (User user : users) {
+
+			if (user.getCreateat().getDate() == date.getDate()) {
+				temp.add(user);
+			}
+
+		}
+		// TODO Auto-generated method stub
+		return temp;
 	}
 
 }

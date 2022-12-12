@@ -93,6 +93,7 @@ public class SellerController {
 		Store store = storeService.getById(seller.getId());
 		List<OrderItem> orderItems = orderItemService.getOrderItemByStore(store);
 		Double doanhthu = orderItemService.doanhThu(orderItems);
+		
 		// Float doanhthu = orderService.getTotalPrice(orderService.findAll(),
 		// seller.getStores().getId());
 		model.addAttribute("doanhthu", doanhthu);

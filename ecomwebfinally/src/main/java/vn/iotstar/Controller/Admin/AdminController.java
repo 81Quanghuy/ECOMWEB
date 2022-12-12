@@ -62,7 +62,10 @@ public class AdminController {
 
 		model.addAttribute("countuser", countUser());
 		model.addAttribute("countadmin", countAdmin());
-		model.addAttribute("countseller", countSeller());
+
+		List<User> list = userService.getNewUser(userService.findByRoleContaining("ROLE_USER"));
+
+		model.addAttribute("countnew", list.size());
 		// Doanh Thu = số tiền bán được hôm nay
 
 		Float doanhthu = orderService.sumOder(orderService.findAll());
@@ -129,6 +132,18 @@ public class AdminController {
 		List<User> list = userService.findByRoleContaining("ROLE_SELLER");
 		// chuyển dữ liệu từ list lên biến views
 
+		model.addAttribute("users", list);
+		return "admin/user/list";
+	}
+
+	@RequestMapping("newuser")
+	public String listnewuser(ModelMap model) {
+
+		// gọi hàm findAll() trong service
+
+		List<User> list = userService.getNewUser(userService.findByRoleContaining("ROLE_USER"));
+
+		// Tìm ra người dùng có ngày tạo vào hôm nay
 		model.addAttribute("users", list);
 		return "admin/user/list";
 	}

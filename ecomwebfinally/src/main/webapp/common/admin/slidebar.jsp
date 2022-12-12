@@ -50,6 +50,9 @@
 				</a></li>
 				<li><a href="/admin/seller"> <i class="bi bi-circle"></i><span>Seller</span>
 				</a></li>
+				<li><a href="/admin/newuser"> <i class="bi bi-circle"></i><span>Người
+							Dùng Mới</span>
+				</a></li>
 			</ul></li>
 		<!-- End Tables Nav -->
 		<!-- 	<li class="nav-item"><a class="nav-link collapsed"

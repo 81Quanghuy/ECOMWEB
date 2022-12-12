@@ -54,8 +54,8 @@
 									<!-- Thống kê hôm nay bán được bao nhiêu đơn tăng bao nhiêu % so với hôm qua -->
 									<div class="ps-3">
 										<h6>${odercount}</h6>
-										<span class="text-success small pt-1 fw-bold">12%</span> <span
-											class="text-muted small pt-2 ps-1">increase</span>
+										<span class="text-success small pt-1 fw-bold"></span> <span
+											class="text-muted small pt-2 ps-1"></span>
 
 									</div>
 								</div>
@@ -94,9 +94,9 @@
 										<i class="bi bi-currency-dollar"></i>
 									</div>
 									<div class="ps-3">
-										<h6>VND ${doanhthu}</h6>
-										<span class="text-success small pt-1 fw-bold">8%</span> <span
-											class="text-muted small pt-2 ps-1">increase</span>
+										<h6>$ ${doanhthu}</h6>
+										<span class="text-success small pt-1 fw-bold"></span> <span
+											class="text-muted small pt-2 ps-1"></span>
 
 									</div>
 								</div>
@@ -137,8 +137,8 @@
 									</div>
 									<div class="ps-3">
 										<h6>${countuser}</h6>
-										<span class="text-danger small pt-1 fw-bold">12%</span> <span
-											class="text-muted small pt-2 ps-1">decrease</span>
+										<span class="text-danger small pt-1 fw-bold"></span> <span
+											class="text-muted small pt-2 ps-1"></span>
 
 									</div>
 								</div>
@@ -675,7 +675,7 @@
 
 						<div class="card-body pb-0">
 							<h5 class="card-title">
-								Lượt truy cập <span>| Hôm nay</span>
+								Thống Kê Người Dùng <span></span>
 							</h5>
 
 							<div id="trafficChart" style="min-height: 400px;" class="echart"></div>
@@ -714,8 +714,8 @@
                           name: 'admin'
                         },
                         {
-                          value: ${countseller},
-                          name: 'Seller'
+                          value: ${countnew},
+                          name: 'New User'
                         },
                         {
                           value: ${countuser},
@@ -749,7 +749,7 @@
 
 						<div class="card-body pb-0">
 							<h5 class="card-title">
-								Báo Cáo <span>| Today</span>
+								Người Dùng Mới Hôm Nay <span>| Today</span>
 							</h5>
 							<!-- Pie Chart -->
 							<div id="pieChart"></div>
@@ -757,7 +757,7 @@
 							<script>
                 document.addEventListener("DOMContentLoaded", () => {
                   new ApexCharts(document.querySelector("#pieChart"), {
-                    series: [44, 55, 13],
+                    series: [${countuser}, ${countnew}],
                     chart: {
                       height: 350,
                       type: 'pie',
@@ -765,7 +765,7 @@
                         show: true
                       }
                     },
-                    labels: ['Team A', 'Team B', 'Team C']
+                    labels: ['Người Dùng', 'Người Dùng Mới']
                   }).render();
                 });
               </script>
