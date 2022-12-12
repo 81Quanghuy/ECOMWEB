@@ -17,7 +17,6 @@
 									data-appear="rollIn" data-delay="0">
 									<span class="ltext-101 cl0 respon2 "> ${item.name} </span>
 								</div>
-
 								<div class="layer-slick1 animated visible-false"
 									data-appear="lightSpeedIn" data-delay="800">
 									<h2 class="ltext-201 cl0 p-t-19 p-b-43 respon1">${item.bio}
@@ -73,7 +72,7 @@
 			<c:forEach items="${categories}" var="item">
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
-					<c:if test="${item.image.substring(0,4).equals('http')}">
+					<c:if test="${item.image}">
 						<div class="block1 wrap-pic-w">
 							<img src="${item.image}" alt="IMG-BANNER"
 								style="height: 348px; width: 248px;"> <a
@@ -91,7 +90,7 @@
 							</a>
 						</div>
 					</c:if>
-					<c:if test="${!item.image.substring(0,4).equals('http')}">
+					<c:if test="${!item.image}">
 						<div class="block1 wrap-pic-w">
 							<img src="images/seller/${item.image}" alt="IMG-BANNER"
 								style="max-height: 400px;'"> <a href="category/${item.id}"
@@ -105,6 +104,7 @@
 								<div class="block1-txt-child2 p-b-4 trans-05">
 									<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
 								</div>
+
 							</a>
 						</div>
 					</c:if>

@@ -103,7 +103,7 @@
 		<li class="nav-heading">Trang</li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="/seller/profile/${seller.id}"> <i class="bi bi-person"></i> <span>Thông
+			href="/seller/profile"> <i class="bi bi-person"></i> <span>Thông
 					Tin Cá Nhân</span>
 		</a></li>
 		<!-- End Profile Page Nav -->
@@ -114,7 +114,7 @@
 		<!-- End F.A.Q Page Nav -->
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="/seller/infoStore/${user.id}"> <i class="bi bi-envelope"></i> <span>Thông
+			href="/seller/infoSore"> <i class="bi bi-envelope"></i> <span>Thông
 					Tin Gian Hàng</span>
 		</a></li>
 

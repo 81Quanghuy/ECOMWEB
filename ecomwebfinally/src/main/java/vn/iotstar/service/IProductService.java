@@ -67,6 +67,8 @@ public interface IProductService {
 
 	List<Product> findTop10ByOrderBySoldDesc();
 
-	//Page<Product> getAllSanPhamByFilter(SearchProductObject object, int page, int limit);
+	Float getTotalPrice(List<Product> product);
+	// Page<Product> getAllSanPhamByFilter(SearchProductObject object, int page, int
+	// limit);
 
 }

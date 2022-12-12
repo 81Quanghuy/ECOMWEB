@@ -27,6 +27,8 @@
 
 				</c:if>
 
+				<h4>${review }</h4>
+
 				<!-- Hêt thông báo -->
 
 				<table class="table table-striped table-responsive">
@@ -54,7 +56,7 @@
 								<td>${review.user.lastName}</td>
 								<td>${review.product.name}</td>
 								<td>${review.content}</td>
-								<td>${review.rating} / 5</td>
+								<td>${review.rating}/ 5</td>
 								<td>${review.createat}</td>
 
 								<td><a href="/user/reviews/view/${review.id}"

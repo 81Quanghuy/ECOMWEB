@@ -8,7 +8,8 @@
 		<h1>Dashboard</h1>
 		<nav>
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
+				<li class="breadcrumb-item"><a href="/seller/home">Trang
+						Chủ</a></li>
 				<li class="breadcrumb-item active">Dashboard</li>
 			</ol>
 		</nav>
@@ -94,7 +95,7 @@
 										<i class="bi bi-currency-dollar"></i>
 									</div>
 									<div class="ps-3">
-										<h6>VND ${doanhthu}</h6>
+										<h6>$ ${doanhthu}</h6>
 										<span class="text-success small pt-1 fw-bold">8%</span> <span
 											class="text-muted small pt-2 ps-1">increase</span>
 
@@ -306,25 +307,25 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach items="${products}" var="product">
-									
-									
-									
-									
-										<tr>
-											<th scope="row"><a href="#"><img
-													src="assets/img/product-1.jpg" alt=""></a>${product.id }</th>
-													
-											<td><a href="#" class="text-primary fw-bold">${product.name}
-													</a></td>
-													
-											<td>${product.price}</td>
-											
-											<td class="fw-bold">${product.sold}</td>
-											
-											<td>$5,828</td>
-										</tr>
-										<!-- <tr>
+										<c:forEach items="${products}" var="product">
+
+
+
+
+											<tr>
+												<th scope="row"><a href="#"><img
+														src="assets/img/product-1.jpg" alt=""></a>${product.id }</th>
+
+												<td><a href="#" class="text-primary fw-bold">${product.name}
+												</a></td>
+
+												<td>${product.price}</td>
+
+												<td class="fw-bold">${product.sold}</td>
+
+												<td>$5,828</td>
+											</tr>
+											<!-- <tr>
 											<th scope="row"><a href="#"><img
 													src="assets/img/product-2.jpg" alt=""></a></th>
 											<td><a href="#" class="text-primary fw-bold">Exercitationem
@@ -499,10 +500,8 @@
 									<i
 										class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
 									<div class="activity-content">
-										${filter.user.firstName} ${filter.user.lastName} 
-										
-										 <a href="#" class="fw-bold text-dark">
-											</a> 
+										${filter.user.firstName} ${filter.user.lastName} <a href="#"
+											class="fw-bold text-dark"> </a>
 									</div>
 								</div>
 
@@ -784,8 +783,34 @@
 			</div>
 			<!-- End Right side columns -->
 
+
 		</div>
 	</section>
 
+	<div class="card-body">
+		<h5 class="card-title">Doanh Thu Theo Tháng</h5>
+
+		<!-- Bar Chart -->
+		<div id="barChart" style="min-height: 400px;" class="echart"></div>
+
+		<script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  echarts.init(document.querySelector("#barChart")).setOption({
+                    xAxis: {
+                      type: 'category',
+                      data: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Thháng 8', 'Thháng 9', 'Thháng 10', 'Thháng 11', 'Thháng 12']
+                    },
+                    yAxis: {
+                      type: 'value'
+                    },
+                    series: [{
+                      data: [${doanhthu1}, ${doanhthu2}, ${doanhthu3}, ${doanhthu4}, ${doanhthu5}, ${doanhthu6}, ${doanhthu7}, ${doanhthu8}, ${doanhthu9}, ${doanhthu10}, ${doanhthu11}, ${doanhthu12}],
+                      type: 'bar'
+                    }]
+                  });
+                });
+              </script>
+		<!-- End Bar Chart -->
+	</div>
 </main>
 <!-- End #main -->

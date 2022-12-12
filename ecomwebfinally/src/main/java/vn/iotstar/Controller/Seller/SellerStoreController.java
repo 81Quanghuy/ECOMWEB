@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -35,10 +36,16 @@ public class SellerStoreController {
 	@Autowired
 	ServletContext application;
 
+	@Autowired
+	HttpSession session;
+
 	@GetMapping("")
 	public ModelAndView list(ModelMap model) {
-		List<Store> page = storeservice.findAll();
-		model.addAttribute("stores", page);
+
+		User seller = (User) session.getAttribute("user");
+		List<Store> store = storeservice.findByUser(seller);
+		// List<Store> page = storeservice.findAll();
+		model.addAttribute("stores", store);
 		return new ModelAndView("seller/store/listStore", model);
 	}
 
@@ -113,10 +120,8 @@ public class SellerStoreController {
 		} else {
 			message = "Store Create Successfull !";
 		}
-
 		model.addAttribute("message", message);
 		return new ModelAndView("redirect:/seller/store", model);
-
 	}
 
 	@GetMapping("delete/{id}")
@@ -124,5 +129,13 @@ public class SellerStoreController {
 		storeservice.deleteById(id);
 		return new ModelAndView("redirect:/seller/store", model);
 
+	}
+	
+	@GetMapping("view/{id}")
+	public String infoStore(ModelMap model, @PathVariable("id") Integer id) {
+		// seller = (User) session.getAttribute("user");
+		Optional<Store> store = storeservice.findById(id);
+		model.addAttribute("store", store.get());
+		return "seller/user/profileStore";
 	}
 }

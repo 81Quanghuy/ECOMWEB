@@ -53,6 +53,8 @@ public class LoginController {
 		 * if (result.hasErrors()) { model.addAttribute("message","loi"); return new
 		 * ModelAndView("common/demologin", model); }
 		 */
+		
+		
 		User user = userService.login(username, password);
 		if (user == null) {
 			model.addAttribute("message", "Tài khoản hoặc mật khẩu không chính xác");

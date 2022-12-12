@@ -90,7 +90,7 @@
 								<div class="col-lg-3 col-md-4 label">Chủ Cửa Hàng</div>
 
 
-								<div class="col-lg-9 col-md-8">${store}</div>
+								<div class="col-lg-9 col-md-8">${store.name}</div>
 
 							</div>
 

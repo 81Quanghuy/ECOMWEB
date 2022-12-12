@@ -3,51 +3,42 @@
 
 <%@ include file="/common/taglib.jsp"%>
 
+<div id="main">
+	<!-- Recent Sales -->
+	<div class="col-12">
+		<div class="card recent-sales overflow-auto">
+			<c:if test="${message != null}">
 
-<section id="main" class="row">
+				<div class="alert alert-primary" role="alert">
 
-	<div class="col mt-4">
+					<i>${message}</i>
 
-		<div class="card">
+				</div>
 
-			<div class="card-header">List Store</div>
+			</c:if>
 
+
+			<!--  Sử dụng vòng lặp lấy order -->
 			<div class="card-body">
-
-				<!-- Hiển thông báo -->
-
-				<c:if test="${message != null}">
-
-					<div class="alert alert-primary" role="alert">
-
-						<i>${message}</i>
-
-					</div>
-
-				</c:if>
-
-				<!-- Hêt thông báo -->
-
-				<table class="table table-striped table-responsive">
-
-					<thead class="thead-inverse">
-
+				<h5 class="card-title">Danh Sách Gian Hàng</h5>
+				<table class="table table-borderless datatable">
+					<thead>
 						<tr>
-							<th>Store name</th>
-							<th>Ảnh đại diện</th>
-							<th>Anh bia</th>
-							<th>Store bio</th>
-							<th>Status</th>
-							<th>Action</th>
+							<th scope="col">#</th>
+							<th>Tên Cửa Hàng</th>
+							<th>Ảnh Cửa Hàng</th>
+							<th>Ảnh Bìa</th>
+							<th>Bio</th>
+							<th>Trạng Thái</th>
+							<th>Hành Động</th>
 						</tr>
-
 					</thead>
-
 					<tbody>
 
-						<c:forEach var="store" items="${stores}">
+						<c:forEach var="store" items="${stores}" varStatus="STT">
 
 							<tr>
+								<th scope="row"><a href="#">${STT.index+1}</a></th>
 								<td>${store.name}</td>
 								<td><c:url value="/images/seller/${store.avatar}"
 										var="imgUrl"></c:url> <img width="100px" height="100px"
@@ -56,26 +47,34 @@
 										var="imgUrl"></c:url> <img width="100px" height="100px"
 									src="${imgUrl}"></td>
 								<td>${store.bio}</td>
-								<td>${store.isactive ? 'Còn' : 'Hết'}</td>
 
-								<td><a href="/admin/store/edit/${store.id}"
+								<td><c:if test="${store.isactive == false}">
+										<span class="badge bg-success">Đang Hoạt Động</span>
+									</c:if> <c:if test="${store.isactive == true}">
+										<span class="badge bg-danger">Ngừng Kinh Doanh</span>
+									</c:if></td>
+
+								<td>
+								
+								<a href="/seller/store/view/${store.id}"
+									class="btn btn-outline-info"><i class="fa fa-info"></i></a>
+								
+								<a href="/seller/store/edit/${store.id}"
 									class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
 
-									<a href="/admin/store/delete/${store.id}"
+									<a href="/seller/store/delete/${store.id}"
 									class="btn btn-outline-danger"><i class="fa fa-trash"></i></a></td>
-
 							</tr>
 
 						</c:forEach>
-
 					</tbody>
-
 				</table>
 
+				<a href="/seller/orders/add" type="button"
+					class="btn btn-outline-secondary">Thêm Gian Hàng</a>
 			</div>
 
 		</div>
-
 	</div>
-
-</section>
+	<!-- End Recent Sales -->
+</div>

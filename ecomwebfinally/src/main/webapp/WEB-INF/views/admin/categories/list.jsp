@@ -38,8 +38,6 @@
 
 								<td><a href="#" class="text-primary">${cate.id}</a></td>
 
-								<%-- 			<td>${category.isdeleted ? 'Actived' : 'Deleted'}</td> --%>
-
 								<td><c:if test="${cate.isdeleted == true}">
 										<span class="badge bg-success">Active</span>
 									</c:if> <c:if test="${cate.isdeleted == false}">

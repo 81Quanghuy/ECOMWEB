@@ -3,6 +3,7 @@ package vn.iotstar.Repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import vn.iotstar.entity.CartItem;
@@ -32,5 +33,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	List<Product> findTop10ByOrderBySoldDesc();
 
 	List<Product> findByCategory(Category category);
+
+	@Query(value = "SELECT e FROM Product e ORDER BY name")
+	List<Product> findAllSortedByName();
 
 }

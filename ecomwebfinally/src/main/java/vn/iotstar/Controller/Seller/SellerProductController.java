@@ -52,7 +52,7 @@ public class SellerProductController {
 	IUserService userService;
 
 	// Get Sản Phẩm By Store
-	@GetMapping("/{id}")
+	@GetMapping("")
 	public String list(ModelMap model, HttpSession session, @PathVariable("id") Integer id) {
 		// String username = (String) session.getAttribute("user");
 		String nameStore = storeService.findStoreOfUser(storeService.findAll(), id);

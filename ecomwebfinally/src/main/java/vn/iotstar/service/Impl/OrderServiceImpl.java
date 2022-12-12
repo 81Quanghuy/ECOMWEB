@@ -1,5 +1,8 @@
 package vn.iotstar.service.Impl;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import vn.iotstar.Repository.OrderRepository;
 import vn.iotstar.entity.Order;
+import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.service.IOrderService;
@@ -109,6 +113,64 @@ public class OrderServiceImpl implements IOrderService {
 	// Hàm lấy order theo store
 	public List<Order> getOrderByStore(Store store) {
 		return orderRepository.getOrderByStore(store);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public Float getTotalPrice(List<Order> orders, Integer id) {
+
+		Float total = (float) 0;
+
+		long millis = System.currentTimeMillis();
+		Date date = new java.sql.Date(millis);
+
+		for (Order oder : orders) {
+			if (Math.abs(date.getDate() - oder.getCreateat().getDate()) < 7 && oder.getStore().getId() == id) {
+				total = total + oder.getPrice();
+			}
+
+		}
+		return total;
+	}
+
+	@Override
+	public Float getTotalPriceMonth(List<Order> orders, Integer id) {
+
+		Float total = (float) 0;
+
+		long millis = System.currentTimeMillis();
+		Date date = new java.sql.Date(millis);
+
+		for (Order oder : orders) {
+			if (date.getYear() == oder.getCreateat().getYear()) {
+
+			}
+//			if (Math.abs(date.getDate() - oder.getCreateat().getDate()) < 7 && oder.getStore().getId() == id) {
+//				total = total + oder.getPrice();
+//			}
+
+		}
+		return total;
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public Float getPrice12Month(List<Order> oders, Integer id, Integer limit) {
+
+		Float totalPrice = (float) 0;
+
+		long millis = System.currentTimeMillis();
+		Date date = new Date(millis);
+		//date.setYear(2021);
+
+		int y = 12;
+		for (Order order : oders) {
+
+			if (order.getCreateat().getMonth() == (date.getMonth()-limit)) {
+				totalPrice = totalPrice + order.getPrice();
+			}
+		}
+		return totalPrice;
 	}
 
 }

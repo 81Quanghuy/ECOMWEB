@@ -5,19 +5,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import com.querydsl.core.BooleanBuilder;
 
 import vn.iotstar.Repository.ProductRepository;
 import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
-import vn.iotstar.model.SearchProductObject;
 import vn.iotstar.service.IProductService;
 
 @Service
@@ -159,6 +154,20 @@ public class ProductServiceImpl implements IProductService {
 	public List<Product> findTop10ByOrderBySoldDesc() {
 		// TODO Auto-generated method stub
 		return productRepository.findTop10ByOrderBySoldDesc();
+	}
+
+	@Override
+	public Float getTotalPrice(List<Product> product) {
+		// TODO Auto-generated method stub
+
+		Float total = (float) 0;
+		for (Product pro : product) {
+			
+
+			total = (float) (total + pro.getPrice() * pro.getSold());
+
+		}
+		return null;
 	}
 
 //	@Override

@@ -9,9 +9,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import vn.iotstar.entity.Order;
+import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
-
 
 public interface IOrderService {
 
@@ -48,5 +48,11 @@ public interface IOrderService {
 	List<Order> getOrderByStore(Store store);
 
 	List<Order> findByUser(User user);
+
+	Float getTotalPrice(List<Order> orders, Integer id);
+
+	Float getTotalPriceMonth(List<Order> orders, Integer id);
+
+	Float getPrice12Month(List<Order> oders, Integer id, Integer limit);
 
 }

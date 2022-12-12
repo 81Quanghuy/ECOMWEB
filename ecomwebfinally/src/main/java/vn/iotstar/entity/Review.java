@@ -35,9 +35,9 @@ public class Review {
 	@JoinColumn(name = "productid")
 	private Product product;
 
-	@Column( columnDefinition = "nvarchar(MAX) not null")
+	@Column(columnDefinition = "nvarchar(MAX)")
 	private String content;
-	
+
 	private Integer rating;
 	private Date createat;
 	private Date updateat;

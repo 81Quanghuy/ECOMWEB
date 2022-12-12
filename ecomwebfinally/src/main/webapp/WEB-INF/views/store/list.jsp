@@ -47,11 +47,6 @@
 							<tr>
 								<th scope="row"><a href="#">${STT.index+1}</a></th>
 								<c:if
-									test="${cate.featuredimages.substring(0,4).equals('http')}">
-									<td><c:url value="${cate.featuredimages}" var="imgUrl"></c:url>
-										<img width="100px" height="100px" src="${imgUrl}"></td>
-								</c:if>
-								<c:if
 									test="${!cate.featuredimages.substring(0,4).equals('http')}">
 									<td><c:url value="/images/seller/${cate.featuredimages}"
 											var="imgUrl"></c:url> <img width="100px" height="100px"

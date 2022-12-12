@@ -49,6 +49,9 @@ public class SellerOrderController {
 	@Autowired
 	IUserService userService;
 
+	@Autowired
+	HttpSession session;
+
 	// Lấy danh sách delivery trong bảng delivery
 	@ModelAttribute("deliveries")
 	public List<DeliveryModel> getsellers() {
@@ -79,18 +82,14 @@ public class SellerOrderController {
 		}).toList();
 	}
 
-	@RequestMapping("/{id}")
-	public String list(ModelMap model, HttpSession session, @PathVariable("id") Integer id) {
-
-		String nameStore = storeService.findStoreOfUser(storeService.findAll(), id);
-		Store store = storeService.findByNameContaining(nameStore);
+	@RequestMapping("")
+	public String list(ModelMap model) {
 		
-		// gọi hàm findAll() trong service
-		List<Order> list = orderService.getOrderByStore(store);
-
-		// chuyển dữ liệu từ list lên biến views
-
-		model.addAttribute("orders", list);
+		User seller = (User) session.getAttribute("user");
+		
+		List<Order> orders = orderService.findByUser(seller);
+		
+		model.addAttribute("orders", orders);
 
 		return "seller/orders/list";
 
