@@ -58,4 +58,8 @@ public interface IOrderService {
 
 	List<Order> findAllByOrderByIdDesc();
 
+	Float SumOrder(List<Order> Order);
+
+	List<Order> findByIsactive(Boolean isactive);
+
 }

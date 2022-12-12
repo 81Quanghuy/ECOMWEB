@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import vn.iotstar.Repository.OrderRepository;
 import vn.iotstar.entity.Order;
+import vn.iotstar.entity.OrderItem;
+import vn.iotstar.entity.Order;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.service.IOrderService;
@@ -28,8 +30,25 @@ public class OrderServiceImpl implements IOrderService {
 	}
 
 	@Override
+	public List<Order> findByIsactive(Boolean isactive) {
+		return orderRepository.findByIsactive(isactive);
+	}
+
+	@Override
 	public <S extends Order> Optional<S> findOne(Example<S> example) {
 		return orderRepository.findOne(example);
+	}
+
+	@Override
+	public Float SumOrder(List<Order> Order) {
+
+		float Sum = 0;
+
+		for (Order OrderItem : Order) {
+			Sum += OrderItem.getPrice();
+		}
+		return Sum;
+
 	}
 
 	@Override

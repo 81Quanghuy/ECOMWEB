@@ -28,6 +28,7 @@
 								<tr class="table_head">
 									<th class="column-1">Product</th>
 									<th class="column-2"></th>
+									<th class="colunm-2">Tên Shop</th>
 									<th class="column-3">Giá sản phẩm</th>
 									<th class="column-3">Số lượng</th>
 									<th class="column-5">Xóa sản phẩm</th>
@@ -52,10 +53,11 @@
 												</div>
 											</td>
 											<td class="column-2">${item.product.name}</td>
+											<td class="column-2">${item.product.store.name}</td>
 											<td class="column-3 price"><input type="text"
 												name="price" value="${item.product.price}"
 												readonly="readonly"></td>
-											<td class="column-3"><input
+											<td class="column-2"><input
 												class="mtext-104 cl3 txt-center " type="number" name="count"
 												onchange="this.form.submit()" value="${item.count}"></td>
 											<td class="column-5"><a
@@ -69,7 +71,10 @@
 							</table>
 						</div>
 						<div class="size-209 m-3">
-							<span class="mtext-110 cl2">Tổng tiền : $${total} </span>
+							<span class="mtext-110 cl2">Tổng tiền : $${total} </span> <a
+								href="/cart/delete/${cart.id}"
+								style="border: 2px solid; border-radius: 5px; padding: 10px; float: right; color: black;">Xóa
+								giỏ hàng</a>
 						</div>
 
 					</div>
@@ -109,6 +114,11 @@
 								<div class="bor8 bg0 m-b-22">
 									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text"
 										name="address" placeholder="ADDRESS">
+								</div>
+								<label for="cars">Số điện thoại nhận hàng:</label>
+								<div class="bor8 bg0 m-b-22">
+									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text"
+										name="phone" placeholder="Số điện thoại">
 								</div>
 								<div class="" style="display: flex; flex-direction: column;">
 									<label for="cars">Chọn đơn vị vận chuyển:</label> <select

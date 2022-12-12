@@ -4,27 +4,40 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import vn.iotstar.Repository.StoreRepository;
+import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
-import vn.iotstar.Repository.StoreRepository;
+import vn.iotstar.service.ICategoryService;
+import vn.iotstar.service.IProductService;
 import vn.iotstar.service.IStoreService;
 
 @Service
 public class StoreServiceImpl implements IStoreService {
 	@Autowired
 	StoreRepository StoreRepository;
+	
+	@Autowired 
+	ICategoryService categorySerivce;
 
+	@Autowired
+	IProductService productService;
+	
 	@Override
 	public <S extends Store> S save(S entity) {
 		return StoreRepository.save(entity);
+	}
+
+	@Override
+	public List<Store> findByIsactive(Boolean isactive) {
+		return StoreRepository.findByIsactive(isactive);
 	}
 
 	@Override
@@ -113,6 +126,22 @@ public class StoreServiceImpl implements IStoreService {
 			}
 		}
 		return null;
+	}
+	@Override
+	public Boolean findStorebyCategory(Store store,Integer id) {
+		boolean check = false;
+		List<Product> products = productService.findProductByStore(store);
+		Category category = categorySerivce.getById(id);
+		List<Product> product = productService.findByCategory(category);
+		for(Product pro : product) {
+			for(Product productStore : products) {
+				if(pro.equals(productStore)) {
+					check = true;
+					break;
+				}
+			}
+		}
+		return check;
 	}
 
 	@Override

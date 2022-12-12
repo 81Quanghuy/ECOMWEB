@@ -1,6 +1,7 @@
 package vn.iotstar.Controller.User;
 
 import java.sql.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -162,5 +163,20 @@ public class CartControllerUser {
 			session.setAttribute("message", "Xóa thành công");
 		}
 		return new ModelAndView("redirect:/cart/", model);
+	}
+
+	@GetMapping("cart/delete/{id}")
+	public ModelAndView Cartdelete(ModelMap model, @PathVariable("id") Integer id) {
+
+		Cart cart = cartService.getById(id);
+		List<CartItem> cartItems = cartItemService.findByCart(cart);
+		for (CartItem cartItem : cartItems) {
+			cartItemService.delete(cartItem);
+
+		}
+		model.addAttribute("message", "Cart Delete Succesfull !!!");
+
+		return new ModelAndView("redirect:/cart", model);
+
 	}
 }

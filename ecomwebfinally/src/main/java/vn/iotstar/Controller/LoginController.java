@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.iotstar.entity.Cart;
-import vn.iotstar.entity.Order;
 import vn.iotstar.entity.User;
 import vn.iotstar.model.UserModel;
 import vn.iotstar.service.ICartService;
@@ -53,8 +51,7 @@ public class LoginController {
 		 * if (result.hasErrors()) { model.addAttribute("message","loi"); return new
 		 * ModelAndView("common/demologin", model); }
 		 */
-		
-		
+
 		User user = userService.login(username, password);
 		if (user == null) {
 			model.addAttribute("message", "Tài khoản hoặc mật khẩu không chính xác");
@@ -64,9 +61,6 @@ public class LoginController {
 		model.addAttribute("user", user);
 		if (user.getRole().equals("ROLE_ADMIN")) {
 			return new ModelAndView("redirect:/admin/home", model);
-		}
-		if (user.getRole().equals("ROLE_SELLER")) {
-			return new ModelAndView("redirect:/seller/home", model);
 		}
 		if (user.getRole().equals("ROLE_USER")) {
 			return new ModelAndView("redirect:/", model);
@@ -112,17 +106,13 @@ public class LoginController {
 			user.setUpdateat(date);
 
 			userService.save(user);
-			// tao cart va order cho user
+			// tao cart cho user
 			Cart cart = new Cart();
-			Order order = new Order();
 			cart.setUser(user);
 			cart.setCreateat(date);
 			cart.setUpdateat(date);
 			cartService.save(cart);
-			order.setUser(user);
-			order.setCreateat(date);
-			order.setUpdateat(date);
-			orderSerivce.save(order);
+
 			model.addAttribute("message", "Tạo tài khoản thành công!");
 			return new ModelAndView("common/resgiter", model);
 		}

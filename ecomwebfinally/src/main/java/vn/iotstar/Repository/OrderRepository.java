@@ -19,4 +19,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	List<Order> findAllByOrderByCreateatDesc();
 
 	List<Order> findAllByOrderByIdDesc();
+
+	List<Order> findByIsactive(Boolean isactive);
+
 }

@@ -40,11 +40,12 @@ public class Order {
 	private Delivery delivery;
 
 	private String address;
-	private Integer phone;
+	private String phone;
 	private String status; // Trang thai don hang
 	private Float price;
 	private Date createat;
 	private Date updateat;
+	private Boolean isactive;
 
 	@OneToMany(mappedBy = "order")
 	List<OrderItem> orderitems;

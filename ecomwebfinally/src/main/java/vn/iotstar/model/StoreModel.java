@@ -18,6 +18,7 @@ public class StoreModel {
 	private Integer ownerid;// từ user nào id useradmin
 	private Boolean isactive = false;// được duyệt đưa vào bán
 	private String avatar;// ảnh của shop
+	private String about;
 	private MultipartFile avatarFile;
 	private String featuredimages;
 	private MultipartFile featuredimagesFile;

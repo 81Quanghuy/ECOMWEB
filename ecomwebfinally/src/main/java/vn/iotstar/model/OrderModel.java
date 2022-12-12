@@ -5,6 +5,7 @@ import java.sql.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,10 +15,11 @@ public class OrderModel {
 	private Integer storeid;
 	private Integer delivereid;
 	private String address;
-	private Integer phone;
+	private String phone;
 	private String status; // Trang thai don hang
 	private float price;
 	private Date createat;
 	private Date updateat;
+	private Boolean isactive;
 	private Boolean isEdit = false;
 }

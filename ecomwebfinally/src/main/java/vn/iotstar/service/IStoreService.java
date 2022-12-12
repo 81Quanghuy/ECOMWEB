@@ -53,4 +53,8 @@ public interface IStoreService {
 
 	List<Store> findByUser(User user);
 
+	List<Store> findByIsactive(Boolean isactive);
+
+	Boolean findStorebyCategory(Store store, Integer id);
+
 }
