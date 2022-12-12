@@ -16,7 +16,7 @@
 <c:if test="${cart!=null}">
 
 	<div class="container">
-
+		<h5 style="padding-left: 25px; padding-top: 20px;">${message}</h5>
 		<div class="row">
 			<c:if test="${cartItems.size()>0 }">
 				<div class="col-lg-10  m-b-50">

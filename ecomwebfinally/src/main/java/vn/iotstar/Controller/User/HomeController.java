@@ -74,7 +74,7 @@ public class HomeController {
 		User user = (User) sesson.getAttribute("user");
 		List<Cart> cart = cartService.findByUser(user);
 		List<Store> stores = storeSerivce.findAll();
-		List<Store> store = storeSerivce.findByUser(user);
+
 		List<Product> products = productService.findAll();
 		List<Category> categories = categoryService.findAll();
 		List<CartItem> cartItem;
@@ -89,6 +89,7 @@ public class HomeController {
 		}
 		model.addAttribute("cartitem", cartItem.size());
 		model.addAttribute("stores", stores);
+		List<Store> store = storeSerivce.findByUser(user);
 		if (store.size() < 1) {
 			model.addAttribute("store", null);
 
@@ -106,7 +107,7 @@ public class HomeController {
 	public ModelAndView Contact(ModelMap model, HttpSession sesson) {
 		User user = (User) sesson.getAttribute("user");
 		List<Cart> cart = cartService.findByUser(user);
-		List<Store> store = storeSerivce.findAll();
+		List<Store> stores = storeSerivce.findAll();
 
 		List<Product> products = productService.findAll();
 		List<Category> categories = categoryService.findAll();
@@ -121,8 +122,15 @@ public class HomeController {
 			cartItem = cartItemService.findByCart(null);
 		}
 		model.addAttribute("cartitem", cartItem.size());
+		List<Store> store = storeSerivce.findByUser(user);
+		if (store.size() < 1) {
+			model.addAttribute("store", null);
 
-		model.addAttribute("stores", store);
+		} else {
+			model.addAttribute("store", store.get(0));
+		}
+
+		model.addAttribute("stores", stores);
 		model.addAttribute("products", products);
 		model.addAttribute("categories", categories);
 		return new ModelAndView("user/contact", model);
@@ -134,7 +142,7 @@ public class HomeController {
 		model.addAttribute("message", (String) session.getAttribute("message"));
 		session.removeAttribute("message");
 		List<Cart> cart = cartService.findByUser(user);
-		List<Store> store = storeSerivce.findAll();
+		List<Store> stores = storeSerivce.findAll();
 
 		List<Product> products = productService.findAll();
 		List<Category> categories = categoryService.findAll();
@@ -149,8 +157,15 @@ public class HomeController {
 			cartItem = cartItemService.findByCart(null);
 		}
 		model.addAttribute("cartitem", cartItem.size());
+		List<Store> store = storeSerivce.findByUser(user);
+		if (store.size() < 1) {
+			model.addAttribute("store", null);
 
-		model.addAttribute("stores", store);
+		} else {
+			model.addAttribute("store", store.get(0));
+		}
+
+		model.addAttribute("stores", stores);
 		model.addAttribute("products", products);
 		model.addAttribute("categories", categories);
 		Optional<User> opt = userService.findById(id);

@@ -81,11 +81,18 @@ public class StoreControllerUser {
 			cartItem = cartItemService.findByCart(null);
 		}
 		model.addAttribute("cartitem", cartItem.size());
+		List<Store> store = storeSerivce.findByUser(user);
+		if (store.size() < 1) {
+			model.addAttribute("store", null);
+
+		} else {
+			model.addAttribute("store", store.get(0));
+		}
 
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
-		List<Store> store = storeSerivce.findByIsactive(true);
-		model.addAttribute("stores", store);
+		List<Store> stores = storeSerivce.findByIsactive(true);
+		model.addAttribute("stores", stores);
 
 		return new ModelAndView("store/list");
 	}
@@ -150,7 +157,7 @@ public class StoreControllerUser {
 	}
 
 	@RequestMapping("store/{id}")
-	public ModelAndView StoreDetail(ModelMap model,@PathVariable("id") Integer id) {
+	public ModelAndView StoreDetail(ModelMap model, @PathVariable("id") Integer id) {
 		User user = (User) session.getAttribute("user");
 		List<Cart> cart = cartService.findByUser(user);
 		List<CartItem> cartItem;
@@ -167,8 +174,7 @@ public class StoreControllerUser {
 
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
-		
-		
+
 		Store store = storeSerivce.getById(id);
 		model.addAttribute("store", store);
 		List<Product> products = productService.findProductByStore(store);

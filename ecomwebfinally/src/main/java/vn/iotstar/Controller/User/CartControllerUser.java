@@ -1,7 +1,6 @@
 package vn.iotstar.Controller.User;
 
 import java.sql.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +66,7 @@ public class CartControllerUser {
 	public ModelAndView Cart(ModelMap model, HttpSession sesson) {
 		User user = (User) sesson.getAttribute("user");
 		List<Cart> cart = cartService.findByUser(user);
-		List<Store> store = storeSerivce.findAll();
+		List<Store> stores = storeSerivce.findAll();
 
 		List<Product> products = productService.findAll();
 		List<Category> categories = categoryService.findAll();
@@ -82,13 +81,23 @@ public class CartControllerUser {
 			cartItem = cartItemService.findByCart(null);
 		}
 		model.addAttribute("cartitem", cartItem.size());
+		List<Store> store = storeSerivce.findByUser(user);
+		if (store.size() < 1) {
+			model.addAttribute("store", null);
+
+		} else {
+			model.addAttribute("store", store.get(0));
+		}
 
 		List<Delivery> deliveries = deliveryService.findAll();
 		model.addAttribute("deliveries", deliveries);
-		model.addAttribute("stores", store);
+		model.addAttribute("stores", stores);
 		model.addAttribute("products", products);
 		model.addAttribute("categories", categories);
 
+		String message = (String) session.getAttribute("message");
+		sesson.removeAttribute("message");
+		model.addAttribute("message", message);
 		return new ModelAndView("user/cart", model);
 	}
 
@@ -174,7 +183,7 @@ public class CartControllerUser {
 			cartItemService.delete(cartItem);
 
 		}
-		model.addAttribute("message", "Cart Delete Succesfull !!!");
+		session.setAttribute("message", "Cart Delete Succesfull !!!");
 
 		return new ModelAndView("redirect:/cart", model);
 

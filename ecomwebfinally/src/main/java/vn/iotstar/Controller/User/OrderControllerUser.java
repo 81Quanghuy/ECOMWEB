@@ -21,6 +21,7 @@ import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Delivery;
 import vn.iotstar.entity.Order;
 import vn.iotstar.entity.OrderItem;
+import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.service.ICartItemService;
 import vn.iotstar.service.ICartService;
@@ -89,6 +90,14 @@ public class OrderControllerUser {
 				}
 			}
 		}
+		List<Store> store = storeSerivce.findByUser(user);
+		if (store.size() < 1) {
+			model.addAttribute("store", null);
+
+		} else {
+			model.addAttribute("store", store.get(0));
+		}
+
 		model.addAttribute("orders", orderList);
 		model.addAttribute("total", orderService.sumOder(orderList));
 		/*
