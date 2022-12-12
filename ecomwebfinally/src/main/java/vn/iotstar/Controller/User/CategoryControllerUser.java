@@ -16,6 +16,7 @@ import vn.iotstar.entity.Cart;
 import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
+import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.service.ICartItemService;
 import vn.iotstar.service.ICartService;
@@ -65,6 +66,15 @@ public class CategoryControllerUser {
 		} else {
 			cartItem = cartItemService.findByCart(null);
 		}
+		
+		List<Store> store = storeSerivce.findByUser(user);
+		if (store.size() < 1) {
+			model.addAttribute("store", null);
+
+		} else {
+			model.addAttribute("store", store.get(0));
+		}
+
 		model.addAttribute("cartitem", cartItem.size());
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);

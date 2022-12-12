@@ -70,8 +70,8 @@
 
 									<div class="pt-4 pb-2">
 										<h5 class="card-title text-center pb-0 fs-4">ĐĂNG NHẬP</h5>
-										<p class="text-center small">Nhập tài khoản và mật khẩu để
-											đăng nhập</p>
+										<p class="text-center small">${message == null ? 'Nhập tài khoản và mật khẩu để
+											đăng nhập' :message}</p>
 									</div>
 
 									<form class="row g-3 needs-validation" novalidate
@@ -82,8 +82,8 @@
 											<label for="yourUsername" class="form-label">Tài
 												Khoản</label>
 											<div class="input-group has-validation">
-												<span class="input-group-text" id="username">Username</span> <input
-													type="text" name="username" class="form-control"
+												<span class="input-group-text" id="username">Username</span>
+												<input type="text" name="username" class="form-control"
 													value="${user.username}" id="username" required>
 												<div class="invalid-feedback">Vui lòng nhập tài khoản.</div>
 											</div>
@@ -109,8 +109,8 @@
 										</div>
 										<div class="col-12">
 											<p class="small mb-0">
-												Don't have account? <a href="/resgiter">Create
-													an account</a>
+												Don't have account? <a href="/resgiter">Create an
+													account</a>
 											</p>
 										</div>
 									</form>

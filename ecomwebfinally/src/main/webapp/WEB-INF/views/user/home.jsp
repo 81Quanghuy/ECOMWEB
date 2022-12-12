@@ -149,8 +149,10 @@
 						<i class="zmdi zmdi-search"></i>
 					</button>
 
-					<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text"
-						name="search-product" placeholder="Search">
+					<form action="">
+						<input class="dataTable-input mtext-107 cl2 size-114 plh2 p-r-15"
+							type="text" name="search-product" placeholder="Search">
+					</form>
 				</div>
 			</div>
 
@@ -189,9 +191,9 @@
 								<a href="#"
 									class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
 									<img class="icon-heart1 dis-block trans-04"
-									src="${URL}images/icons/icon-heart-01.png" alt="ICON"> <img
+									src="/images/user/icon-heart-01.png" alt="ICON"> <img
 									class="icon-heart2 dis-block trans-04 ab-t-l"
-									src="${URL}images/icons/icon-heart-02.png" alt="ICON">
+									src="/images/user/icon-heart-02.png" alt="ICON">
 								</a>
 							</div>
 						</div>

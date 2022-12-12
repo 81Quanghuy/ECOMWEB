@@ -23,6 +23,7 @@ import vn.iotstar.entity.Order;
 import vn.iotstar.entity.OrderItem;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Review;
+import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.model.ReviewModel;
 import vn.iotstar.service.ICartItemService;
@@ -88,6 +89,14 @@ public class ProductDetailController {
 		} else {
 			cartItems = cartItemService.findByCart(null);
 		}
+		List<Store> store = storeSerivce.findByUser(user);
+		if (store.size() < 1) {
+			model.addAttribute("store", null);
+
+		} else {
+			model.addAttribute("store", store.get(0));
+		}
+
 		if (order.size() > 0) {
 			orderItems = order.get(0).getOrderitems();
 			for (OrderItem cartItem : orderItems) {
@@ -159,11 +168,19 @@ public class ProductDetailController {
 		} else {
 			cartItem = cartItemService.findByCart(null);
 		}
+		List<Store> store = storeSerivce.findByUser(user);
+		if (store.size() < 1) {
+			model.addAttribute("store", null);
+
+		} else {
+			model.addAttribute("store", store.get(0));
+		}
+
 		model.addAttribute("cartitem", cartItem.size());
 
 		List<Category> categories = categoryService.findAll();
 		model.addAttribute("categories", categories);
-		
+
 		// gọi hàm findAll() trong service
 		List<Product> list = productService.findTop10ByOrderBySoldDesc();
 		// chuyển dữ liệu từ list lên biến views
