@@ -571,8 +571,7 @@
 								<div class="activity-content">Dicta dolorem harum nulla
 									eius. Ut quidem quidem sit quas</div>
 							</div>
-							End activity item
- -->
+							End activity item-->
 						</div>
 
 					</div>
@@ -595,68 +594,6 @@
 						</ul>
 					</div>
 
-					<!-- 			<div class="card-body pb-0">
-						<h5 class="card-title">
-							Ngân Sách <span>| Theo Tháng</span>
-						</h5>
-
-						<div id="budgetChart" style="min-height: 400px;" class="echart"></div>
-
-						<script>
-                document.addEventListener("DOMContentLoaded", () => {
-                  var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
-                    legend: {
-                      data: ['Ngân Sách', 'Chi Tiêu']
-                    },
-                    radar: {
-                      // shape: 'circle',
-                      indicator: [{
-                          name: 'Sales',
-                          max: 6500
-                        },
-                        {
-                          name: 'Administration',
-                          max: 16000
-                        },
-                        {
-                          name: 'Information Technology',
-                          max: 30000
-                        },
-                        {
-                          name: 'Customer Support',
-                          max: 38000
-                        },
-                        {
-                          name: 'Development',
-                          max: 52000
-                        },
-                        {
-                          name: 'Marketing',
-                          max: 25000
-                        }
-                      ]
-                    },
-                    series: [{
-                      name: 'Budget vs spending',
-                      type: 'radar',
-                      data: [{
-                          value: [4200, 3000, 20000, 35000, 50000, 18000],
-                          name: 'Ngân Sách'
-                        },
-                        {
-                          value: [5000, 14000, 28000, 26000, 42000, 21000],
-                          name: 'Chi Tiêu'
-                        }
-                      ]
-                    }]
-                  });
-                });
-              </script>
-
-					</div>
-				</div>
-				End Budget Report
- -->
 					<!-- Website Traffic -->
 					<div class="card">
 						<div class="filter">
@@ -730,6 +667,8 @@
 						</div>
 					</div>
 					<!-- End Website Traffic -->
+					
+					
 
 					<!-- News & Updates Traffic -->
 					<div class="card">
@@ -769,28 +708,6 @@
                   }).render();
                 });
               </script>
-							<!-- End Pie Chart -->
-
-							<!-- 	<div class="news">
-							<div class="post-item clearfix">
-								<img src="assets/img/news-1.jpg" alt="">
-								<h4>
-									<a href="#">Nihil blanditiis at in nihil autem</a>
-								</h4>
-								<p>Sit recusandae non aspernatur laboriosam. Quia enim
-									eligendi sed ut harum...</p>
-							</div>
-
-							<div class="post-item clearfix">
-								<img src="assets/img/news-2.jpg" alt="">
-								<h4>
-									<a href="#">Quidem autem et impedit</a>
-								</h4>
-								<p>Illo nemo neque maiores vitae officiis ...</p>
-							</div>
-
-						</div> -->
-							<!-- End sidebar recent posts-->
 
 						</div>
 					</div>
@@ -798,9 +715,11 @@
 
 				</div>
 				<!-- End Right side columns -->
-
 			</div>
+			
+			
 	</section>
+	
 
 </main>
 <!-- End #main -->

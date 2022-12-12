@@ -1,5 +1,7 @@
 package vn.iotstar.service.Impl;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,13 +25,13 @@ import vn.iotstar.service.IStoreService;
 public class StoreServiceImpl implements IStoreService {
 	@Autowired
 	StoreRepository StoreRepository;
-	
-	@Autowired 
+
+	@Autowired
 	ICategoryService categorySerivce;
 
 	@Autowired
 	IProductService productService;
-	
+
 	@Override
 	public <S extends Store> S save(S entity) {
 		return StoreRepository.save(entity);
@@ -127,15 +129,16 @@ public class StoreServiceImpl implements IStoreService {
 		}
 		return null;
 	}
+
 	@Override
-	public Boolean findStorebyCategory(Store store,Integer id) {
+	public Boolean findStorebyCategory(Store store, Integer id) {
 		boolean check = false;
 		List<Product> products = productService.findProductByStore(store);
 		Category category = categorySerivce.getById(id);
 		List<Product> product = productService.findByCategory(category);
-		for(Product pro : product) {
-			for(Product productStore : products) {
-				if(pro.equals(productStore)) {
+		for (Product pro : product) {
+			for (Product productStore : products) {
+				if (pro.equals(productStore)) {
 					check = true;
 					break;
 				}
@@ -152,6 +155,23 @@ public class StoreServiceImpl implements IStoreService {
 	@Override
 	public List<Store> getStoreByUser(User user) {
 		return StoreRepository.getStoreByUser(user);
+	}
+
+	@Override
+	public List<Store> getNewStore(List<Store> stores) {
+		
+		List<Store> temp = new ArrayList<Store>();
+
+		long millis = System.currentTimeMillis();
+		Date date = new Date(millis);
+
+		for (Store store : stores) {
+
+			if (store.getCreateat().getDate() == date.getDate()) {
+				temp.add(store);
+			}
+		}
+		return temp;
 	}
 
 }

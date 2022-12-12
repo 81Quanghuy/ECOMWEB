@@ -20,7 +20,8 @@
 
 			<!--  Sử dụng vòng lặp lấy order -->
 			<div class="card-body">
-				<h5 class="card-title">Danh Sách Loại Sản Phẩm</h5>
+				<h5 class="card-title">Danh Sách Cửa Hàng</h5>
+				
 				<table class="table table-borderless datatable">
 					<thead>
 						<tr>

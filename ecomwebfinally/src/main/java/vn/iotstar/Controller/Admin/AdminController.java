@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import vn.iotstar.entity.Filter;
 import vn.iotstar.entity.Order;
 import vn.iotstar.entity.Product;
+import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.service.IFilterService;
 import vn.iotstar.service.IOrderService;
 import vn.iotstar.service.IProductService;
+import vn.iotstar.service.IStoreService;
 import vn.iotstar.service.IUserService;
 
 @Controller
@@ -37,6 +39,9 @@ public class AdminController {
 
 	@Autowired
 	IProductService productService;
+
+	@Autowired
+	IStoreService storeService;
 
 	@GetMapping("home")
 	public String home(ModelMap model, HttpServletRequest request) {
@@ -65,6 +70,7 @@ public class AdminController {
 
 		List<User> list = userService.getNewUser(userService.findByRoleContaining("ROLE_USER"));
 
+		// Người dùng mới
 		model.addAttribute("countnew", list.size());
 		// Doanh Thu = số tiền bán được hôm nay
 
@@ -146,6 +152,15 @@ public class AdminController {
 		// Tìm ra người dùng có ngày tạo vào hôm nay
 		model.addAttribute("users", list);
 		return "admin/user/list";
+	}
+
+	@RequestMapping("newstore")
+	public String listnewstore(ModelMap model) {
+		// Cửa hàng mới
+		List<Store> storenews = storeService.getNewStore(storeService.findAll());
+		model.addAttribute("cnewstore", storenews.size());
+		model.addAttribute("stores", storenews);
+		return "/admin/store/newStore";
 	}
 
 }

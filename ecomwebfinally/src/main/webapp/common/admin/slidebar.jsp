@@ -34,9 +34,21 @@
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="/admin/store"> <i class="bi bi-envelope"></i> <span>Gian
-					Hàng</span>
-		</a></li>
+			data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+				<i class="bi bi-bar-chart"></i><span>Cửa Hàng</span><i
+				class="bi bi-chevron-down ms-auto"></i>
+		</a>
+			<ul id="charts-nav" class="nav-content collapse "
+				data-bs-parent="#sidebar-nav">
+				<li><a href="/admin/newstore"> <i class="bi bi-circle"></i><span>Cửa
+							Hàng Mới</span>
+				</a></li>
+
+				<li><a href="/admin/store"> <i class="bi bi-circle"></i><span>Cửa
+							Hàng</span>
+				</a></li>
+			</ul></li>
+		<!-- End Charts Nav -->
 
 		<li class="nav-item"><a class="nav-link collapsed"
 			data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
