@@ -11,6 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 
 import vn.iotstar.entity.OrderItem;
+import vn.iotstar.entity.Product;
+import vn.iotstar.entity.Store;
 
 public interface IOrderItemService {
 
@@ -44,5 +46,8 @@ public interface IOrderItemService {
 
 	<S extends OrderItem> S save(S entity);
 
+	List<OrderItem> getOrderItemByStore(Store store);
+	
+	Double doanhThu(List<OrderItem> orderitems);
 
 }

@@ -28,7 +28,9 @@ import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
+import vn.iotstar.model.CategoryModel;
 import vn.iotstar.model.ProductModel;
+import vn.iotstar.model.StoreModel;
 import vn.iotstar.service.ICategoryService;
 import vn.iotstar.service.IProductService;
 import vn.iotstar.service.IStoreService;
@@ -51,22 +53,41 @@ public class SellerProductController {
 	@Autowired
 	IUserService userService;
 
-	// Get Sản Phẩm By Store
+	@Autowired
+	HttpSession session;
+
+	@ModelAttribute("categories")
+	public List<CategoryModel> getCategories() {
+		return categoryService.findAll().stream().map(item -> {
+			CategoryModel cate = new CategoryModel();
+			BeanUtils.copyProperties(item, cate);
+			return cate;
+		}).toList();
+	}
+
+	@ModelAttribute("stores")
+	public List<StoreModel> getStores() {
+		return storeService.findAll().stream().map(item -> {
+			StoreModel cate = new StoreModel();
+			BeanUtils.copyProperties(item, cate);
+			return cate;
+		}).toList();
+	}
+
 	@GetMapping("")
-	public String list(ModelMap model, HttpSession session, @PathVariable("id") Integer id) {
-		// String username = (String) session.getAttribute("user");
-		String nameStore = storeService.findStoreOfUser(storeService.findAll(), id);
-		Store store = storeService.findByNameContaining(nameStore);
-		List<Product> page = productService.getProductByStore(store);
-		model.addAttribute("product", page);
+	public String list(ModelMap model) {
+		User nguoiban = (User) session.getAttribute("user");
+		List<Product> page = productService
+				.findProductByStore(storeService.findByNameContaining(nguoiban.getStores().getName()));
+		model.addAttribute("sanpham", page);
 		return "seller/product/list";
 	}
-	
+
 	@GetMapping("add")
 	public String add(ModelMap model, HttpSession session) {
 		ProductModel product = new ProductModel();
 		product.setIsEdit(false);
-		
+
 		model.addAttribute("product", product);
 		return "seller/product/addOrEdit";
 	}
@@ -124,8 +145,6 @@ public class SellerProductController {
 			entity.setCreateat(date);
 			entity.setUpdateat(date);
 		}
-		
-		
 
 		productService.save(entity);
 		return new ModelAndView("redirect:/seller/product", model);

@@ -55,7 +55,7 @@ public class OrderItemController {
 		return new ModelAndView("user/orderItem/list", model);
 	}
 
-	@GetMapping("/add")
+	@GetMapping("add")
 	public String seachnotify(ModelMap model, HttpSession sesson) {
 		OrderItemModel orderItem = new OrderItemModel();
 		orderItem.setIsEdit(false);

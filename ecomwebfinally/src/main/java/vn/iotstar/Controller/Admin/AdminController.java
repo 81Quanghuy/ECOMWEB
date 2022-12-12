@@ -74,6 +74,10 @@ public class AdminController {
 		List<Product> product = productService.findTop3ByOrderBySoldDesc();
 		model.addAttribute("products", product);
 
+		// Danh Sách order xếp mới nhất
+		List<Order> listoders = orderService.findAllByOrderByIdDesc();
+		model.addAttribute("listoder", listoders);
+
 		return "admin/include/homeAdmin";
 	}
 

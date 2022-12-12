@@ -26,16 +26,18 @@ import vn.iotstar.model.UserModel;
 import vn.iotstar.model.OrderModel;
 import vn.iotstar.entity.Delivery;
 import vn.iotstar.entity.Order;
+import vn.iotstar.entity.OrderItem;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.service.IDeliveryService;
+import vn.iotstar.service.IOrderItemService;
 import vn.iotstar.service.IOrderService;
 import vn.iotstar.service.IStoreService;
 import vn.iotstar.service.IUserService;
 
 @Controller
 
-@RequestMapping("seller1/orders")
+@RequestMapping("seller/orders")
 public class SellerOrderController {
 	@Autowired
 	IOrderService orderService;
@@ -48,6 +50,9 @@ public class SellerOrderController {
 
 	@Autowired
 	IUserService userService;
+
+	@Autowired
+	IOrderItemService orderItemService;
 
 	@Autowired
 	HttpSession session;
@@ -72,27 +77,28 @@ public class SellerOrderController {
 		}).toList();
 	}
 
-	// Lấy danh sách user trong bảng user
-	@ModelAttribute("users")
-	public List<UserModel> getUsers() {
-		return userService.findAll().stream().map(item -> {
-			UserModel review = new UserModel();
-			BeanUtils.copyProperties(item, review);
-			return review;
-		}).toList();
-	}
+//	@RequestMapping("")
+//	public String list(ModelMap model) {
+//
+//		User seller = (User) session.getAttribute("user");
+//
+//		List<Order> orders = orderService.findByUser(seller);
+//
+//		// List<OrderItem> orderitem = orderItemService.
+//
+//		model.addAttribute("orders", orders);
+//
+//		return "seller/orders/list";
+//
+//	}
 
-	@RequestMapping("")
-	public String list(ModelMap model) {
-		
+	@GetMapping("")
+	public String listorderItem(ModelMap model) {
 		User seller = (User) session.getAttribute("user");
-		
-		List<Order> orders = orderService.findByUser(seller);
-		
-		model.addAttribute("orders", orders);
-
-		return "seller/orders/list";
-
+		Store store = storeService.getById(seller.getId());
+		List<OrderItem> orderItems = orderItemService.getOrderItemByStore(store);
+		model.addAttribute("orderItems", orderItems);
+		return "seller/orders/oderitem";
 	}
 
 	@GetMapping("add")

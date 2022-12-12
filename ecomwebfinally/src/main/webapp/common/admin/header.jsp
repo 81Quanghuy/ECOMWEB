@@ -9,7 +9,7 @@
 	<div class="d-flex align-items-center justify-content-between">
 		<a href="index.html" class="logo d-flex align-items-center"> <img
 			src="/assets/img/logo-spkt.jpg" alt=""> <span
-			class="d-none d-lg-block">HCMUTE</span>
+			class="d-none d-lg-block">COZA SHOP</span>
 		</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 	</div>
 	<!-- End Logo -->

@@ -40,10 +40,11 @@
 							<tr>
 								<th scope="row"><a href="#">${STT.index+1}</a></th>
 								<td>${store.name}</td>
-								<td><c:url value="/images/seller/${store.avatar}"
+								<td><c:url value="/resources/images/seller/${store.avatar}"
 										var="imgUrl"></c:url> <img width="100px" height="100px"
 									src="${imgUrl}"></td>
-								<td><c:url value="/images/seller/${store.featuredimages}"
+								<td><c:url
+										value="/resources/images/seller/${store.featuredimages}"
 										var="imgUrl"></c:url> <img width="100px" height="100px"
 									src="${imgUrl}"></td>
 								<td>${store.bio}</td>

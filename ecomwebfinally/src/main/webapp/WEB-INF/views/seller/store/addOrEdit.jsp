@@ -8,7 +8,7 @@
 <section id="main" class="row">
 
 	<div class="col mt-4">
-		<form action=<c:url value = "/admin/store/saveOrUpdate"/>
+		<form action=<c:url value = "/seller/store/saveOrUpdate"/>
 			method="POST" enctype="multipart/form-data">
 			<div class="card">
 				<div class="card-header">
@@ -74,9 +74,9 @@
 
 				</div>
 				<div class="card-footer text-muted">
-					<a href=<c:url value="/admin/store/addOrEdit"/>
+					<a href=<c:url value="/seller/store/addOrEdit"/>
 						class="btn btn-secondary"><i class="fas fa-new"></i>New</a> <a
-						href=<c:url value="/admin/store"/> class="btn btn-success"><i
+						href=<c:url value="/seller/store"/> class="btn btn-success"><i
 						class="fas bars"></i>List Store</a>
 
 

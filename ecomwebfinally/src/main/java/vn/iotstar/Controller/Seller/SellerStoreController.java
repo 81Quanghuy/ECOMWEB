@@ -62,12 +62,14 @@ public class SellerStoreController {
 	public ModelAndView edit(ModelMap model, @PathVariable("id") Integer id) throws IOException {
 		Optional<Store> opt = storeservice.findById(id);
 		StoreModel store = new StoreModel();
+		// User seller = (User) session.getAttribute("user");
 		if (opt.isPresent()) {
 			Store entity = opt.get();
 			BeanUtils.copyProperties(entity, store);
 			store.setIsEdit(true);
+			// store.setOwnerid(seller.getId());
 			model.addAttribute("store", store);
-			return new ModelAndView("admin/store/addOrEdit", model);
+			return new ModelAndView("seller/store/addOrEdit", model);
 		}
 		model.addAttribute("message", "cửa hàng không tồn tại");
 		return new ModelAndView("forward:/seller/store", model);
@@ -130,7 +132,7 @@ public class SellerStoreController {
 		return new ModelAndView("redirect:/seller/store", model);
 
 	}
-	
+
 	@GetMapping("view/{id}")
 	public String infoStore(ModelMap model, @PathVariable("id") Integer id) {
 		// seller = (User) session.getAttribute("user");

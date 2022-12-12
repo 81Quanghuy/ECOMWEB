@@ -1,7 +1,6 @@
 package vn.iotstar.Controller;
 
 import java.io.IOException;
-
 import java.nio.file.Path;
 import java.sql.Date;
 import java.util.List;
@@ -10,6 +9,7 @@ import java.util.Optional;
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,8 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
-import org.springframework.beans.BeanUtils;
 
 import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;

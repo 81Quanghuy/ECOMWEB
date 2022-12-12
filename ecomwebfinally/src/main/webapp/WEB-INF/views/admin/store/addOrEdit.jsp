@@ -64,6 +64,13 @@
 				</div>
 
 				<div class="mb-3">
+					<label for="ownerId" class="form-lablel"> Chủ Sở Hữu:</label> <br>
+					<input type="text" class="form-control" id="avatarFile"　aria-describedby="ownerid"
+						name="ownerid"
+						value="${store.ownerid}">
+				</div>
+
+				<div class="mb-3">
 					<label for="active" class="form-lablel">active:</label> <select
 						class="form-select" name="status" aria-describedby="active"
 						id="active">
@@ -73,27 +80,28 @@
 					</select>
 
 				</div>
+			</div>
 
 
-				<div class="card-footer text-muted">
-					<a href=<c:url value="/admin/store/addOrEdit"/>
-						class="btn btn-secondary"><i class="fas fa-new"></i>New</a> <a
-						href=<c:url value="/admin/store"/> class="btn btn-success"><i
-						class="fas bars"></i>List Store</a>
+			<div class="card-footer text-muted">
+				<a href=<c:url value="/admin/store/addOrEdit"/>
+					class="btn btn-secondary"><i class="fas fa-new"></i>New</a> <a
+					href=<c:url value="/admin/store"/> class="btn btn-success"><i
+					class="fas bars"></i>List Store</a>
 
 
-					<button class="btn btn-primary" type="submit">
-						<i class="fas fa-save"></i>
-						<c:if test="${store.isEdit}">
-							<span>Update</span>
-						</c:if>
+				<button class="btn btn-primary" type="submit">
+					<i class="fas fa-save"></i>
+					<c:if test="${store.isEdit}">
+						<span>Update</span>
+					</c:if>
 
-						<c:if test="${!store.isEdit}">
-							<span>Save</span>
-						</c:if>
+					<c:if test="${!store.isEdit}">
+						<span>Save</span>
+					</c:if>
 
-					</button>
-				</div>
+				</button>
+			</div>
 		</form>
 
 

@@ -72,20 +72,6 @@
 					<!-- Revenue Card -->
 					<div class="col-xxl-4 col-md-6">
 						<div class="card info-card revenue-card">
-
-							<div class="filter">
-								<a class="icon" href="#" data-bs-toggle="dropdown"><i
-									class="bi bi-three-dots"></i></a>
-								<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-									<li class="dropdown-header text-start">
-										<h6>Lọc theo</h6>
-									</li>
-
-									<li><a class="dropdown-item" href="#">Theo Ngày</a></li>
-									<li><a class="dropdown-item" href="#">Theo Tháng</a></li>
-									<li><a class="dropdown-item" href="#">Theo Năm</a></li>
-								</ul>
-							</div>
 							<!-- Doanh thu theo ngày tháng năm  -->
 							<div class="card-body">
 								<h5 class="card-title">
@@ -109,25 +95,13 @@
 						</div>
 					</div>
 					<!-- End Revenue Card -->
+					<!-- Revenue Card -->
 
 					<!-- Customers Card -->
 					<div class="col-xxl-4 col-xl-6">
 
 						<div class="card info-card customers-card">
 
-							<div class="filter">
-								<a class="icon" href="#" data-bs-toggle="dropdown"><i
-									class="bi bi-three-dots"></i></a>
-								<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-									<li class="dropdown-header text-start">
-										<h6>Lọc Theo</h6>
-									</li>
-
-									<li><a class="dropdown-item" href="#">Ngày</a></li>
-									<li><a class="dropdown-item" href="#">Tháng</a></li>
-									<li><a class="dropdown-item" href="#">Năm</a></li>
-								</ul>
-							</div>
 
 							<div class="card-body">
 								<h5 class="card-title">
@@ -153,12 +127,41 @@
 					</div>
 					<!-- End Customers Card -->
 
+
+				</div>
+
+
+			</div>
+			<!-- Right side columns -->
+			<div class="col-lg-4">
+
+				<!-- Recent Activity -->
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">
+							Hoạt động gần đây <span>| Hôm Nay</span>
+						</h5>
+
+						<div class="activity">
+
+							<c:forEach items="${filters}" var="filter" varStatus="STT">
+
+								<div class="activity-item d-flex">
+									<div class="activite-label">${filter.timelogin}</div>
+									<i
+										class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
+									<div class="activity-content">
+										${filter.user.firstName} ${filter.user.lastName} <a href="#"
+											class="fw-bold text-dark"> </a>
+									</div>
+								</div>
+
+							</c:forEach>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
 	</section>
-
-
 	<!-- Recent Sales -->
 	<div class="col-12">
 		<div class="card recent-sales overflow-auto">
@@ -184,7 +187,7 @@
 						<c:forEach items="${listoder}" var="order" varStatus="STT">
 							<tr>
 								<th scope="row"><a href="#">${STT.index+1}</a></th>
-								<td>${order.user.id}</td>
+								<td>${order.user.lastName}</td>
 								<td><a href="#" class="text-primary">${order.store.name}</a></td>
 								<td>${order.price}</td>
 								<td><c:if test="${order.status == 1 }">
@@ -277,7 +280,7 @@
 		</div>
 	</div>
 
-	<div class="col-12">
+	<!-- <div class="col-12">
 		<div class="card">
 
 			<div class="card-body">
@@ -285,7 +288,7 @@
 					Báo Cáo <span></span>
 				</h5>
 
-				<!-- Line Chart -->
+				Line Chart
 				<div id="reportsChart"></div>
 
 				<script>
@@ -340,13 +343,13 @@
                       }).render();
                     });
                   </script>
-				<!-- End Line Chart -->
+				End Line Chart
 
 			</div>
 
 		</div>
 	</div>
-	<!-- End Reports -->
+	End Reports -->
 
 	<!-- Top Selling -->
 	<div class="col-12">

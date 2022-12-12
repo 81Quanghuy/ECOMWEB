@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import vn.iotstar.entity.Filter;
 import vn.iotstar.entity.Order;
+import vn.iotstar.entity.OrderItem;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Review;
 import vn.iotstar.entity.Store;
 import vn.iotstar.entity.User;
 import vn.iotstar.service.IFilterService;
+import vn.iotstar.service.IOrderItemService;
 import vn.iotstar.service.IOrderService;
 import vn.iotstar.service.IProductService;
 import vn.iotstar.service.IReviewService;
@@ -48,6 +50,9 @@ public class SellerController {
 
 	@Autowired
 	IStoreService storeService;
+
+	@Autowired
+	IOrderItemService orderItemService;
 
 	@Autowired
 	HttpSession session;
@@ -85,10 +90,13 @@ public class SellerController {
 		// Doanh Thu = số tiền bán được hôm nay
 
 		User seller = (User) session.getAttribute("user");
-
-		Float doanhthu = orderService.getTotalPrice(orderService.findAll(), seller.getStores().getId());
+		Store store = storeService.getById(seller.getId());
+		List<OrderItem> orderItems = orderItemService.getOrderItemByStore(store);
+		Double doanhthu = orderItemService.doanhThu(orderItems);
+		// Float doanhthu = orderService.getTotalPrice(orderService.findAll(),
+		// seller.getStores().getId());
 		model.addAttribute("doanhthu", doanhthu);
-		
+
 		List<Order> listoders = orderService.findAllByOrderByCreateatDesc();
 		model.addAttribute("listoder", listoders);
 

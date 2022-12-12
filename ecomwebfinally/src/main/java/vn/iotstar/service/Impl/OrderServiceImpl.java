@@ -158,12 +158,12 @@ public class OrderServiceImpl implements IOrderService {
 
 		long millis = System.currentTimeMillis();
 		Date date = new Date(millis);
-		//date.setYear(2021);
+		// date.setYear(2021);
 
 		int y = 12;
 		for (Order order : oders) {
 
-			if (order.getCreateat().getMonth() == (date.getMonth()-limit)) {
+			if (order.getCreateat().getMonth() == (date.getMonth() - limit)) {
 				totalPrice = totalPrice + order.getPrice();
 			}
 		}
@@ -174,6 +174,12 @@ public class OrderServiceImpl implements IOrderService {
 	public List<Order> findAllByOrderByCreateatDesc() {
 		// TODO Auto-generated method stub
 		return (List<Order>) orderRepository.findAllByOrderByCreateatDesc();
+	}
+
+	@Override
+	public List<Order> findAllByOrderByIdDesc() {
+		// TODO Auto-generated method stub
+		return orderRepository.findAllByOrderByIdDesc();
 	}
 
 }

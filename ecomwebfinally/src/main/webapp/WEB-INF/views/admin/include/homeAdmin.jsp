@@ -184,6 +184,23 @@
 										</tr>
 									</thead>
 									<tbody>
+										<c:forEach items="${listoder}" var="order" varStatus="STT">
+											<tr>
+												<th scope="row"><a href="#">${STT.index+1}</a></th>
+												<td>${order.user.lastName}</td>
+												<td><a href="#" class="text-primary">${order.store.name}</a></td>
+												<td>${order.price}</td>
+												<td><c:if test="${order.status == 1 }">
+
+														<span class="badge bg-success">Đã Thanh Toán</span>
+
+													</c:if> <c:if test="${order.status == 0}">
+
+														<span class="badge bg-warning">Chưa Thanh Toán</span>
+
+													</c:if></td>
+											</tr>
+										</c:forEach>
 										<tr>
 											<th scope="row"><a href="#">#1</a></th>
 											<td>Brandon Jacob</td>
@@ -306,25 +323,25 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach items="${products}" var="product">
-									
-									
-									
-									
-										<tr>
-											<th scope="row"><a href="#"><img
-													src="assets/img/product-1.jpg" alt=""></a>${product.id }</th>
-													
-											<td><a href="#" class="text-primary fw-bold">${product.name}
-													</a></td>
-													
-											<td>${product.price}</td>
-											
-											<td class="fw-bold">${product.sold}</td>
-											
-											<td>${product.rating }</td>
-										</tr>
-										<!-- <tr>
+										<c:forEach items="${products}" var="product">
+
+
+
+
+											<tr>
+												<th scope="row"><a href="#"><img
+														src="assets/img/product-1.jpg" alt=""></a>${product.id }</th>
+
+												<td><a href="#" class="text-primary fw-bold">${product.name}
+												</a></td>
+
+												<td>${product.price}</td>
+
+												<td class="fw-bold">${product.sold}</td>
+
+												<td>${product.rating }</td>
+											</tr>
+											<!-- <tr>
 											<th scope="row"><a href="#"><img
 													src="assets/img/product-2.jpg" alt=""></a></th>
 											<td><a href="#" class="text-primary fw-bold">Exercitationem
@@ -499,10 +516,8 @@
 									<i
 										class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
 									<div class="activity-content">
-										${filter.user.firstName} ${filter.user.lastName} 
-										
-										 <a href="#" class="fw-bold text-dark">
-											</a> 
+										${filter.user.firstName} ${filter.user.lastName} <a href="#"
+											class="fw-bold text-dark"> </a>
 									</div>
 								</div>
 
@@ -643,29 +658,29 @@
 				End Budget Report
  -->
 					<!-- Website Traffic -->
-				<div class="card">
-					<div class="filter">
-						<a class="icon" href="#" data-bs-toggle="dropdown"><i
-							class="bi bi-three-dots"></i></a>
-						<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-							<li class="dropdown-header text-start">
-								<h6>Lọc Theo</h6>
-							</li>
+					<div class="card">
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i
+								class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+									<h6>Lọc Theo</h6>
+								</li>
 
-							<li><a class="dropdown-item" href="#">Hôm Nay</a></li>
-							<li><a class="dropdown-item" href="#">Theo Tháng</a></li>
-							<li><a class="dropdown-item" href="#">Theo Năm</a></li>
-						</ul>
-					</div>
+								<li><a class="dropdown-item" href="#">Hôm Nay</a></li>
+								<li><a class="dropdown-item" href="#">Theo Tháng</a></li>
+								<li><a class="dropdown-item" href="#">Theo Năm</a></li>
+							</ul>
+						</div>
 
-					<div class="card-body pb-0">
-						<h5 class="card-title">
-							Lượt truy cập <span>| Hôm nay</span>
-						</h5>
+						<div class="card-body pb-0">
+							<h5 class="card-title">
+								Lượt truy cập <span>| Hôm nay</span>
+							</h5>
 
-						<div id="trafficChart" style="min-height: 400px;" class="echart"></div>
+							<div id="trafficChart" style="min-height: 400px;" class="echart"></div>
 
-						<script>
+							<script>
                 document.addEventListener("DOMContentLoaded", () => {
                   echarts.init(document.querySelector("#trafficChart")).setOption({
                     tooltip: {
@@ -712,34 +727,34 @@
                 });
               </script>
 
+						</div>
 					</div>
-				</div>
-				<!-- End Website Traffic -->
+					<!-- End Website Traffic -->
 
-				<!-- News & Updates Traffic -->
-				<div class="card">
-					<div class="filter">
-						<a class="icon" href="#" data-bs-toggle="dropdown"><i
-							class="bi bi-three-dots"></i></a>
-						<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-							<li class="dropdown-header text-start">
-								<h6>Filter</h6>
-							</li>
+					<!-- News & Updates Traffic -->
+					<div class="card">
+						<div class="filter">
+							<a class="icon" href="#" data-bs-toggle="dropdown"><i
+								class="bi bi-three-dots"></i></a>
+							<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+								<li class="dropdown-header text-start">
+									<h6>Filter</h6>
+								</li>
 
-							<li><a class="dropdown-item" href="#">Today</a></li>
-							<li><a class="dropdown-item" href="#">This Month</a></li>
-							<li><a class="dropdown-item" href="#">This Year</a></li>
-						</ul>
-					</div>
+								<li><a class="dropdown-item" href="#">Today</a></li>
+								<li><a class="dropdown-item" href="#">This Month</a></li>
+								<li><a class="dropdown-item" href="#">This Year</a></li>
+							</ul>
+						</div>
 
-					<div class="card-body pb-0">
-						<h5 class="card-title">
-							Báo Cáo <span>| Today</span>
-						</h5>
-						<!-- Pie Chart -->
-						<div id="pieChart"></div>
+						<div class="card-body pb-0">
+							<h5 class="card-title">
+								Báo Cáo <span>| Today</span>
+							</h5>
+							<!-- Pie Chart -->
+							<div id="pieChart"></div>
 
-						<script>
+							<script>
                 document.addEventListener("DOMContentLoaded", () => {
                   new ApexCharts(document.querySelector("#pieChart"), {
                     series: [44, 55, 13],
@@ -754,9 +769,9 @@
                   }).render();
                 });
               </script>
-						<!-- End Pie Chart -->
+							<!-- End Pie Chart -->
 
-						<!-- 	<div class="news">
+							<!-- 	<div class="news">
 							<div class="post-item clearfix">
 								<img src="assets/img/news-1.jpg" alt="">
 								<h4>
@@ -775,16 +790,16 @@
 							</div>
 
 						</div> -->
-						<!-- End sidebar recent posts-->
+							<!-- End sidebar recent posts-->
 
+						</div>
 					</div>
+					<!-- End News & Updates -->
+
 				</div>
-				<!-- End News & Updates -->
+				<!-- End Right side columns -->
 
 			</div>
-			<!-- End Right side columns -->
-
-		</div>
 	</section>
 
 </main>

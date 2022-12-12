@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,10 +18,4 @@ public class ReviewModel {
 	private Date createat;
 	private Date updateat;
 	private Boolean isEdit = false;
-	
-	@Override
-	public String toString() {
-		return "Đánh Giá [id=" + id + ", Nội dung=" + content + ", cho sản phẩm =" + productid + ", rating ="
-				+ rating + " /5 vào ngày :" + createat + "]";
-	}
 }

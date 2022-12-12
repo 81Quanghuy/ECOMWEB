@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import vn.iotstar.entity.*;
 import vn.iotstar.model.*;
 import vn.iotstar.service.IStoreService;
+import vn.iotstar.service.IUserService;
 
 @Controller
 @RequestMapping("/admin/store")
@@ -34,6 +36,21 @@ public class StoreController {
 
 	@Autowired
 	ServletContext application;
+
+	@Autowired
+	IUserService userService;
+
+	@Autowired
+	HttpSession session;
+
+	@ModelAttribute("users")
+	public List<UserModel> getUser() {
+		return userService.findAll().stream().map(item -> {
+			UserModel cate = new UserModel();
+			BeanUtils.copyProperties(item, cate);
+			return cate;
+		}).toList();
+	}
 
 	@GetMapping("")
 	public ModelAndView list(ModelMap model) {
@@ -58,6 +75,7 @@ public class StoreController {
 		if (opt.isPresent()) {
 			Store entity = opt.get();
 			BeanUtils.copyProperties(entity, store);
+			store.setOwnerid(entity.getUser().getId());
 			store.setIsEdit(true);
 			model.addAttribute("store", store);
 			return new ModelAndView("admin/store/addOrEdit", model);
@@ -73,7 +91,7 @@ public class StoreController {
 		Store entity = new Store();
 		if (result.hasErrors()) {
 			model.addAttribute("message", "Có lỗi");
-			return new ModelAndView("admin/addOrEdit");
+			return new ModelAndView("admin/store/addOrEdit");
 		}
 
 		if (!(store.getAvatarFile().isEmpty() || store.getFeaturedimagesFile().isEmpty())) {
@@ -106,6 +124,8 @@ public class StoreController {
 			entity.setUpdaeat(date);
 		}
 
+		User use = userService.getById(store.getOwnerid());
+		entity.setUser(use);
 		storeservice.save(entity);
 		String message = "";
 		if (store.getIsEdit() == true) {

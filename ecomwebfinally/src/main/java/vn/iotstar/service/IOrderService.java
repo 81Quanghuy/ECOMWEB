@@ -56,4 +56,6 @@ public interface IOrderService {
 
 	List<Order> findAllByOrderByCreateatDesc();
 
+	List<Order> findAllByOrderByIdDesc();
+
 }
