@@ -58,8 +58,8 @@
 									<!-- Thống kê hôm nay bán được bao nhiêu đơn tăng bao nhiêu % so với hôm qua -->
 									<div class="ps-3">
 										<h6>${odercount}</h6>
-										<span class="text-success small pt-1 fw-bold">12%</span> <span
-											class="text-muted small pt-2 ps-1">increase</span>
+										<span class="text-success small pt-1 fw-bold"></span> <span
+											class="text-muted small pt-2 ps-1"></span>
 
 									</div>
 								</div>
@@ -85,8 +85,8 @@
 									</div>
 									<div class="ps-3">
 										<h6>$ ${doanhthu}</h6>
-										<span class="text-success small pt-1 fw-bold">8%</span> <span
-											class="text-muted small pt-2 ps-1">increase</span>
+										<span class="text-success small pt-1 fw-bold"></span> <span
+											class="text-muted small pt-2 ps-1"></span>
 
 									</div>
 								</div>
@@ -114,9 +114,9 @@
 										<i class="bi bi-people"></i>
 									</div>
 									<div class="ps-3">
-										<h6>${countuser}</h6>
-										<span class="text-danger small pt-1 fw-bold">12%</span> <span
-											class="text-muted small pt-2 ps-1">decrease</span>
+										<h6>${odercount}</h6>
+										<span class="text-danger small pt-1 fw-bold"></span> <span
+											class="text-muted small pt-2 ps-1"></span>
 
 									</div>
 								</div>

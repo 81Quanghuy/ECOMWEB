@@ -30,7 +30,10 @@ public class Product {
 
 	@Column(length = 200, columnDefinition = "nvarchar(200) not null")
 	private String name;
+
+	@Column(name = "desciption", columnDefinition = "nvarchar(MAX)")
 	private String desciption;
+
 	private Double price;
 	private Double promotionaprice;
 	private Integer quantity;

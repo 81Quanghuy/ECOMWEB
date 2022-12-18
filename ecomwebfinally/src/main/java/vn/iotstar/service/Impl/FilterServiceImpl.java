@@ -17,7 +17,7 @@ import vn.iotstar.service.IFilterService;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FilterServiceImpl implements IFilterService {
-	
+
 	@Autowired
 	IFilterRepository filterRepository;
 
@@ -30,8 +30,10 @@ public class FilterServiceImpl implements IFilterService {
 	public long count() {
 		return filterRepository.count();
 	}
-	
-	
-	
+
+	@Override
+	public <S extends Filter> S save(S entity) {
+		return filterRepository.save(entity);
+	}
 
 }

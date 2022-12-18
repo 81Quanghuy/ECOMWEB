@@ -66,7 +66,7 @@ public interface IProductService {
 	List<Product> findTop10ByOrderBySoldDesc();
 
 	Float getTotalPrice(List<Product> product);
-	// Page<Product> getAllSanPhamByFilter(SearchProductObject object, int page, int
-	// limit);
+
+	Integer avgRating(Product product);
 
 }

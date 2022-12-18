@@ -50,9 +50,9 @@
 									src="${imgUrl}"></td>
 								<td>${store.bio}</td>
 
-								<td><c:if test="${store.isactive == false}">
+								<td><c:if test="${store.isactive == true}">
 										<span class="badge bg-success">Đang Hoạt Động</span>
-									</c:if> <c:if test="${store.isactive == true}">
+									</c:if> <c:if test="${store.isactive == false}">
 										<span class="badge bg-danger">Ngừng Kinh Doanh</span>
 									</c:if></td>
 
@@ -67,8 +67,8 @@
 					</tbody>
 				</table>
 
-				<a href="/admin/orders/add" type="button"
-					class="btn btn-outline-secondary">Thêm Loại Sản Phẩm</a>
+				<a href="/admin/store/add" type="button"
+					class="btn btn-outline-secondary">Tạo Cửa Hàng</a>
 
 			</div>
 

@@ -29,7 +29,10 @@ public class Delivery {
 	@Column(length = 200, columnDefinition = "nvarchar(200) not null")
 	private String name;
 	private Float price;
+	
+	@Column(name ="desciption",columnDefinition = "nvarchar(255)")
 	private String desciption;
+	
 	private Boolean isdeleted;
 	private Date createat;
 	private Date updateat;

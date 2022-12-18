@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.iotstar.entity.Cart;
+import vn.iotstar.entity.Filter;
 import vn.iotstar.entity.User;
 import vn.iotstar.model.UserModel;
 import vn.iotstar.service.ICartService;
+import vn.iotstar.service.IFilterService;
 import vn.iotstar.service.IOrderService;
 import vn.iotstar.service.IUserService;
 
@@ -36,10 +38,14 @@ public class LoginController {
 	IOrderService orderSerivce;
 
 	@Autowired
+	IFilterService filterService;
+
+	@Autowired
 	HttpSession session;
 
 	@RequestMapping("login")
 	public String home(ModelMap model) {
+
 		model.addAttribute("user", new UserModel());
 		return "common/login";
 	}
@@ -63,6 +69,14 @@ public class LoginController {
 			return new ModelAndView("redirect:/admin/home", model);
 		}
 		if (user.getRole().equals("ROLE_USER")) {
+
+			User filter = (User) session.getAttribute("user");
+			Filter login = new Filter();
+			long millis = System.currentTimeMillis();
+			Date date = new java.sql.Date(millis);
+			login.setTimelogin(date);
+			login.setUser(filter);
+			filterService.save(login);
 			return new ModelAndView("redirect:/", model);
 		}
 		return null;
@@ -100,6 +114,8 @@ public class LoginController {
 			user.setUsername(username);
 			user.setPassword(password);
 			user.setRole("ROLE_USER");
+			user.setFirstName(username);
+			user.setLastName(username);
 			long millis = System.currentTimeMillis();
 			Date date = new Date(millis);
 			user.setCreateat(date);

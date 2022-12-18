@@ -18,4 +18,6 @@ public interface IFilterService {
 
 	List<Filter> findAll();
 
+	<S extends Filter> S save(S entity);
+
 }

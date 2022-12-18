@@ -12,11 +12,18 @@
 			method="POST" enctype="multipart/form-data">
 			<div class="card">
 				<div class="card-header">
-					<h2>${store.isEdit ? 'Edit Store' : 'Add New Store'}</h2>
+					<h2>${store.isEdit ? 'Chính Sửa Cửa Hàng' : 'Cửa Hàng Mới'}</h2>
 				</div>
 
 			</div>
 			<div class="card-body">
+
+				<c:if test="${error != null}">
+					<p class="text-danger">${error}</p>
+				</c:if>
+				<c:if test="${message != null}">
+					<p class="text-warning">${message}</p>
+				</c:if>
 
 				<div class="mb-3">
 					<label for="id" class="form-lablel">Store ID:</label> <input
@@ -65,9 +72,20 @@
 
 				<div class="mb-3">
 					<label for="ownerId" class="form-lablel"> Chủ Sở Hữu:</label> <br>
-					<input type="text" class="form-control" id="avatarFile"　aria-describedby="ownerid"
-						name="ownerid"
-						value="${store.ownerid}">
+
+
+					<select class="form-select" name="ownerid" aria-label="storeid">
+						<c:forEach items="${users}" var="item">
+							<option value="${item.id}"
+								selected="${item.id == store.ownerid? 'selected':'' }">${item.firstName}
+								${item.lastName }</option>
+						</c:forEach>
+
+					</select>
+
+					<%-- 			 <input type="text" class="form-control" id="avatarFile"
+						　aria-describedby="ownerid" name="ownerid"
+						value="${store.ownerid}"> --%>
 				</div>
 
 				<div class="mb-3">

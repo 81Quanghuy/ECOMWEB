@@ -9,12 +9,12 @@
 	<div class="d-flex align-items-center justify-content-between">
 		<a href="index.html" class="logo d-flex align-items-center"> <img
 			src="/assets/img/logo-spkt.jpg" alt=""> <span
-			class="d-none d-lg-block">COZA SHOP</span>
+			class="d-none d-lg-block">COZA STORE</span>
 		</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 	</div>
 	<!-- End Logo -->
 
-	<div class="search-bar">
+	<div hidden="" class="search-bar">
 		<form class="search-form d-flex align-items-center" method="POST"
 			action="#">
 			<input type="text" name="query" placeholder="Search"
@@ -166,15 +166,16 @@
 
 			<li class="nav-item dropdown pe-3"><a
 				class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
-				data-bs-toggle="dropdown"> <img src="${admin.image}"
-					alt="Profile" class="rounded-circle"> <span
-					class="d-none d-md-block dropdown-toggle ps-2">${admin.name}</span>
+				data-bs-toggle="dropdown"> <img
+					src="/images/admin/${admin.avatar}" alt="Profile"
+					class="rounded-circle"> <span
+					class="d-none d-md-block dropdown-toggle ps-2">${admin.lastName}</span>
 			</a> <!-- End Profile Iamge Icon -->
 
 				<ul
 					class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 					<li class="dropdown-header">
-						<h6>${admin.name}</h6> <span>Quản Trị Viên</span>
+						<h6>${admin.lastName}</h6> <span>Quản Trị Viên</span>
 					</li>
 					<li>
 						<hr class="dropdown-divider">

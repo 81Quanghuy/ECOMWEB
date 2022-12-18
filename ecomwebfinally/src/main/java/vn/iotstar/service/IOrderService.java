@@ -62,4 +62,6 @@ public interface IOrderService {
 
 	List<Order> findByIsactive(Boolean isactive);
 
+	List<Order> findByStore(Store store);
+
 }

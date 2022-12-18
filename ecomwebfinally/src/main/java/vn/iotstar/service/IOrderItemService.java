@@ -53,4 +53,6 @@ public interface IOrderItemService {
 
 	List<OrderItem> findByOrder(Order Order);
 
+	List<OrderItem> findByProduct(Product product);
+
 }

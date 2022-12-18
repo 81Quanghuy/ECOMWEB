@@ -9,9 +9,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.Repository.ProductRepository;
+import vn.iotstar.Repository.ReviewRepository;
 import vn.iotstar.entity.CartItem;
 import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
+import vn.iotstar.entity.Review;
 import vn.iotstar.entity.Store;
 import vn.iotstar.service.IProductService;
 
@@ -21,6 +23,12 @@ public class ProductServiceImpl implements IProductService {
 	@Autowired
 	ProductRepository productRepository;
 	private List<Product> list;
+
+	@Autowired
+	ReviewRepository repository;
+	
+	@Autowired
+	IProductService productService;
 
 	@Override
 	public List<Product> findBynameContaining(String name) {
@@ -162,12 +170,31 @@ public class ProductServiceImpl implements IProductService {
 
 		Float total = (float) 0;
 		for (Product pro : product) {
-			
 
 			total = (float) (total + pro.getPrice() * pro.getSold());
 
 		}
 		return null;
+	}
+
+	@Override
+	public Integer avgRating(Product product) {
+		Integer avgRating = 0;
+
+		List<Review> reviews = repository.findByProduct(product);
+
+		for (Review review : reviews) {
+
+			avgRating = avgRating + review.getRating();
+
+		}
+
+		avgRating = avgRating / reviews.size();
+
+		if (avgRating > 0) {
+			return avgRating;
+		}
+		return 0;
 	}
 
 //	@Override

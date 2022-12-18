@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,10 +39,16 @@ public class User {
 	private String phone;
 	private String username;
 	private String password;// mật khẩu mã hóa
+	
+	@Column(name ="address",columnDefinition = "nvarchar(255)")
 	private String address;
+	
 	private String avatar;
 	private String role;
 	private Boolean isActive;
+
+	@Column(name = "resetpasswordtoken")
+	private String resetpasswordtoken;
 
 	private Date createat;
 	private Date updateat;

@@ -4,6 +4,7 @@
 <%@ include file="/common/taglib.jsp"%>
 
 <section id="main" class="container">
+
 	<div class="col mt-4">
 		<form action=<c:url value = "/seller/product/saveofUpdate"/>
 			method="POST" enctype="multipart/form-data">
@@ -22,28 +23,29 @@
 				</div>
 
 				<div class="mb-3">
-					<label for="name" class="form-lablel"> Name:</label> <br> <input
-						type="text" value="${product.name}" name="name">
+					<label for="name" class="form-lablel"> Tên Sản Phẩm:</label> <br>
+					<input type="text" value="${product.name}" name="name">
 				</div>
+
 				<div class="mb-3">
 					<label for="desciption" class="form-lablel"> Mô tả:</label> <br>
 					<input type="text" value="${product.desciption}" name="desciption">
 				</div>
 				<div class="mb-3">
-					<label for="price" class="form-lablel"> Price:</label> <br> <input
+					<label for="price" class="form-lablel"> Giá:</label> <br> <input
 						type="text" value="${product.price}" name="price">
 				</div>
 				<div class="mb-3">
-					<label for="promotionaprice" class="form-lablel">
-						promotionaprice:</label> <br> <input type="text"
+					<label for="promotionaprice" class="form-lablel"> Giá
+						Khuyến Mãi:</label> <br> <input type="text"
 						value="${product.promotionaprice}" name="promotionaprice">
 				</div>
 				<div class="mb-3">
-					<label for="quantity" class="form-lablel"> quantity:</label> <br>
+					<label for="quantity" class="form-lablel"> Số Lượng:</label> <br>
 					<input type="text" value="${product.quantity}" name="quantity">
 				</div>
-				<div class="mb-3">
-					<label for="sold" class="form-lablel"> sold:</label> <br> <input
+				<div class="mb-3" style="display: none;">
+					<label for="sold" class="form-lablel"> Bán Ra:</label> <br> <input
 						type="text" value="${product.sold}" name="sold">
 				</div>
 				<div class="mb-3">
@@ -51,12 +53,25 @@
 						hidden="hidden" /> <input type="file" name="listImageFile" />
 				</div>
 				<div class="mb-3">
-					<label for="categoryid" class="form-lablel"> categoryid:</label> <br>
-					<input type="text" value="${product.categoryid}" name="categoryid">
+					<label for="categoryid" class="form-lablel"> Category:</label> <br>
+					<select class="form-select" name="categoryid"
+						aria-label="categoryid">
+						<c:forEach items="${categories}" var="item">
+							<option value="${item.id}"
+								selected="${item.id == product.categoryid? 'selected':'' }">${item.name}</option>
+
+						</c:forEach>
+
+					</select>
 				</div>
-				<div class="mb-3">
+				<div class="mb-3" style="display: none;">
 					<label for="storeid" class="form-lablel"> storeid:</label> <br>
-					<input type="text" value="${product.storeid}" name="storeid">
+					<select class="form-select" name="storeid" aria-label="storeid">
+						<c:forEach items="${stores}" var="item">
+							<option value="${item.id}"
+								selected="${item.id == product.storeid? 'selected':'' }">${item.name}</option>
+						</c:forEach>
+					</select>
 				</div>
 				<div class="mb-3">
 					<label for="rating" class="form-lablel"> rating:</label> <br>
@@ -77,7 +92,9 @@
 					<option ${product.isselling == false ? 'selected':'' }
 						value="false">Chưa Mở bán</option>
 				</select>
+
 			</div>
+
 			<div class="card-footer text-muted">
 				<a href=<c:url value="/seller/product/add"/>
 					class="btn btn-secondary"><i class="fas fa-new"></i>New</a> <a
@@ -93,8 +110,12 @@
 					<c:if test="${!product.isEdit }">
 						<span>Save</span>
 					</c:if>
+
 				</button>
 			</div>
+
 		</form>
+
 	</div>
+
 </section>

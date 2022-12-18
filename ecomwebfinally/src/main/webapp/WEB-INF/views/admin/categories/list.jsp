@@ -30,7 +30,7 @@
 								<th scope="row"><a href="#">${STT.index+1}</a></th>
 
 
-								<td><c:url value="/resources/images/user/${cate.image}"
+								<td><c:url value="/images/seller/${cate.image}"
 										var="imgUrl"></c:url> <img width="100px" height="100px"
 									src="${imgUrl}"></td>
 

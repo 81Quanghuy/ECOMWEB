@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,9 +43,17 @@ public class AdminController {
 
 	@Autowired
 	IStoreService storeService;
+	
+	@Autowired
+	HttpSession session;
 
 	@GetMapping("home")
 	public String home(ModelMap model, HttpServletRequest request) {
+		
+		User admin = (User) session.getAttribute("user");
+		model.addAttribute("admin", admin);
+		
+		
 		model.addAttribute("user", getSessionUser(request));
 		long millis = System.currentTimeMillis();
 		Date date = new Date(millis);
@@ -148,6 +157,8 @@ public class AdminController {
 		// gọi hàm findAll() trong service
 
 		List<User> list = userService.getNewUser(userService.findByRoleContaining("ROLE_USER"));
+		
+		model.addAttribute("cnewuser", list.size());
 
 		// Tìm ra người dùng có ngày tạo vào hôm nay
 		model.addAttribute("users", list);

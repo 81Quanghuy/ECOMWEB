@@ -22,4 +22,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
 	List<Order> findByIsactive(Boolean isactive);
 
+	List<Order> findByStore(Store store);
+
 }

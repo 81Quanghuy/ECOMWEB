@@ -1,0 +1,18 @@
+#server:
+#  port: 80
+#  servlet:
+#    context-path: /CozaStore
+
+
+spring:
+  mail:
+    host: smtp.gmail.com
+    username: toannguyen7202@gmail.com
+    password: gphlrmcgfajnzkxj
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

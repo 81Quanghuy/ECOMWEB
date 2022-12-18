@@ -65,8 +65,12 @@ public class SellerController {
 
 	@GetMapping("home")
 	public String home(ModelMap model, HttpServletRequest request) {
+
+		User seller = (User) session.getAttribute("user");
+		model.addAttribute("admin", seller);
 		long millis = System.currentTimeMillis();
 		Date date = new Date(millis);
+
 		long count = orderService.count();
 
 		// Ngày tháng năm hiện tại
@@ -82,66 +86,84 @@ public class SellerController {
 		model.addAttribute("year", year);
 
 		// truyền lên số lượng đơn hàng.
-		model.addAttribute("odercount", count); //
+		// model.addAttribute("odercountodercount", count); //
 
 		model.addAttribute("countuser", countUser());
 		model.addAttribute("countadmin", countAdmin());
 		model.addAttribute("countseller", countSeller());
 		// Doanh Thu = số tiền bán được hôm nay
 
-		User seller = (User) session.getAttribute("user");
-		Store store = storeService.getById(seller.getId());
-		List<OrderItem> orderItems = orderItemService.getOrderItemByStore(store);
-		Double doanhthu = orderItemService.doanhThu(orderItems);
-		
-		// Float doanhthu = orderService.getTotalPrice(orderService.findAll(),
+		List<Store> store = storeService.findByUser(seller);
+		if (store.size() > 0) {
+			List<OrderItem> orderItems = orderItemService.getOrderItemByStore(store.get(0));
+			Double doanhthu = 0.0;
+			if (orderItems != null) {
+				doanhthu = orderItemService.doanhThu(orderItems);
+			}
+
+			List<Order> listo = orderService.getOrderByStore(store.get(0));
+			if (listo.size() > 0) {
+				model.addAttribute("odercount", listo.size());
+			}
+
+			model.addAttribute("doanhthu", doanhthu);
+		}
+
+		// Float doanhthu = orderService.getTotalPrice(orders,
+
 		// seller.getStores().getId());
-		model.addAttribute("doanhthu", doanhthu);
 
-		List<Order> listoders = orderService.findAllByOrderByCreateatDesc();
-		model.addAttribute("listoder", listoders);
+		if (orderService.findByStore(store.get(0)) != null) {
+			List<Order> listoders = orderService.findAllByOrderByCreateatDesc();
+			model.addAttribute("listoder", listoders);
 
-		List<Filter> filters = filterService.findAll();
+			List<Filter> filters = filterService.findAll();
 
-		model.addAttribute("filters", filters);
-		List<Product> product = productService.findAllByOrderBySoldDesc();
-		model.addAttribute("products", product);
+			model.addAttribute("filters", filters);
+			List<Product> product = productService.findAllByOrderBySoldDesc();
+			model.addAttribute("products", product);
 
-		Float doanhthu12 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 0);
-		model.addAttribute("doanhthu12", doanhthu12);
+			List<Order> orders = orderService.findByStore(store.get(0));
 
-		Float doanhthu11 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 1);
-		model.addAttribute("doanhthu11", doanhthu11);
+			if (orders.size() > 0) {
 
-		Float doanhthu10 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 2);
-		model.addAttribute("doanhthu10", doanhthu10);
+				Float doanhthu12 = orderService.getPrice12Month(orders, seller.getStores().getId(), 0);
+				model.addAttribute("doanhthu12", doanhthu12);
 
-		Float doanhthu9 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 3);
-		model.addAttribute("doanhthu9", doanhthu9);
+				Float doanhthu11 = orderService.getPrice12Month(orders, seller.getStores().getId(), 1);
+				model.addAttribute("doanhthu11", doanhthu11);
 
-		Float doanhthu8 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 4);
-		model.addAttribute("doanhthu8", doanhthu8);
+				Float doanhthu10 = orderService.getPrice12Month(orders, seller.getStores().getId(), 2);
+				model.addAttribute("doanhthu10", doanhthu10);
 
-		Float doanhthu7 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 5);
-		model.addAttribute("doanhthu7", doanhthu7);
+				Float doanhthu9 = orderService.getPrice12Month(orders, seller.getStores().getId(), 3);
+				model.addAttribute("doanhthu9", doanhthu9);
 
-		Float doanhthu6 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 6);
-		model.addAttribute("doanhthu6", doanhthu6);
+				Float doanhthu8 = orderService.getPrice12Month(orders, seller.getStores().getId(), 4);
+				model.addAttribute("doanhthu8", doanhthu8);
 
-		Float doanhthu5 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 7);
-		model.addAttribute("doanhthu5", doanhthu5);
+				Float doanhthu7 = orderService.getPrice12Month(orders, seller.getStores().getId(), 5);
+				model.addAttribute("doanhthu7", doanhthu7);
 
-		Float doanhthu4 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 8);
-		model.addAttribute("doanhthu4", doanhthu4);
+				Float doanhthu6 = orderService.getPrice12Month(orders, seller.getStores().getId(), 6);
+				model.addAttribute("doanhthu6", doanhthu6);
 
-		Float doanhthu3 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 9);
-		model.addAttribute("doanhthu3", doanhthu3);
+				Float doanhthu5 = orderService.getPrice12Month(orders, seller.getStores().getId(), 7);
+				model.addAttribute("doanhthu5", doanhthu5);
 
-		Float doanhthu2 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 10);
-		model.addAttribute("doanhthu2", doanhthu2);
+				Float doanhthu4 = orderService.getPrice12Month(orders, seller.getStores().getId(), 8);
+				model.addAttribute("doanhthu4", doanhthu4);
 
-		Float doanhthu1 = orderService.getPrice12Month(orderService.findAll(), seller.getStores().getId(), 11);
-		model.addAttribute("doanhthu1", doanhthu1);
+				Float doanhthu3 = orderService.getPrice12Month(orders, seller.getStores().getId(), 9);
+				model.addAttribute("doanhthu3", doanhthu3);
+
+				Float doanhthu2 = orderService.getPrice12Month(orders, seller.getStores().getId(), 10);
+				model.addAttribute("doanhthu2", doanhthu2);
+
+				Float doanhthu1 = orderService.getPrice12Month(orders, seller.getStores().getId(), 11);
+				model.addAttribute("doanhthu1", doanhthu1);
+			}
+		}
 
 		return "seller/include/homeSeller";
 
@@ -211,6 +233,7 @@ public class SellerController {
 	@GetMapping("infoSore")
 	public String infoStore(ModelMap model) {
 		User seller = (User) session.getAttribute("user");
+		model.addAttribute("admin", seller);
 		List<Store> store = storeService.findByUser(seller);
 		model.addAttribute("store", store.get(0));
 		return "seller/user/profileStore";
@@ -219,9 +242,11 @@ public class SellerController {
 	@RequestMapping("profile")
 	public String proifile(ModelMap model) {
 		User seller = (User) session.getAttribute("user");
+		
 		List<Store> store = storeService.findByUser(seller);
 		model.addAttribute("store", store.get(0));
 		model.addAttribute("seller", seller);
+		model.addAttribute("admin", seller);
 		return "/seller/user/profile";
 	}
 
