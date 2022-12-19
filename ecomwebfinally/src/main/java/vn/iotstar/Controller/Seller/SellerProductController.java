@@ -77,9 +77,16 @@ public class SellerProductController {
 	@GetMapping("")
 	public String list(ModelMap model) {
 		User nguoiban = (User) session.getAttribute("user");
-		List<Product> page = productService
-				.findProductByStore(storeService.findByNameContaining(nguoiban.getStores().getName()));
-		model.addAttribute("sanpham", page);
+		List<Store> stores = storeService.findByUser(nguoiban);
+
+		if (stores.size() > 0) {
+			List<Product> page = productService.findProductByStore(stores.get(0));
+
+			if (page != null) {
+				model.addAttribute("sanpham", page);
+			}
+		}
+
 		return "seller/product/list";
 	}
 

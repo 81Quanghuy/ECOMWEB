@@ -95,9 +95,14 @@ public class SellerOrderController {
 	@GetMapping("")
 	public String listorderItem(ModelMap model) {
 		User seller = (User) session.getAttribute("user");
-		Store store = storeService.getById(seller.getId());
-		List<OrderItem> orderItems = orderItemService.getOrderItemByStore(store);
-		model.addAttribute("orderItems", orderItems);
+		List<Store> store = storeService.findByUser(seller);
+
+		if (store.size() > 0) {
+			List<OrderItem> orderItems = orderItemService.getOrderItemByStore(store.get(0));
+			model.addAttribute("orderItems", orderItems);
+		}
+
+		// model.addAttribute("orderItems", null);
 		return "seller/orders/oderitem";
 	}
 

@@ -19,6 +19,7 @@ import vn.iotstar.Repository.UserRepository;
 import vn.iotstar.service.IUserService;
 
 @Service
+//@Transactional
 public class UserServiceImpl implements IUserService {
 	@Autowired
 	UserRepository UserRepository;
@@ -133,8 +134,33 @@ public class UserServiceImpl implements IUserService {
 			}
 
 		}
-		// TODO Auto-generated method stub
 		return temp;
+	}
+
+	@Override
+	public void updateResetPasswordToken(String token, String email) throws UserNotFoundException {
+		User customer = UserRepository.findByEmail(email);
+		if (customer != null) {
+			customer.setResetpasswordtoken(token);
+			UserRepository.save(customer);
+		} else {
+			throw new UserNotFoundException("Could not find any customer with the email " + email);
+		}
+	}
+
+	@Override
+	public User getByResetPasswordToken(String token) {
+		return UserRepository.findByResetpasswordtoken(token);
+	}
+
+	@Override
+	public void updatePassword(User customer, String newPassword) {
+		// BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		// String encodedPassword = passwordEncoder.encode(newPassword);
+		customer.setPassword(newPassword);
+
+		customer.setResetpasswordtoken(null);
+		UserRepository.save(customer);
 	}
 
 }

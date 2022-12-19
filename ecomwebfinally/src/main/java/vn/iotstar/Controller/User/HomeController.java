@@ -102,6 +102,8 @@ public class HomeController {
 		return new ModelAndView("user/home", model);
 
 	}
+	
+	
 
 	@GetMapping("contact")
 	public ModelAndView Contact(ModelMap model, HttpSession sesson) {

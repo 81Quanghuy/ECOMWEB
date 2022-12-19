@@ -9,7 +9,7 @@
 	<div class="d-flex align-items-center justify-content-between">
 		<a href="index.html" class="logo d-flex align-items-center"> <img
 			src="/assets/img/logo-spkt.jpg" alt=""> <span
-			class="d-none d-lg-block">COZA SHOP</span>
+			class="d-none d-lg-block">COZA STORE</span>
 		</a> <i class="bi bi-list toggle-sidebar-btn"></i>
 	</div>
 	<!-- End Logo -->
@@ -166,22 +166,24 @@
 
 			<li class="nav-item dropdown pe-3"><a
 				class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
-				data-bs-toggle="dropdown"> <img src="${admin.image}"
-					alt="Profile" class="rounded-circle"> <span
-					class="d-none d-md-block dropdown-toggle ps-2">${admin.name}</span>
+				data-bs-toggle="dropdown"> <img
+					src="/images/user/${admin.avatar}" alt="Profile"
+					class="rounded-circle"> <span
+					class="d-none d-md-block dropdown-toggle ps-2">${admin.firstName}
+						${admin.lastName}</span>
 			</a> <!-- End Profile Iamge Icon -->
 
 				<ul
 					class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 					<li class="dropdown-header">
-						<h6>${admin.name}</h6> <span>Quản Trị Viên</span>
+						<h6>${admin.lastName}</h6> <span>Người Bán Hàng</span>
 					</li>
 					<li>
 						<hr class="dropdown-divider">
 					</li>
 
 					<li><a class="dropdown-item d-flex align-items-center"
-						href="/admin/profile"> <i class="bi bi-person"></i> <span>Thông
+						href="/seller/profile"> <i class="bi bi-person"></i> <span>Thông
 								tin cá nhân</span>
 					</a></li>
 					<li>

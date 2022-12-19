@@ -90,7 +90,7 @@ public class StoreController {
 			BindingResult result) {
 		Store entity = new Store();
 		if (result.hasErrors()) {
-			model.addAttribute("message", "Có lỗi");
+			model.addAttribute("error", "Có lỗi");
 			return new ModelAndView("admin/store/addOrEdit");
 		}
 
@@ -113,6 +113,23 @@ public class StoreController {
 				e.printStackTrace();
 			}
 		}
+
+		List<Store> stores = storeservice.findByName(store.getName());
+		if (stores.size() > 0) {
+			model.addAttribute("message", "Tên Cửa Hàng Đã Tồn Tại Vui Lòng Chọn Tên Khác");
+			return new ModelAndView("admin/store/addOrEdit");
+
+		}
+
+		// tìm cách tìm hiểu xem nếu như store đã có chủ sở hữu rồi thì ko được thêm;
+		Optional<User> findUser = userService.findById(store.getOwnerid());
+
+		List<Store> liststore = storeservice.findByUser(findUser.get());
+		if (liststore.size() > 0) {
+			model.addAttribute("error", "User đã có cửa hàng.");
+			return new ModelAndView("admin/store/addOrEdit");
+		}
+
 		BeanUtils.copyProperties(store, entity);
 		long millis = System.currentTimeMillis();
 		Date date = new Date(millis);
@@ -133,7 +150,6 @@ public class StoreController {
 		} else {
 			message = "Store Create Successfull !";
 		}
-
 		model.addAttribute("message", message);
 		return new ModelAndView("redirect:/admin/store", model);
 

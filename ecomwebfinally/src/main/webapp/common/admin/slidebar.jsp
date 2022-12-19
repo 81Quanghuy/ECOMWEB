@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@ include file="/common/taglib.jsp"%>
+
 <!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
 
@@ -15,7 +17,6 @@
 			href="/admin/categories"> <i class="bi bi-menu-button-wide"></i>
 				<span>Loại Sản Phẩm</span>
 		</a></li>
-
 
 		<li class="nav-item"><a class="nav-link collapsed"
 			href="/admin/product"> <i class="bi bi-journal-text"></i> <span>
@@ -40,10 +41,13 @@
 		</a>
 			<ul id="charts-nav" class="nav-content collapse "
 				data-bs-parent="#sidebar-nav">
-				<li><a href="/admin/newstore"> <i class="bi bi-circle"></i><span>Cửa
-							Hàng Mới</span>
-				</a></li>
 
+				<%-- <c:if test="${cnewstore}"> --%>
+
+				<li><a href="/admin/newstore"> <i class="bi bi-circle"></i><span>Cửa
+							Hàng Mới </span>
+				</a></li>
+				<%-- 	</c:if> --%>
 				<li><a href="/admin/store"> <i class="bi bi-circle"></i><span>Cửa
 							Hàng</span>
 				</a></li>
@@ -62,73 +66,13 @@
 				</a></li>
 				<li><a href="/admin/seller"> <i class="bi bi-circle"></i><span>Seller</span>
 				</a></li>
+
 				<li><a href="/admin/newuser"> <i class="bi bi-circle"></i><span>Người
-							Dùng Mới</span>
+							Dùng Mới</span><span class="badge bg-success"></span>
 				</a></li>
+
 			</ul></li>
 		<!-- End Tables Nav -->
-		<!-- 	<li class="nav-item"><a class="nav-link collapsed"
-			data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-				<i class="bi bi-layout-text-window-reverse"></i><span>Quản Lý
-					Điểm</span><i class="bi bi-chevron-down ms-auto"></i>
-		</a>
-			<ul id="tables-nav" class="nav-content collapse "
-				data-bs-parent="#sidebar-nav">
-				<li><a href="/admin/grade"> <i class="bi bi-circle"></i><span>
-							Danh Sách Điểm</span>
-				</a></li>
-				<li><a href="/admin/grade/add"> <i class="bi bi-circle"></i><span>Nhập
-							Điểm</span>
-				</a></li>
-			</ul></li>
-		End Tables Nav
-
-		<li class="nav-item"><a class="nav-link collapsed"
-			data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-				<i class="bi bi-bar-chart"></i><span>Lớp Học</span><i
-				class="bi bi-chevron-down ms-auto"></i>
-		</a>
-			<ul id="charts-nav" class="nav-content collapse "
-				data-bs-parent="#sidebar-nav">
-				<li><a href="/admin/studentclass"> <i class="bi bi-circle"></i><span>Danh
-							Sách Lớp</span>
-				</a></li>
-				<li><a href="charts-apexcharts.html"> <i
-						class="bi bi-circle"></i><span>Thêm Lớp Học</span>
-				</a></li>
-			</ul></li>
-		End Charts Nav
-
-		<li class="nav-item"><a class="nav-link collapsed"
-			data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#"> <i
-				class="bi bi-gem"></i><span>Môn Học</span><i
-				class="bi bi-chevron-down ms-auto"></i>
-		</a>
-			<ul id="icons-nav" class="nav-content collapse "
-				data-bs-parent="#sidebar-nav">
-				<li><a href="/admin/subject"> <i class="bi bi-circle"></i><span>
-							Danh Sách Môn</span>
-				</a></li>
-				<li><a href="/admin/subject/add"> <i class="bi bi-circle"></i><span>Thêm
-							Môn Học</span>
-				</a></li>
-			</ul></li>
-		End Icons Nav
-
-		<li class="nav-item"><a class="nav-link collapsed"
-			data-bs-target="#icons-nav1" data-bs-toggle="collapse" href="#">
-				<i class="bi bi-card-list"></i><span>Chuyên Ngành</span><i
-				class="bi bi-chevron-down ms-auto"></i>
-		</a>
-			<ul id="icons-nav1" class="nav-content collapse "
-				data-bs-parent="#sidebar-nav">
-				<li><a href="/admin/faculty"> <i class="bi bi-circle"></i><span>Danh
-							Sách Chuyên Ngành </span>
-				</a></li>
-				<li><a href="/admin/faculty/add"> <i class="bi bi-circle"></i><span>
-							Thêm Chuyên Ngành</span>
-				</a>
-			</ul></li> -->
 
 		<li class="nav-heading">Trang</li>
 

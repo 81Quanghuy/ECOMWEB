@@ -13,7 +13,10 @@ import org.springframework.stereotype.Service;
 
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Review;
+import vn.iotstar.entity.Store;
+import vn.iotstar.Repository.ProductRepository;
 import vn.iotstar.Repository.ReviewRepository;
+import vn.iotstar.Repository.StoreRepository;
 import vn.iotstar.service.IReviewService;
 
 @Service
@@ -21,8 +24,34 @@ public class ReviewServiceImpl implements IReviewService {
 	@Autowired
 	ReviewRepository ReviewRepository;
 
+	@Autowired
+	ProductRepository productRepository;
+
+	@Autowired
+	StoreRepository storeRepository;
+
 	@Override
 	public <S extends Review> S save(S entity) {
+
+		// Khi thêm hoặc sửa 1 review sẽ tự động update rating cho product liên quan và
+		// up date lại rating cho shop
+		Optional<Product> product = productRepository.findById(entity.getProduct().getId());
+		
+		Product product2 = product.get();
+		
+		Integer n =  product2.getReviews().size();
+		
+		Integer rating = 0;
+		
+		
+		
+		//rating là kiểu integer 
+		
+		//rating = 
+		
+		
+		// List<Store> stores = storeRepository.get
+		
 		return ReviewRepository.save(entity);
 	}
 

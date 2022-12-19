@@ -180,13 +180,18 @@ public class OrderServiceImpl implements IOrderService {
 		// date.setYear(2021);
 
 		int y = 12;
-		for (Order order : oders) {
+		if (oders.size() > 0) {
+			for (Order order : oders) {
+				if (order.getStore().getId() == id && order.getStore().getId() != null) {
 
-			if (order.getCreateat().getMonth() == (date.getMonth() - limit)) {
-				totalPrice = totalPrice + order.getPrice();
+					if (order.getCreateat().getMonth() == (date.getMonth() - limit)) {
+						totalPrice = totalPrice + order.getPrice();
+					}
+				}
 			}
+			return totalPrice;
 		}
-		return totalPrice;
+		return (float) 0.0;
 	}
 
 	@Override
@@ -199,6 +204,11 @@ public class OrderServiceImpl implements IOrderService {
 	public List<Order> findAllByOrderByIdDesc() {
 		// TODO Auto-generated method stub
 		return orderRepository.findAllByOrderByIdDesc();
+	}
+
+	@Override
+	public List<Order> findByStore(Store store) {
+		return orderRepository.findByStore(store);
 	}
 
 }

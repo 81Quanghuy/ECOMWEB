@@ -147,6 +147,7 @@ public class StoreControllerUser {
 		long millis = System.currentTimeMillis();
 		Date date = new Date(millis);
 
+		entity.setIsactive(true);		
 		if (store.getIsEdit()) {
 			entity.setUpdaeat(date);
 		} else {

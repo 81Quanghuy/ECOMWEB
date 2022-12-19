@@ -48,18 +48,15 @@
 									src="${imgUrl}"></td>
 								<td>${store.bio}</td>
 
-								<td><c:if test="${store.isactive == false}">
+								<td><c:if test="${store.isactive == true}">
 										<span class="badge bg-success">Đang Hoạt Động</span>
-									</c:if> <c:if test="${store.isactive == true}">
+									</c:if> <c:if test="${store.isactive == false}">
 										<span class="badge bg-danger">Ngừng Kinh Doanh</span>
 									</c:if></td>
 
-								<td>
-								
-								<a href="/seller/store/view/${store.id}"
-									class="btn btn-outline-info"><i class="fa fa-info"></i></a>
-								
-								<a href="/seller/store/edit/${store.id}"
+								<td><a href="/seller/store/view/${store.id}"
+									class="btn btn-outline-info"><i class="fa fa-info"></i></a> <a
+									href="/seller/store/edit/${store.id}"
 									class="btn btn-outline-warning"><i class="fa fa-edit"></i></a>
 
 									<a href="/seller/store/delete/${store.id}"
@@ -70,8 +67,7 @@
 					</tbody>
 				</table>
 
-				<a href="/seller/orders/add" type="button"
-					class="btn btn-outline-secondary">Thêm Gian Hàng</a>
+
 			</div>
 
 		</div>

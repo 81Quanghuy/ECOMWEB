@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import vn.iotstar.entity.User;
+import vn.iotstar.service.Impl.UserNotFoundException;
 
 public interface IUserService {
 
@@ -49,4 +50,10 @@ public interface IUserService {
 	List<User> findByUsername(String username);
 
 	List<User> getNewUser(List<User> users);
+
+	void updatePassword(User customer, String newPassword);
+
+	User getByResetPasswordToken(String token);
+
+	void updateResetPasswordToken(String token, String email) throws UserNotFoundException;
 }

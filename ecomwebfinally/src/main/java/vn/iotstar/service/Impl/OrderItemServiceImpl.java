@@ -144,4 +144,10 @@ public class OrderItemServiceImpl implements IOrderItemService {
 		}
 		return doanhthu;
 	}
+
+	@Override
+	public List<OrderItem> findByProduct(Product product) {
+		// TODO Auto-generated method stub
+		return orderItemRepository.findByProduct(product);
+	}
 }

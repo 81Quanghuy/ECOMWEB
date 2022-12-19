@@ -56,7 +56,9 @@ public interface IStoreService {
 	List<Store> findByIsactive(Boolean isactive);
 
 	Boolean findStorebyCategory(Store store, Integer id);
-	
+
 	List<Store> getNewStore(List<Store> stores);
+
+	List<Store> findByName(String name);
 
 }

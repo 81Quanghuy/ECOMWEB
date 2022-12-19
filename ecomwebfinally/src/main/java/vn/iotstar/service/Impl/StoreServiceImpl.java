@@ -159,7 +159,7 @@ public class StoreServiceImpl implements IStoreService {
 
 	@Override
 	public List<Store> getNewStore(List<Store> stores) {
-		
+
 		List<Store> temp = new ArrayList<Store>();
 
 		long millis = System.currentTimeMillis();
@@ -172,6 +172,12 @@ public class StoreServiceImpl implements IStoreService {
 			}
 		}
 		return temp;
+	}
+
+	@Override
+	public List<Store> findByName(String name) {
+		// TODO Auto-generated method stub
+		return StoreRepository.findByName(name);
 	}
 
 }

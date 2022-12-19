@@ -24,12 +24,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.iotstar.entity.Category;
+import vn.iotstar.entity.OrderItem;
 import vn.iotstar.entity.Product;
 import vn.iotstar.entity.Store;
 import vn.iotstar.model.CategoryModel;
 import vn.iotstar.model.ProductModel;
 import vn.iotstar.model.StoreModel;
 import vn.iotstar.service.ICategoryService;
+import vn.iotstar.service.IOrderItemService;
 import vn.iotstar.service.IProductService;
 import vn.iotstar.service.IStoreService;
 
@@ -46,6 +48,9 @@ public class ProductController {
 
 	@Autowired
 	IStoreService storeService;
+
+	@Autowired
+	IOrderItemService orderItemService;
 
 	@ModelAttribute("categories")
 	public List<CategoryModel> getCategories() {
@@ -146,7 +151,15 @@ public class ProductController {
 
 	@GetMapping("delete/{id}")
 	public ModelAndView delete(ModelMap model, @PathVariable("id") int id) {
+
+		Optional<Product> products = productService.findById(id);
+		List<OrderItem> orderItems = orderItemService.findByProduct(products.get());
+		if (orderItems.size() > 0) {
+			model.addAttribute("error", "Không thể xóa vì sản phẩm đang được bán. Xóa Có thể ảnh hưởng đến doanh thu.");
+			return new ModelAndView("redirect:/admin/product", model);
+		}
 		productService.deleteById(id);
+		model.addAttribute("message", "Xóa thành công");
 		return new ModelAndView("redirect:/admin/product", model);
 
 	}
