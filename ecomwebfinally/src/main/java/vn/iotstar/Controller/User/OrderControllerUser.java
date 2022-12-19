@@ -158,9 +158,10 @@ public class OrderControllerUser {
 
 			orderService.save(order);
 
-			OrderItem orderItem = new OrderItem();
 			cartItem = cart.get(0).getCartItems();
+
 			for (int i = 0; i < cartItem.size(); i++) {
+				OrderItem orderItem = new OrderItem();
 				orderItem.setCount(cartItem.get(i).getCount());
 				orderItem.setCreateat(date);
 				orderItem.setUpdateat(date);
@@ -168,6 +169,8 @@ public class OrderControllerUser {
 				orderItem.setOrder(order);
 				orderItemService.save(orderItem);
 			}
+
+			cartItemService.deleteInBatch(cartItem);
 
 			String message = "order đã được thêm thành công";
 			model.addAttribute("message", message);

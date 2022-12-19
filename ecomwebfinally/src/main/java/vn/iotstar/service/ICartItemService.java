@@ -46,4 +46,10 @@ public interface ICartItemService {
 
 	List<CartItem> findByProduct(Product product);
 
+	void deleteAll(Iterable<? extends CartItem> entities);
+
+	void deleteAllInBatch(Iterable<CartItem> entities);
+
+	void deleteInBatch(Iterable<CartItem> entities);
+
 }

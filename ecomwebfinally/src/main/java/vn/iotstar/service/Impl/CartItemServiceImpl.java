@@ -33,6 +33,21 @@ public class CartItemServiceImpl implements ICartItemService {
 	}
 
 	@Override
+	public void deleteAll(Iterable<? extends CartItem> entities) {
+		CartItemRepository.deleteAll(entities);
+	}
+
+	@Override
+	public void deleteInBatch(Iterable<CartItem> entities) {
+		CartItemRepository.deleteInBatch(entities);
+	}
+
+	@Override
+	public void deleteAllInBatch(Iterable<CartItem> entities) {
+		CartItemRepository.deleteAllInBatch(entities);
+	}
+
+	@Override
 	public <S extends CartItem> S save(S entity) {
 		return CartItemRepository.save(entity);
 	}

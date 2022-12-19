@@ -6,12 +6,13 @@
 
 <section class="row">
 
+
 	<div class="col mt-4">
 		<form action=<c:url value = "/store/register"/> method="POST"
 			enctype="multipart/form-data">
 			<div class="card-body"
 				style="margin-top: 50px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
-
+				<span>${message }</span>
 				<div class="mb-3">
 					<input type="hidden" value="${store.isEdit}"> <input
 						type="text" class="form-control" readonly="readonly" name="id"
@@ -22,6 +23,12 @@
 					<label for="storename" class="form-lablel">Tên cửa hàng:</label> <input
 						type="text" value="${store.name}" id="name" name="name"
 						aria-describedby="name" placeholder="Store Name"
+						style="padding: 8px; border-radius: 5px; width: 300px;">
+				</div>
+				<div class="mb-3">
+					<label for="storename" class="form-lablel">Giới thiệu về
+						cửa hàng:</label> <input type="text" value="${store.about}" id="name"
+						name="about" aria-describedby="about" placeholder="About"
 						style="padding: 8px; border-radius: 5px; width: 300px;">
 				</div>
 

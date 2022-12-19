@@ -30,8 +30,11 @@ public class Store {
 
 	@Column(length = 200, columnDefinition = "nvarchar(200) not null")
 	private String name;
-
+	
+	@Column(length = 200, columnDefinition = "nvarchar(200)")
 	private String bio;// mô tả
+	
+	@Column(length = 1000, columnDefinition = "nvarchar(1000)")
 	private String about;
 	// private Integer ownerId;// từ user nào id user
 	@OneToOne

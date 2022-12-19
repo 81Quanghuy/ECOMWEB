@@ -98,13 +98,26 @@ public class StoreControllerUser {
 	}
 
 	@GetMapping("store/register")
-	public String Register() {
+	public String Register(ModelMap model) {
+		model.addAttribute("message", session.getAttribute("message"));
+		session.removeAttribute("message");
 		return "user/store-register";
 	}
 
 	@PostMapping("store/register")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("store") StoreModel store,
 			BindingResult result) {
+
+		List<Store> stores = storeSerivce.findAll();
+		if (stores.size() > 0) {
+
+			for (int i = 0; i < stores.size(); i++) {
+				if (store.getName().equals(stores.get(i).getName())) {
+					session.setAttribute("message", "Tên shop đã tồn tại trong hệ thống");
+					return new ModelAndView("redirect:/store/register", model);
+				}
+			}
+		}
 		Store entity = new Store();
 		if (result.hasErrors()) {
 			model.addAttribute("message", "Có lỗi");
@@ -141,6 +154,7 @@ public class StoreControllerUser {
 			entity.setUpdaeat(date);
 		}
 
+		entity.setRating(0);
 		User user = (User) session.getAttribute("user");
 		entity.setUser(user);
 		storeSerivce.save(entity);
