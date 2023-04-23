@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/common/taglib.jsp"%>
 
+<%
+response.setHeader("X-Content-Type-Options", "nosniff");
+%>
+
 <c:url value="/resources/css/" var="URL"></c:url>
 
 <!DOCTYPE html>
