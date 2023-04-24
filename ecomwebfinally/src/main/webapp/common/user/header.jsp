@@ -179,6 +179,7 @@
 			</button>
 
 			<form class="wrap-search-header flex-w p-l-15">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 				<button class="flex-c-m trans-04">
 					<i class="zmdi zmdi-search"></i>
 				</button>
