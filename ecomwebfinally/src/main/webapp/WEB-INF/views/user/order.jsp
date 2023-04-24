@@ -14,6 +14,7 @@
 
 <!-- Shoping Cart -->
 <form class="bg0 p-t-75 p-b-85">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<div class="container">
 
 		<div class="row">
