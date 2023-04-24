@@ -150,6 +150,7 @@
 					</button>
 
 					<form action="">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<input class="dataTable-input mtext-107 cl2 size-114 plh2 p-r-15"
 							type="text" name="search-product" placeholder="Search">
 					</form>

@@ -114,6 +114,7 @@
 						published. Required fields are marked *</p>
 
 					<form>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						<div class="bor19 m-b-20">
 							<textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15"
 								name="cmt" placeholder="Comment..."></textarea>
