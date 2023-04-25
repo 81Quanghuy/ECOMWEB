@@ -163,53 +163,63 @@
 
 				</ul> <!-- End Messages Dropdown Items --></li>
 			<!-- End Messages Nav -->
+			<c:if test="${!admin.avatar.substring(0,4).equals('http')}">
+				<li class="nav-item dropdown pe-3">
+				<a class="nav-link nav-profile d-flex align-items-center pe-0"
+					href="#" data-bs-toggle="dropdown"> 
+					<img src="/images/admin/${admin.avatar}" alt="Profile" class="rounded-circle"> 
+					<span class="d-none d-md-block dropdown-toggle ps-2">${admin.lastName}</span>
+				</a> <!-- End Profile Iamge Icon -->
+			</c:if>
+			
+			<c:if test="${admin.avatar.substring(0,4).equals('http')}">
+				<li class="nav-item dropdown pe-3">
+				<a class="nav-link nav-profile d-flex align-items-center pe-0"
+					href="#" data-bs-toggle="dropdown"> 
+					<img src="${admin.avatar}" alt="Profile" class="rounded-circle"> 
+					<span class="d-none d-md-block dropdown-toggle ps-2">${admin.lastName}</span>
+				</a> <!-- End Profile Iamge Icon -->
+			</c:if>
 
-			<li class="nav-item dropdown pe-3"><a
-				class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
-				data-bs-toggle="dropdown"> <img
-					src="/images/admin/${admin.avatar}" alt="Profile"
-					class="rounded-circle"> <span
-					class="d-none d-md-block dropdown-toggle ps-2">${admin.lastName}</span>
-			</a> <!-- End Profile Iamge Icon -->
+			<ul
+				class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+				<li class="dropdown-header">
+					<h6>${admin.lastName}</h6> <span>Quản Trị Viên</span>
+				</li>
+				<li>
+					<hr class="dropdown-divider">
+				</li>
 
-				<ul
-					class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-					<li class="dropdown-header">
-						<h6>${admin.lastName}</h6> <span>Quản Trị Viên</span>
-					</li>
-					<li>
-						<hr class="dropdown-divider">
-					</li>
-
-					<li><a class="dropdown-item d-flex align-items-center"
-						href="/admin/profile"> <i class="bi bi-person"></i> <span>Thông
-								tin cá nhân</span>
-					</a></li>
-					<li>
-						<hr class="dropdown-divider">
-					</li>
+				<li><a class="dropdown-item d-flex align-items-center"
+					href="/admin/profile"> <i class="bi bi-person"></i> <span>Thông
+							tin cá nhân</span>
+				</a></li>
+				<li>
+					<hr class="dropdown-divider">
+				</li>
 
 
-					<li>
-						<hr class="dropdown-divider">
-					</li>
+				<li>
+					<hr class="dropdown-divider">
+				</li>
 
-					<li><a class="dropdown-item d-flex align-items-center"
-						href="pages-faq.html"> <i class="bi bi-question-circle"></i> <span>Need
-								Help?</span>
-					</a></li>
-					<li>
-						<hr class="dropdown-divider">
-					</li>
+				<li><a class="dropdown-item d-flex align-items-center"
+					href="pages-faq.html"> <i class="bi bi-question-circle"></i> <span>Need
+							Help?</span>
+				</a></li>
+				<li>
+					<hr class="dropdown-divider">
+				</li>
 
-					<li><a class="dropdown-item d-flex align-items-center"
-						href="/logout"> <i class="bi bi-box-arrow-right"></i> <span>Sign
-								Out</span>
-					</a></li>
+				<li><a class="dropdown-item d-flex align-items-center"
+					href="/logout"> <i class="bi bi-box-arrow-right"></i> <span>Sign
+							Out</span>
+				</a></li>
 
-				</ul> <!-- End Profile Dropdown Items --></li>
+			</ul>
+			<!-- End Profile Dropdown Items -->
+			</li>
 			<!-- End Profile Nav -->
-
 		</ul>
 	</nav>
 	<!-- End Icons Navigation -->

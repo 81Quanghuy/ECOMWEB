@@ -72,7 +72,7 @@
 			<c:forEach items="${categories}" var="item">
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
-					<c:if test="${item.image}">
+					<c:if test="${item.image.substring(0,4).equals('http')}">
 						<div class="block1 wrap-pic-w">
 							<img src="${item.image}" alt="IMG-BANNER"
 								style="height: 348px; width: 248px;"> <a
@@ -90,7 +90,7 @@
 							</a>
 						</div>
 					</c:if>
-					<c:if test="${!item.image}">
+					<c:if test="${!item.image.substring(0,4).equals('http')}">
 						<div class="block1 wrap-pic-w">
 							<img src="images/seller/${item.image}" alt="IMG-BANNER"
 								style="max-height: 400px;'"> <a href="category/${item.id}"
