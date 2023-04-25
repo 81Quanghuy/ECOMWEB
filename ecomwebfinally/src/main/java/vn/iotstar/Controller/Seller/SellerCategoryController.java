@@ -1,8 +1,10 @@
 package vn.iotstar.Controller.Seller;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -28,6 +30,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+
 import vn.iotstar.entity.Category;
 import vn.iotstar.model.CategoryModel;
 import vn.iotstar.service.ICategoryService;
@@ -41,6 +46,9 @@ public class SellerCategoryController {
 
 	@Autowired
 	ServletContext application;
+	
+	@Autowired
+	Cloudinary cloudinary;
 
 	@RequestMapping("")
 	public String list(ModelMap model) {
@@ -78,16 +86,15 @@ public class SellerCategoryController {
 		 * ModelAndView("admin/categories/addOrEdit"); }
 		 */
 		if (!(cate.getImageFile().isEmpty())) {
-			String path = application.getRealPath("/");
-
+			
 			try {
+				Map map = this.cloudinary.uploader().upload(cate.getImageFile().getBytes(),
+						ObjectUtils.asMap("resource_type", "auto"));
+				String img = (String) map.get("secure_url");
+				
+				cate.setImage(img);
 
-				cate.setImage(cate.getImageFile().getOriginalFilename());
-				String filePath = path + "/resources/images/seller/" + cate.getImage();
-				cate.getImageFile().transferTo(Path.of(filePath));
-				cate.setImageFile(null);
-
-			} catch (Exception e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

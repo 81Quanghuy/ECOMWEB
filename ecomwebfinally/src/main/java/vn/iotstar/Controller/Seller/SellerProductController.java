@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.ServletContext;
@@ -23,6 +24,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 import vn.iotstar.entity.Category;
 import vn.iotstar.entity.Product;
@@ -55,6 +59,9 @@ public class SellerProductController {
 
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	Cloudinary cloudinary;
 
 	@ModelAttribute("categories")
 	public List<CategoryModel> getCategories() {
@@ -123,14 +130,15 @@ public class SellerProductController {
 		Product entity = new Product();
 
 		if (!product.getListImageFile().isEmpty()) {
-			String path = application.getRealPath("/");
-
+			
 			try {
-				product.setListimage(product.getListImageFile().getOriginalFilename());
-				String filePath = path + "/resources/images/admin/product/" + product.getListimage();
-				product.getListImageFile().transferTo(Path.of(filePath));
-				product.setListImageFile(null);
-			} catch (Exception e) {
+				Map map = this.cloudinary.uploader().upload(product.getListImageFile().getBytes(),
+						ObjectUtils.asMap("resource_type", "auto"));
+				String img = (String) map.get("secure_url");
+				
+				product.setListimage(img);
+
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

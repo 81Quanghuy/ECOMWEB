@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.ServletContext;
@@ -23,6 +24,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 import vn.iotstar.entity.Cart;
 import vn.iotstar.entity.CartItem;
@@ -66,6 +70,9 @@ public class HomeController {
 
 	@Autowired
 	ServletContext application;
+	
+	@Autowired
+	Cloudinary cloudinary;
 
 	@GetMapping("")
 	public ModelAndView List(ModelMap model, HttpSession sesson) {
@@ -194,14 +201,23 @@ public class HomeController {
 		 */
 
 		if (!user.getAvatarFile().isEmpty()) {
-			String path = application.getRealPath("/");
-
+			/*
+			 * String path = application.getRealPath("/");
+			 * 
+			 * try { user.setAvatar(user.getAvatarFile().getOriginalFilename()); String
+			 * filePath = path + "/resources/images/user/" + user.getAvatar();
+			 * user.getAvatarFile().transferTo(Path.of(filePath)); user.setAvatarFile(null);
+			 * } catch (Exception e) { e.printStackTrace(); }
+			 */
+			
 			try {
-				user.setAvatar(user.getAvatarFile().getOriginalFilename());
-				String filePath = path + "/resources/images/user/" + user.getAvatar();
-				user.getAvatarFile().transferTo(Path.of(filePath));
-				user.setAvatarFile(null);
-			} catch (Exception e) {
+				Map map = this.cloudinary.uploader().upload(user.getAvatarFile().getBytes(),
+						ObjectUtils.asMap("resource_type", "auto"));
+				String img = (String) map.get("secure_url");
+				
+				user.setAvatar(img);
+
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

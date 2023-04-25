@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.ServletContext;
@@ -21,6 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 import vn.iotstar.entity.*;
 import vn.iotstar.model.*;
@@ -42,6 +46,9 @@ public class StoreController {
 
 	@Autowired
 	HttpSession session;
+	
+	@Autowired
+	Cloudinary cloudinary;
 
 	@ModelAttribute("users")
 	public List<UserModel> getUser() {
@@ -95,21 +102,22 @@ public class StoreController {
 		}
 
 		if (!(store.getAvatarFile().isEmpty() || store.getFeaturedimagesFile().isEmpty())) {
-			String path = application.getRealPath("/");
-
+			
 			try {
+				Map mapAvatar = this.cloudinary.uploader().upload(store.getAvatarFile().getBytes(),
+						ObjectUtils.asMap("resource_type", "auto"));
+				String imgAvatar = (String) mapAvatar.get("secure_url");
+				
+				store.setAvatar(imgAvatar);
+				
+				Map mapFeatured = this.cloudinary.uploader().upload(store.getFeaturedimagesFile().getBytes(),
+						ObjectUtils.asMap("resource_type", "auto"));
+				
+				String imgFeatured = (String) mapFeatured.get("secure_url");
+				
+				store.setFeaturedimages(imgFeatured);
 
-				store.setAvatar(store.getAvatarFile().getOriginalFilename());
-				String filePath = path + "/resources/images/seller/" + store.getAvatar();
-				store.getAvatarFile().transferTo(Path.of(filePath));
-				store.setAvatarFile(null);
-
-				store.setFeaturedimages(store.getFeaturedimagesFile().getOriginalFilename());
-				String filePath2 = path + "/resources/images/seller/" + store.getFeaturedimages();
-				store.getFeaturedimagesFile().transferTo(Path.of(filePath2));
-				store.setFeaturedimagesFile(null);
-
-			} catch (Exception e) {
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
