@@ -30,9 +30,13 @@
 								<th scope="row"><a href="#">${STT.index+1}</a></th>
 
 
-								<td><c:url value="/images/seller/${cate.image}"
-										var="imgUrl"></c:url> <img width="100px" height="100px"
-									src="${imgUrl}"></td>
+								<td><c:if
+										test="${!cate.image.substring(0,4).equals('http')}">
+										<img width="100px" height="100px"
+											src="/images/seller/${cate.image}">
+									</c:if> <c:if test="${cate.image.substring(0,4).equals('http')}">
+										<img width="100px" height="100px" src="${cate.image}">
+									</c:if></td>
 
 								<td>${cate.name}</td>
 

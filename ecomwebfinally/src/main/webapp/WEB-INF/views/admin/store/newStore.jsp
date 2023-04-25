@@ -41,13 +41,16 @@
 							<tr>
 								<th scope="row"><a href="#">${STT.index+1}</a></th>
 								<td>${store.name}</td>
-								<td><c:url value="/resources/images/seller/${store.avatar}"
-										var="imgUrl"></c:url> <img width="100px" height="100px"
-									src="${imgUrl}"></td>
-								<td><c:url
-										value="/resources/images/seller/${store.featuredimages}"
-										var="imgUrl"></c:url> <img width="100px" height="100px"
-									src="${imgUrl}"></td>
+								<td>
+									<c:if
+										test="${!store.featuredimages.substring(0,4).equals('http')}">
+										<img width="100px" height="100px"
+											src="/resources/images/seller/${store.featuredimages}">
+									</c:if> <c:if
+										test="${store.featuredimages.substring(0,4).equals('http')}">
+										<img width="100px" height="100px"
+											src="${store.featuredimages}">
+									</c:if></td>
 								<td>${store.bio}</td>
 
 								<td><c:if test="${store.isactive == true}">

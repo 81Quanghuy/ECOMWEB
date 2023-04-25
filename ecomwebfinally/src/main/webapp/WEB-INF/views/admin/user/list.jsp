@@ -32,8 +32,13 @@
 							<tr class="odd gradeX">
 								<th scope="row"><a href="#">${STT.index+1}</a></th>
 								<td>${item.firstName}${item.lastName}</td>
-								<td><c:url value="/resources/images/user/${item.avatar}" var="imgUrl"></c:url>
-									<img width="100px" height="100px" src="${imgUrl}"></td>
+								<td><c:if
+										test="${!item.avatar.substring(0,4).equals('http')}">
+										<img width="100px" height="100px"
+											src="/resources/images/user/${item.avatar}">
+									</c:if> <c:if test="${item.avatar.substring(0,4).equals('http')}">
+										<img width="100px" height="100px" src="${item.avatar}">
+									</c:if></td>
 								<td>${item.phone}</td>
 								<td>${item.email}</td>
 								<td><c:if test="${item.isActive == true}">
@@ -43,7 +48,8 @@
 									</c:if></td>
 								<td><a href="<c:url value='/admin/user/edit/${item.id}'/>"
 									class="center">Edit</a> | <a
-									href="<c:url value='/admin/user/delete/${item.id}'/>" class="center">Delete</a></td>
+									href="<c:url value='/admin/user/delete/${item.id}'/>"
+									class="center">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
