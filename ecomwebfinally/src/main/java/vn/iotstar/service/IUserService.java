@@ -9,7 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import vn.iotstar.entity.User;
-import vn.iotstar.service.Impl.UserNotFoundException;
+import vn.iotstar.service.impl.UserNotFoundException;
 
 public interface IUserService {
 

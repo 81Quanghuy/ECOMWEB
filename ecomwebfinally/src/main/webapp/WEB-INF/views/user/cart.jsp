@@ -109,7 +109,7 @@
 
 					<div class="p-r-18 p-r-0-sm w-full-ssm">
 						<div class="p-t-15">
-							<form action="/order/add">
+							<form action="order/add">
 								<label for="cars">Địa chỉ nhận hàng:</label>
 								<div class="bor8 bg0 m-b-22">
 									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text"

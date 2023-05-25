@@ -16,13 +16,13 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		
+
 		<dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>4.0.1</version>
-        <scope>provided</scope>
-    </dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -104,9 +104,20 @@
 			<version>1.9.4</version>
 
 		</dependency>
+
 		<dependency>
-    			<groupId>org.springframework.boot</groupId>
-   			 <artifactId>spring-boot-starter-security</artifactId>
+
+			<groupId>com.cloudinary</groupId>
+
+			<artifactId>cloudinary-http44</artifactId>
+
+			<version>1.31.0</version>
+
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -164,14 +164,23 @@
 				</ul> <!-- End Messages Dropdown Items --></li>
 			<!-- End Messages Nav -->
 
-			<li class="nav-item dropdown pe-3"><a
-				class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
-				data-bs-toggle="dropdown"> <img
-					src="/images/user/${admin.avatar}" alt="Profile"
-					class="rounded-circle"> <span
-					class="d-none d-md-block dropdown-toggle ps-2">${admin.firstName}
-						${admin.lastName}</span>
-			</a> <!-- End Profile Iamge Icon -->
+			<c:if test="${!admin.avatar.substring(0,4).equals('http')}">
+				<li class="nav-item dropdown pe-3">
+				<a class="nav-link nav-profile d-flex align-items-center pe-0"
+					href="#" data-bs-toggle="dropdown"> 
+					<img src="/images/admin/${admin.avatar}" alt="Profile" class="rounded-circle"> 
+					<span class="d-none d-md-block dropdown-toggle ps-2">${admin.lastName}</span>
+				</a> <!-- End Profile Iamge Icon -->
+			</c:if>
+			
+			<c:if test="${admin.avatar.substring(0,4).equals('http')}">
+				<li class="nav-item dropdown pe-3">
+				<a class="nav-link nav-profile d-flex align-items-center pe-0"
+					href="#" data-bs-toggle="dropdown"> 
+					<img src="${admin.avatar}" alt="Profile" class="rounded-circle"> 
+					<span class="d-none d-md-block dropdown-toggle ps-2">${admin.lastName}</span>
+				</a> <!-- End Profile Iamge Icon -->
+			</c:if>
 
 				<ul
 					class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">

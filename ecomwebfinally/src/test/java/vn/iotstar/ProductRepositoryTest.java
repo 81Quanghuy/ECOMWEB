@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import vn.iotstar.Repository.ProductRepository;
 import vn.iotstar.entity.Product;
+import vn.iotstar.repository.ProductRepository;
 
 @ExtendWith(SpringExtension.class)
 @Transactional
