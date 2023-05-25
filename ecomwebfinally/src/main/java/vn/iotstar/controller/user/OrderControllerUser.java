@@ -83,21 +83,22 @@ public class OrderControllerUser {
 	@GetMapping(path = "order")
 	public ModelAndView order(ModelMap model) {
 		User user = (User) session.getAttribute("user");
+		if(user == null) {
+			return new ModelAndView("common/login", model);
+		}
+		else {
+
 		List<Cart> cart = cartService.findByUser(user);
-		List<CartItem> cartItem = null;
+		List<CartItem> cartItem = new ArrayList<>();
 		List<Order> orders = orderService.findByUser(user);
 		List<Order> orderActive = orderService.findByIsactive(true);
+		
 		if (!cart.isEmpty()) {
-
 			cartItem = cart.get(0).getCartItems();
-			addCartItemAtt(cartItem, model);
-			
 			model.addAttribute("cart", cart.get(0));
-		} else {
-			cartItem = cartItemService.findByCart(null);
-		}
-		addCartItemAtt(cartItem, model);
-
+			System.out.print("Size cartItem"+cartItem.size());
+			addCartItemsAtt(cartItem, model);		
+		} 
 		List<Order> orderList = new ArrayList<>();
 		for (Order order : orders) {
 			for (Order orde : orderActive) {
@@ -118,6 +119,7 @@ public class OrderControllerUser {
 		addTotal(orderService.sumOder(orderList), model);
 
 		return new ModelAndView("user/order", model);
+	}
 	}
 
 	// thêm giỏ hàng vào đơn hàng
