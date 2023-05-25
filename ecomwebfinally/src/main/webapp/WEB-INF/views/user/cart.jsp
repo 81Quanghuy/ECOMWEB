@@ -38,6 +38,7 @@
 									<form class="bg0 p-t-75 p-b-85"
 										action="/cart/update/${item.id}" method="post"
 										enctype="mutipart/form-data">
+
 										<tr class="table_row">
 											<td class="column-1">
 												<div class="how-itemcart1">
@@ -110,6 +111,7 @@
 					<div class="p-r-18 p-r-0-sm w-full-ssm">
 						<div class="p-t-15">
 							<form action="order/add">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								<label for="cars">Địa chỉ nhận hàng:</label>
 								<div class="bor8 bg0 m-b-22">
 									<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text"
