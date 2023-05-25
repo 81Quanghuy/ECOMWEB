@@ -67,6 +67,9 @@ public class SellerController {
 	public String home(ModelMap model, HttpServletRequest request) {
 
 		User seller = (User) session.getAttribute("user");
+		if(seller.getStores() == null) {
+			return "";
+		}
 		model.addAttribute("admin", seller);
 		long millis = System.currentTimeMillis();
 		Date date = new Date(millis);

@@ -148,6 +148,8 @@
 							<form action="/changepassword/${user.id}" method="post"
 								enctype="mutipart/form-data">
 
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
 								<div class="row mb-3">
 									<label for="currentPassword"
 										class="col-md-4 col-lg-3 col-form-label">Current
