@@ -220,15 +220,7 @@ response.setHeader("X-Content-Type-Options", "nosniff");
 		});
 	</script>
 	<!--===============================================================================================-->
-	<script
-		src="${URL}https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
 	<script src="${URL}js/map-custom.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script src="/assets/js/main.js"></script>
-	<script
-		src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&callback=initialize"></script>
-	<jsp:include page="/common/seller/footer.jsp"></jsp:include>
 
 	<!--=== End Footer v4 ===-->
 	<!-- Vendor JS Files -->
@@ -244,9 +236,5 @@ response.setHeader("X-Content-Type-Options", "nosniff");
 	<!-- Template Main JS File -->
 	<script src="/assets/js/main.js"></script>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundl...in.js"
-		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-		crossorigin="anonymous"></script>
 </body>
 </html>

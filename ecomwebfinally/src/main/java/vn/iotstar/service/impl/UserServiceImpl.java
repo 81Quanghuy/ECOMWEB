@@ -11,6 +11,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import vn.iotstar.entity.User;
@@ -23,6 +24,9 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	UserRepository UserRepository;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Override
 	public <S extends User> S save(S entity) {
 		return UserRepository.save(entity);
@@ -102,7 +106,7 @@ public class UserServiceImpl implements IUserService {
 		List<User> user = UserRepository.findByUsername(username);
 
 		if (user.size() > 0) {
-			if (user.get(0).getPassword().equals(password))
+			if (user.get(0).getPassword().equals(passwordEncoder.encode(password)))
 				return user.get(0);
 		}
 		return null;

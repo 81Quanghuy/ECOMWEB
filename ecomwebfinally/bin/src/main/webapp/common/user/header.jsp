@@ -214,28 +214,30 @@
 
 		<div class="header-cart-content flex-w js-pscroll">
 			<ul class="header-cart-wrapitem w-full">
-				<c:forEach items="${cartItems}" var="cartItem">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<c:if
-								test="${!cartItem.product.listimage.substring(0,4).equals('http')}">
-								<img src="/images/admin/${cartItem.product.listimage}" alt="IMG">
-							</c:if>
-							<c:if
-								test="${cartItem.product.listimage.substring(0,4).equals('http')}">
-								<img src="${cartItem.product.listimage}" alt="IMG">
-							</c:if>
-						</div>
-						<div class="header-cart-item-txt p-t-8">
-							<a href="product/${cartItem.product.id}"
-								class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								${cartItem.product.name}</a> <span class="header-cart-item-info">
-								${cartItem.count} x ${cartItem.product.price} </span>
-						</div>
-					</li>
-				</c:forEach>
+				<c:if test="${cartItems!= null}">
+					<c:forEach items="${cartItems}" var="cartItem">
+						<li class="header-cart-item flex-w flex-t m-b-12">
+							<div class="header-cart-item-img">
+								<c:if
+									test="${!cartItem.product.listimage.substring(0,4).equals('http')}">
+									<img src="/images/admin/${cartItem.product.listimage}"
+										alt="IMG">
+								</c:if>
+								<c:if
+									test="${cartItem.product.listimage.substring(0,4).equals('http')}">
+									<img src="${cartItem.product.listimage}" alt="IMG">
+								</c:if>
+							</div>
+							<div class="header-cart-item-txt p-t-8">
+								<a href="product/${cartItem.product.id}"
+									class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+									${cartItem.product.name}</a> <span class="header-cart-item-info">
+									${cartItem.count} x ${cartItem.product.price} </span>
+							</div>
+						</li>
+					</c:forEach>
 
-
+				</c:if>
 
 			</ul>
 

@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
@@ -13,12 +13,6 @@
 <!-- Favicons -->
 <link href="/assets/img/favicon.png" rel="icon">
 <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-<!-- Google Fonts -->
-<link href="https://fonts.gstatic.com" rel="preconnect">
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-	rel="stylesheet">
 
 <!-- Vendor CSS Files -->
 <link href="/assets/vendor/bootstrap/css/bootstrap.min.css"
@@ -56,8 +50,7 @@
 							class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
 							<div class="d-flex justify-content-center py-4">
-								<a href="/" class="logo d-flex align-items-center w-auto"> <img
-									src="/assets/img/logospkt.webp" alt=""> <span
+								<a href="/" class="logo d-flex align-items-center w-auto"> <span
 									class="d-none d-lg-block">COZA STORE</span>
 								</a>
 							</div>

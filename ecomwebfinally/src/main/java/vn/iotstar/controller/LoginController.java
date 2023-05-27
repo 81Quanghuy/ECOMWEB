@@ -8,8 +8,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,6 +34,9 @@ public class LoginController {
 
 	@Autowired
 	IUserService userService;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	ICartService cartService;
@@ -42,7 +49,12 @@ public class LoginController {
 
 	@Autowired
 	HttpSession session;
-
+	
+	@GetMapping("access-denied")
+	public ModelAndView denied(ModelMap model) {
+		return new ModelAndView("common/unaccess", model);
+	}
+	
 	@RequestMapping(path = "login", method = RequestMethod.GET)
 	public String home(ModelMap model) {
 
@@ -50,35 +62,30 @@ public class LoginController {
 		return "common/login";
 	}
 
+	
 	@PostMapping("login")
 	public ModelAndView login(ModelMap model, @RequestParam(name = "username", required = false) String username,
 			@RequestParam(name = "password", required = false) String password) {
-		/*
-		 * if (result.hasErrors()) { model.addAttribute("message","loi"); return new
-		 * ModelAndView("common/demologin", model); }
-		 */
-
-		User user = userService.login(username, password);
-		if (user == null) {
-			model.addAttribute("message", "Tài khoản hoặc mật khẩu không chính xác");
-			return new ModelAndView("common/login", model);
+        
+		List<User> user = userService.findByUsername(username);
+		if(user.size()>0) {
+			session.setAttribute("user", user.get(0));
+			model.addAttribute("user", user.get(0));
+			if (user.get(0).getRole().equals("ROLE_ADMIN")) {
+				return new ModelAndView("redirect:/admin/home", model);
+			}
+			if (user.get(0).getRole().equals("ROLE_USER")) {
+				User filter = user.get(0);
+				Filter login = new Filter();
+				long millis = System.currentTimeMillis();
+				Date date = new java.sql.Date(millis);
+				login.setTimelogin(date);
+				login.setUser(filter);
+				filterService.save(login);
+				return new ModelAndView("redirect:/", model);
+			}
 		}
-		session.setAttribute("user", user);
-		model.addAttribute("user", user);
-		if (user.getRole().equals("ROLE_ADMIN")) {
-			return new ModelAndView("redirect:/admin/home", model);
-		}
-		if (user.getRole().equals("ROLE_USER")) {
-
-			User filter = (User) session.getAttribute("user");
-			Filter login = new Filter();
-			long millis = System.currentTimeMillis();
-			Date date = new java.sql.Date(millis);
-			login.setTimelogin(date);
-			login.setUser(filter);
-			filterService.save(login);
-			return new ModelAndView("redirect:/", model);
-		}
+		
 		return null;
 	}
 
@@ -112,7 +119,7 @@ public class LoginController {
 			// tao user moi
 			User user = new User();
 			user.setUsername(username);
-			user.setPassword(password);
+			user.setPassword(passwordEncoder.encode(password));
 			user.setRole("ROLE_USER");
 			user.setFirstName(username);
 			user.setLastName(username);

@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -52,6 +53,8 @@ public class HomeController {
 	
 	private static final Logger log = LoggerFactory.getLogger(EcomwebfinallyApplication.class);
 
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	@Autowired
 	HttpSession session;
 
@@ -115,7 +118,10 @@ public class HomeController {
 
 	}
 	
-	
+//	@GetMapping("/notfound")
+//    public String notFoundPage() {
+//        return "notfound"; // Trả về tên view tương ứng
+//    }
 
 	@GetMapping("contact")
 	public ModelAndView Contact(ModelMap model, HttpSession sesson) {
@@ -195,7 +201,8 @@ public class HomeController {
 
 	}
 
-	@PostMapping("user/Update")
+	
+	@PostMapping("user/update")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("user") UserModel user,
 			BindingResult result) {
 		User entity = new User();
@@ -215,7 +222,7 @@ public class HomeController {
 				user.setAvatar(img);
 
 			} catch (IOException e) {
-				log.error("message", e);
+				System.out.print(e);
 			}
 		}
 		BeanUtils.copyProperties(user, entity);
@@ -241,7 +248,7 @@ public class HomeController {
 			@RequestParam(name = "newpassword", required = false) String newpassword,
 			@RequestParam(name = "renewpassword", required = false) String renewpassword) {
 		User user = userService.getById(id);
-		if (!password.equals(user.getPassword())) {
+		if (!passwordEncoder.matches(password, user.getPassword())) {
 			session.setAttribute("message", "Mật khẩu không chính xác");
 			return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
 		} else {
@@ -250,7 +257,7 @@ public class HomeController {
 				return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
 
 			} else {
-				user.setPassword(newpassword);
+				user.setPassword(passwordEncoder.encode(newpassword));
 				userService.save(user);
 				session.setAttribute("message", "Mật khẩu đã được cập nhập");
 				return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
