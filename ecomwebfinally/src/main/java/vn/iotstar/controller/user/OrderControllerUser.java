@@ -64,17 +64,17 @@ public class OrderControllerUser {
 	IOrderItemService orderItemService;
 	@Autowired
 	HttpSession session;
-	
+
 	@SuppressWarnings("all")
 	private void addCartItemsAtt(List<CartItem> cartItem, ModelMap model) {
 		model.addAttribute("cartItems", cartItem);
 	}
-	
+
 	@SuppressWarnings("all")
 	private void addCartItemAtt(List<CartItem> cartItem, ModelMap model) {
 		model.addAttribute("cartItems", cartItem.size());
 	}
-	
+
 	@SuppressWarnings("all")
 	private void addTotal(Float sum, ModelMap model) {
 		model.addAttribute("total", sum);
@@ -83,41 +83,45 @@ public class OrderControllerUser {
 	@GetMapping(path = "order")
 	public ModelAndView order(ModelMap model) {
 		User user = (User) session.getAttribute("user");
-		List<Cart> cart = cartService.findByUser(user);
-		List<CartItem> cartItem = null;
-		List<Order> orders = orderService.findByUser(user);
-		List<Order> orderActive = orderService.findByIsactive(true);
-		if (!cart.isEmpty()) {
-
-			cartItem = cart.get(0).getCartItems();
-			addCartItemAtt(cartItem, model);
-			
-			model.addAttribute("cart", cart.get(0));
+		if (user == null) {
+			return new ModelAndView("common/login", model);
 		} else {
-			cartItem = cartItemService.findByCart(null);
-		}
-		addCartItemAtt(cartItem, model);
+			List<Cart> cart = cartService.findByUser(user);
+			List<CartItem> cartItem = null;
+			List<Order> orders = orderService.findByUser(user);
+			List<Order> orderActive = orderService.findByIsactive(true);
+			if (!cart.isEmpty()) {
 
-		List<Order> orderList = new ArrayList<>();
-		for (Order order : orders) {
-			for (Order orde : orderActive) {
-				if (order.equals(orde)) {
-					orderList.add(order);
+				cartItem = cart.get(0).getCartItems();
+				addCartItemAtt(cartItem, model);
+
+				model.addAttribute("cart", cart.get(0));
+			} else {
+				cartItem = cartItemService.findByCart(null);
+			}
+			addCartItemAtt(cartItem, model);
+
+			List<Order> orderList = new ArrayList<>();
+			for (Order order : orders) {
+				for (Order orde : orderActive) {
+					if (order.equals(orde)) {
+						orderList.add(order);
+					}
 				}
 			}
+			List<Store> store = storeSerivce.findByUser(user);
+			if (store.isEmpty()) {
+				model.addAttribute("store", null);
+
+			} else {
+				model.addAttribute("store", store.get(0));
+			}
+
+			model.addAttribute("orders", orderList);
+			addTotal(orderService.sumOder(orderList), model);
+
+			return new ModelAndView("user/order", model);
 		}
-		List<Store> store = storeSerivce.findByUser(user);
-		if (store.isEmpty()) {
-			model.addAttribute("store", null);
-
-		} else {
-			model.addAttribute("store", store.get(0));
-		}
-
-		model.addAttribute("orders", orderList);
-		addTotal(orderService.sumOder(orderList), model);
-
-		return new ModelAndView("user/order", model);
 	}
 
 	// thêm giỏ hàng vào đơn hàng
