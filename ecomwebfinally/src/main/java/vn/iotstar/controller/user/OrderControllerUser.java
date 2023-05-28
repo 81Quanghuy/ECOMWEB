@@ -71,11 +71,6 @@ public class OrderControllerUser {
 	}
 
 	@SuppressWarnings("all")
-	private void addCartItemAtt(List<CartItem> cartItem, ModelMap model) {
-		model.addAttribute("cartItems", cartItem.size());
-	}
-
-	@SuppressWarnings("all")
 	private void addTotal(Float sum, ModelMap model) {
 		model.addAttribute("total", sum);
 	}
@@ -86,21 +81,18 @@ public class OrderControllerUser {
 		if (user == null) {
 			return new ModelAndView("common/login", model);
 		} else {
+
 			List<Cart> cart = cartService.findByUser(user);
-			List<CartItem> cartItem = null;
+			List<CartItem> cartItem = new ArrayList<>();
 			List<Order> orders = orderService.findByUser(user);
 			List<Order> orderActive = orderService.findByIsactive(true);
+
 			if (!cart.isEmpty()) {
-
 				cartItem = cart.get(0).getCartItems();
-				addCartItemAtt(cartItem, model);
-
 				model.addAttribute("cart", cart.get(0));
-			} else {
-				cartItem = cartItemService.findByCart(null);
+				System.out.print("Size cartItem" + cartItem.size());
+				addCartItemsAtt(cartItem, model);
 			}
-			addCartItemAtt(cartItem, model);
-
 			List<Order> orderList = new ArrayList<>();
 			for (Order order : orders) {
 				for (Order orde : orderActive) {
@@ -192,21 +184,7 @@ public class OrderControllerUser {
 
 	@RequestMapping(value = "/order/detail/{id}")
 	public ModelAndView orderDetail(ModelMap model, @PathVariable(name = "id", required = false) Integer id) {
-		User user = (User) session.getAttribute("user");
-		List<Cart> cart = cartService.findByUser(user);
-		List<Category> categories = categoryService.findAll();
-		List<CartItem> cartItem = null;
-		if (!cart.isEmpty()) {
-
-			cartItem = cart.get(0).getCartItems();
-			addCartItemAtt(cartItem, model);
-			addTotal(cartService.SumCart(cart), model);
-			model.addAttribute("cart", cart.get(0));
-		} else {
-			cartItem = cartItemService.findByCart(null);
-		}
-		addCartItemAtt(cartItem, model);
-		model.addAttribute("categories", categories);
+			
 		Order order = orderService.getById(id);
 		model.addAttribute("order", order);
 		List<OrderItem> orderItems = orderItemService.findByOrder(order);
@@ -230,33 +208,36 @@ public class OrderControllerUser {
 	@GetMapping(path = "order/noactive")
 	public String noActive(ModelMap model) {
 		User user = (User) session.getAttribute("user");
-		List<Cart> cart = cartService.findByUser(user);
-		List<Category> categories = categoryService.findAll();
-		List<CartItem> cartItem = null;
-		if (!cart.isEmpty()) {
-
-			cartItem = cart.get(0).getCartItems();
-			addCartItemAtt(cartItem, model);
-			addTotal(cartService.SumCart(cart), model);
-			model.addAttribute("cart", cart.get(0));
-		} else {
-			cartItem = cartItemService.findByCart(null);
+		if (user == null) {
+			return "common/login";
 		}
-		addCartItemAtt(cartItem, model);
-		model.addAttribute("categories", categories);
+		{
+//			List<Cart> cart = cartService.findByUser(user);
+//			List<Category> categories = categoryService.findAll();
+//			List<CartItem> cartItem = new ArrayList<>();
+//			
+//			if (!cart.isEmpty()) {
+//				cartItem = cart.get(0).getCartItems();
+//				addCartItemAtt(cartItem, model);
+//				addTotal(cartService.SumCart(cart), model);
+//				model.addAttribute("cart", cart.get(0));
+//			}
+//			addCartItemAtt(cartItem, model);
+//			model.addAttribute("categories", categories);
 
-		List<Order> orders = orderService.findByUser(user);
-		List<Order> orderActive = orderService.findByIsactive(false);
-		List<Order> orderList = new ArrayList<>();
-		for (Order order : orders) {
-			for (Order orde : orderActive) {
-				if (order.equals(orde)) {
-					orderList.add(order);
+			List<Order> orders = orderService.findByUser(user);
+			List<Order> orderActive = orderService.findByIsactive(false);
+			List<Order> orderList = new ArrayList<>();
+			for (Order order : orders) {
+				for (Order orde : orderActive) {
+					if (order.equals(orde)) {
+						orderList.add(order);
+					}
 				}
 			}
+			model.addAttribute("orders", orderList);
+			return "user/orderNoActive";
 		}
-		model.addAttribute("orders", orderList);
-		return "user/orderNoActive";
-	}
 
+	}
 }
