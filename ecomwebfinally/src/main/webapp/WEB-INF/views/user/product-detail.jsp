@@ -202,6 +202,7 @@
 										<!-- Add review -->
 										<form class="w-full" action="/product/review" method="post"
 											enctype="mutipart/form-data">
+											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 											<h5 class="mtext-108 cl2 p-b-7">Thêm đánh giá</h5>
 
 

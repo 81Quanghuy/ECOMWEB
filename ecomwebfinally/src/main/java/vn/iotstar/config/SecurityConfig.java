@@ -44,28 +44,46 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
         	.headers()
-        		.contentSecurityPolicy("default-src * ")
+        		.xssProtection()
+        		.and()
+        		.contentSecurityPolicy("style-src 'self';"
+        				+ "script-src 'self' ecomweb-production.up.railway.app;"
+        				+ "form-action 'self';"
+        				+ "img-src 'self' res.cloudinary.com images.unsplash.com dummyimage.com media.istockphoto.com;"
+        				+ "connect-src 'self';"
+        				+ "frame-src 'self';"
+        				+ "frame-ancestors 'self';"
+        				+ "font-src 'self';"
+        				+ "media-src 'self';"
+        				+ "object-src 'self';"
+        				+ "manifest-src 'self';"
+        				+ "prefetch-src 'self';")
         		.and()
         	.and()
             .authorizeRequests()
-            .antMatchers("/admin/**").hasRole("ADMIN")
-            .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
-            .antMatchers(HttpMethod.POST,"/user/**").hasAnyRole("ADMIN", "USER")
-            //.antMatchers(HttpMethod.POST,"/user/**").hasAnyRole("ADMIN", "USER")
-            .antMatchers("/store/**").hasAnyRole("ADMIN", "USER")
-            .antMatchers("/seller/**").hasAnyRole("ADMIN", "USER")
-            .anyRequest().authenticated()
-             // Đường dẫn đến trang lỗi truy cập bị từ chối
+            	.antMatchers("/admin/**").hasRole("ADMIN")
+            	.antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+            	.antMatchers(HttpMethod.POST,"/user/**").hasAnyRole("ADMIN", "USER")
+            	//.antMatchers(HttpMethod.POST,"/user/**").hasAnyRole("ADMIN", "USER")
+            	.antMatchers("/store/**").hasAnyRole("ADMIN", "USER")
+            	.antMatchers("/seller/**").hasAnyRole("ADMIN", "USER")
+            	.antMatchers("/resgiter").permitAll()
+            	.antMatchers("/").permitAll()
+            	.antMatchers("/product/**").permitAll()
+            	.antMatchers("/product/review").permitAll()
+            	.antMatchers("/._darcs/**", "/.bzr/**", "/.hg/**", "/BitKeeper/**").hasRole("ADMIN")
+            	.anyRequest().authenticated()
+            	// Đường dẫn đến trang lỗi truy cập bị từ chối
             .and()
-            .formLogin().loginPage("/login").permitAll()
-            .successHandler(new CustomAuthenticationSuccessHandler()) // Sử dụng custom success handler
-            .failureUrl("/login")
-            .loginProcessingUrl("/login")
+            	.formLogin().loginPage("/login").permitAll()
+            	.successHandler(new CustomAuthenticationSuccessHandler()) // Sử dụng custom success handler
+            	.failureUrl("/login")
+            	.loginProcessingUrl("/login")
             .and()
-            .exceptionHandling()
-            .accessDeniedHandler(accessDeniedHandler())
+            	.exceptionHandling()
+            	.accessDeniedHandler(accessDeniedHandler())
             .and()
-            .logout();
+            	.logout();
         	
         
     }

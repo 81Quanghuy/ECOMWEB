@@ -203,8 +203,7 @@ public class HomeController {
 
 	
 	@PostMapping("user/update")
-	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("user") UserModel user,
-			BindingResult result) {
+	public ModelAndView saveOrUpdate(ModelMap model, @ModelAttribute("user") UserModel user) {
 		User entity = new User();
 
 		/*

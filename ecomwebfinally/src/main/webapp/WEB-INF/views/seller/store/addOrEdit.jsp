@@ -10,6 +10,7 @@
 	<div class="col mt-4">
 		<form action=<c:url value = "/seller/store/saveOrUpdate"/>
 			method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="card">
 				<div class="card-header">
 					<h2>${store.isEdit ? 'Edit Store' : 'Add New Store'}</h2>

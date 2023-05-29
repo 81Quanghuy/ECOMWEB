@@ -65,7 +65,7 @@
 								href="/user/profile/${user.id}" data-bs-toggle="dropdown"> <c:if
 										test="${user.avatar.substring(0,4).equals('http')}">
 										<img src="${user.avatar}" alt="Profile" class="rounded-circle"
-											style="width: 37px; height: 37px; border-radius: 50%;">
+											style="width: 37px; height: 37px; border-radius: 50%;overflow: hidden;">
 									</c:if> <c:if test="${!user.avatar.substring(0,4).equals('http')}">
 										<img src="/images/user/${user.avatar}" alt="Profile"
 											class="rounded-circle"
