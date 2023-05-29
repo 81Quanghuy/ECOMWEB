@@ -49,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		.contentSecurityPolicy("style-src 'self';"
         				+ "script-src 'self';"
         				+ "form-action 'self';"
-        				+ "img-src 'self' res.cloudinary.com;"
+        				+ "img-src 'self' res.cloudinary.com images.unsplash.com dummyimage.com media.istockphoto.com;"
         				+ "connect-src 'self';"
         				+ "frame-src 'self';"
         				+ "frame-ancestors 'self';"
@@ -60,13 +60,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         				+ "prefetch-src 'self';")
         		.and()
         	.and()
-            	.authorizeRequests()
+            .authorizeRequests()
             	.antMatchers("/admin/**").hasRole("ADMIN")
             	.antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
             	.antMatchers(HttpMethod.POST,"/user/**").hasAnyRole("ADMIN", "USER")
             	//.antMatchers(HttpMethod.POST,"/user/**").hasAnyRole("ADMIN", "USER")
             	.antMatchers("/store/**").hasAnyRole("ADMIN", "USER")
             	.antMatchers("/seller/**").hasAnyRole("ADMIN", "USER")
+            	.antMatchers("/resgiter").permitAll()
+            	.antMatchers("/").permitAll()
+            	.antMatchers("/product/**").permitAll()
             	.anyRequest().authenticated()
             	// Đường dẫn đến trang lỗi truy cập bị từ chối
             .and()

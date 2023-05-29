@@ -43,8 +43,8 @@
 
 						<li class="label1" data-label1="hot"><a href="/product/hot">Sản
 								phẩm nổi bật</a></li>
-
-						<li><a href="/contact">Contact</a></li>
+<!-- 
+						<li><a href="/contact">Contact</a></li> -->
 					</ul>
 				</div>
 
@@ -103,7 +103,7 @@
 	<div class="wrap-header-mobile">
 		<!-- Logo moblie -->
 		<div class="logo-mobile">
-			<a href="index.html"><img src="images/icons/logo-01.png"
+			<a href="/"><img src="images/icons/logo-01.png"
 				alt="IMG-LOGO"></a>
 		</div>
 
@@ -147,7 +147,7 @@
 			</li>
 		</ul>
 
-		<ul class="main-menu-m">
+		<!-- <ul class="main-menu-m">
 			<li><a href="index.html">Home</a>
 				<ul class="sub-menu-m">
 					<li><a href="index.html">Homepage 1</a></li>
@@ -167,7 +167,7 @@
 			<li><a href="about.html">About</a></li>
 
 			<li><a href="contact.html">Contact</a></li>
-		</ul>
+		</ul> -->
 	</div>
 
 	<!-- Modal Search -->
@@ -219,7 +219,7 @@
 							</c:if>
 						</div>
 						<div class="header-cart-item-txt p-t-8">
-							<a href="product/${cartItem.product.id}"
+							<a href="/product/detail/${cartItem.product.id}"
 								class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 								${cartItem.product.name}</a> <span class="header-cart-item-info">
 								${cartItem.count} x ${cartItem.product.price} </span>

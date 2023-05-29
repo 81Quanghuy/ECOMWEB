@@ -82,7 +82,7 @@
 						<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
 							<!-- Profile Edit Form -->
-							<form action=<c:url value="/user/update" /> method="POST"
+							<form action="/user/update" method="POST"
 								enctype="multipart/form-data" style="width: 500px;">
 								<div class="card-body mx-auto">
 									<div class="d-flex justify-content-between">
