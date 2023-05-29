@@ -10,6 +10,7 @@
 	<div class="col mt-4">
 		<form action=<c:url value = "/store/register"/> method="POST"
 			enctype="multipart/form-data">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<div class="card-body"
 				style="margin-top: 50px; display: flex; justify-content: center; align-items: center; flex-direction: column;">
 				<span>${message }</span>

@@ -84,6 +84,7 @@
 							<!-- Profile Edit Form -->
 							<form action="/user/update" method="POST"
 								enctype="multipart/form-data" style="width: 500px;">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								<div class="card-body mx-auto">
 									<div class="d-flex justify-content-between">
 										<input type="text" class="form-control" name="id"

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.HtmlUtils;
 
 import vn.iotstar.entity.Cart;
 import vn.iotstar.entity.CartItem;
@@ -118,11 +121,11 @@ public class ProductDetailController {
 	}
 
 	@PostMapping("review")
-	public ModelAndView Review(ModelMap model, @Valid @ModelAttribute("review") ReviewModel review) {
+	public ModelAndView Review(ModelMap model,
+			@RequestParam("rating") Integer rating,
+			@RequestParam("content") String content) {
 		Review entity = new Review();
-		// copy từ Model sang entity
-		BeanUtils.copyProperties(review, entity);
-
+		
 		// Xử lý User
 		User user = (User) session.getAttribute("user");
 		Integer productid = (Integer) session.getAttribute("productid");
@@ -130,25 +133,18 @@ public class ProductDetailController {
 		// Xử lý Product
 		Product proEntity = productService.getById(productid);
 		entity.setProduct(proEntity);
-
+		String contact = HtmlUtils.htmlEscape(content);
+				
+		entity.setContent(contact);
+		entity.setRating(rating);
 		long millis = System.currentTimeMillis();
 		Date date = new Date(millis);
-
-		if (review.getIsEdit()) {
-			entity.setUpdateat(date);
-		} else {
 			entity.setCreateat(date);
 			entity.setUpdateat(date);
-		}
 
 		reviewService.save(entity);
 
-		String message = "";
-		if (review.getIsEdit() == true) {
-			message = "Review đã được cập nhật";
-		} else {
-			message = "Review đã được thêm thành công";
-		}
+		String message = "Review đã được thêm thành công";
 		model.addAttribute("message", message);
 		session.removeAttribute("productid");
 		return new ModelAndView("redirect:/product/detail/" + productid, model);

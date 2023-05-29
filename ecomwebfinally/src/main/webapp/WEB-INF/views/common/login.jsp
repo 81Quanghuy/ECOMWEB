@@ -67,9 +67,9 @@
 									</div>
 
 									<form class="row g-3 needs-validation" novalidate
-										action="<c:url value="/login"/>" method="post"
-										enctype="multipart/form-data">
-										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+										action="/login" method="post" enctype="multipart/form-data">
+										<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
 
 										<div class="col-12">
 											<label for="yourUsername" class="form-label">Tài
