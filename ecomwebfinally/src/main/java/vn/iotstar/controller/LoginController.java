@@ -102,8 +102,7 @@ public class LoginController {
 
 	@PostMapping("resgiter")
 	public ModelAndView resgiter(ModelMap model, @RequestParam(name = "username", required = false) String username,
-			@RequestParam(name = "password", required = false) String password)
-			throws IllegalAccessException, InvocationTargetException {
+			@RequestParam(name = "password", required = false) String password) {
 		boolean check = false;
 		UserModel usermodel = new UserModel(username, password);
 		List<User> users = userService.findAll();
