@@ -73,8 +73,7 @@
 									</c:if> <span class="d-none d-md-block dropdown-toggle ps-2">${admin.name}</span>
 							</a> <!-- End Profile Iamge Icon -->
 
-								<ul class="sub-menu"
-									style="right: 0; top: 76%; left: -150%; border-radius: 5px;">
+								<ul class="sub-menu">
 									<li><a href="/user/profile/${user.id}">${user.firstName}
 											${user.lastName}</a></li>
 									<c:if test="${store == null}">
