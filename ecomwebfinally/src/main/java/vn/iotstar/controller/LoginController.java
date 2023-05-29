@@ -120,8 +120,8 @@ public class LoginController {
 			user.setUsername(username);
 			user.setPassword(passwordEncoder.encode(password));
 			user.setRole("ROLE_USER");
-			user.setFirstName(username);
-			user.setLastName(username);
+			user.setFirstName("Nguyễn");
+			user.setLastName("A");
 			long millis = System.currentTimeMillis();
 			Date date = new Date(millis);
 			user.setCreateat(date);
