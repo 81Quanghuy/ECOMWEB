@@ -102,8 +102,7 @@ public class LoginController {
 
 	@PostMapping("resgiter")
 	public ModelAndView resgiter(ModelMap model, @RequestParam(name = "username", required = false) String username,
-			@RequestParam(name = "password", required = false) String password)
-			throws IllegalAccessException, InvocationTargetException {
+			@RequestParam(name = "password", required = false) String password) {
 		boolean check = false;
 		UserModel usermodel = new UserModel(username, password);
 		List<User> users = userService.findAll();
@@ -121,8 +120,8 @@ public class LoginController {
 			user.setUsername(username);
 			user.setPassword(passwordEncoder.encode(password));
 			user.setRole("ROLE_USER");
-			user.setFirstName(username);
-			user.setLastName(username);
+			user.setFirstName("Nguyễn");
+			user.setLastName("A");
 			long millis = System.currentTimeMillis();
 			Date date = new Date(millis);
 			user.setCreateat(date);

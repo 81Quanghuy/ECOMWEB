@@ -29,18 +29,13 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-
-	@Column(length = 20, columnDefinition = "nvarchar(20) not null")
 	private String firstName;
-	@Column(length = 20, columnDefinition = "nvarchar(20) not null")
 	private String lastName;
 
 	private String email;
 	private String phone;
 	private String username;
 	private String password;// mật khẩu mã hóa
-	
-	@Column(name ="address",columnDefinition = "nvarchar(255)")
 	private String address;
 	
 	private String avatar;

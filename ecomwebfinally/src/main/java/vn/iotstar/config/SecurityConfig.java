@@ -47,13 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		.xssProtection()
         		.and()
         		.contentSecurityPolicy("style-src 'self';"
-        				+ "script-src 'self' ecomweb-production.up.railway.app;"
+        				+ "script-src 'self';"
         				+ "form-action 'self';"
         				+ "img-src 'self' res.cloudinary.com images.unsplash.com dummyimage.com media.istockphoto.com;"
         				+ "connect-src 'self';"
         				+ "frame-src 'self';"
         				+ "frame-ancestors 'self';"
-        				+ "font-src 'self';"
+        				+ "font-src 'self' cdn.linearicons.com;"
         				+ "media-src 'self';"
         				+ "object-src 'self';"
         				+ "manifest-src 'self';"
@@ -67,11 +67,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             	//.antMatchers(HttpMethod.POST,"/user/**").hasAnyRole("ADMIN", "USER")
             	.antMatchers("/store/**").hasAnyRole("ADMIN", "USER")
             	.antMatchers("/seller/**").hasAnyRole("ADMIN", "USER")
-            	.antMatchers("/resgiter").permitAll()
-            	.antMatchers("/").permitAll()
+            	.antMatchers("/", "/login", "/resgiter").permitAll()
             	.antMatchers("/product/**").permitAll()
             	.antMatchers("/product/review").permitAll()
+            	.antMatchers("/images/**").permitAll()
+            	.antMatchers("/resources/**", "/assets/**").permitAll()//cai nay là tạm @@@
             	.antMatchers("/._darcs/**", "/.bzr/**", "/.hg/**", "/BitKeeper/**").hasRole("ADMIN")
+            	.antMatchers("/assets/**").permitAll()
             	.anyRequest().authenticated()
             	// Đường dẫn đến trang lỗi truy cập bị từ chối
             .and()
@@ -89,9 +91,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web
-            .ignoring()
-            .antMatchers("/assets/**");
+		/*
+		 * web .ignoring() .antMatchers("/assets/**");
+		 */
     }
 }
 //@GetMapping("/notfound")

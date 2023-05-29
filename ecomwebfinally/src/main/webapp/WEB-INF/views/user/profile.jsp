@@ -82,7 +82,7 @@
 						<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
 							<!-- Profile Edit Form -->
-							<form action=<c:url value="/user/update" /> method="POST"
+							<form action="/user/update" method="POST"
 								enctype="multipart/form-data" style="width: 500px;">
 								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								<div class="card-body mx-auto">
