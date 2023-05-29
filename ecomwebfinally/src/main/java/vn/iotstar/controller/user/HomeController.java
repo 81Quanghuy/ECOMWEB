@@ -156,11 +156,14 @@ public class HomeController {
 		return new ModelAndView("user/contact", model);
 	}
 
-	@GetMapping("user/profile/{id}")
-	public ModelAndView profile(ModelMap model, @PathVariable("id") Integer id) throws IOException {
+	@GetMapping("user/profile")
+	public String profile(ModelMap model,HttpSession session) throws IOException {
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("message", (String) session.getAttribute("message"));
 		session.removeAttribute("message");
+		UserModel usermodel = new UserModel();
+		BeanUtils.copyProperties(user, usermodel);
+		model.addAttribute("user", usermodel);
 		List<Cart> cart = cartService.findByUser(user);
 		List<Store> stores = storeSerivce.findAll();
 
@@ -188,16 +191,16 @@ public class HomeController {
 		model.addAttribute("stores", stores);
 		model.addAttribute("products", products);
 		model.addAttribute("categories", categories);
-		Optional<User> opt = userService.findById(id);
-		UserModel usermodel = new UserModel();
+		Optional<User> opt = userService.findById(user.getId());
+		
 		if (opt.isPresent()) {
 			User entity = opt.get();
 			BeanUtils.copyProperties(entity, usermodel);
 			model.addAttribute("user", usermodel);
-			return new ModelAndView("user/profile", model);
+			return "user/profile";
 		}
 		model.addAttribute("message", "User không tồn tại");
-		return new ModelAndView("redirect:/", model);
+		return "user/home";
 
 	}
 
@@ -264,5 +267,4 @@ public class HomeController {
 			}
 		}
 	}
-
 }

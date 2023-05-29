@@ -62,7 +62,7 @@
 						<c:if test="${ user!= null}">
 							<li><a
 								class="nav-link nav-profile d-flex align-items-center pe-0"
-								href="/user/profile/${user.id}" data-bs-toggle="dropdown"> <c:if
+								href="/user/profile}" data-bs-toggle="dropdown"> <c:if
 										test="${user.avatar.substring(0,4).equals('http')}">
 										<img src="${user.avatar}" alt="Profile" class="rounded-circle"
 											style="width: 37px; height: 37px; border-radius: 50%;overflow: hidden;">
@@ -75,7 +75,7 @@
 
 								<ul class="sub-menu"
 									style="right: 0; top: 76%; left: -150%; border-radius: 5px;">
-									<li><a href="/user/profile/${user.id}">${user.firstName}
+									<li><a href="/user/profile">${user.firstName}
 											${user.lastName}</a></li>
 									<c:if test="${store == null}">
 										<li><a href="/store/register">Trở thành người bán </a></li>
