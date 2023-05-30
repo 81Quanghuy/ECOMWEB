@@ -62,7 +62,7 @@
 						<c:if test="${ user!= null}">
 							<li><a
 								class="nav-link nav-profile d-flex align-items-center pe-0"
-								href="/user/profile}" data-bs-toggle="dropdown"> <c:if
+								href="/user/profile" data-bs-toggle="dropdown"> <c:if
 										test="${user.avatar.substring(0,4).equals('http')}">
 										<img src="${user.avatar}" alt="Profile" class="rounded-circle"
 											style="width: 37px; height: 37px; border-radius: 50%;overflow: hidden;">
