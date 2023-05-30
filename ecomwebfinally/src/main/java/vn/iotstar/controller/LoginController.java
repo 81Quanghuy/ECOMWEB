@@ -1,6 +1,7 @@
 
 package vn.iotstar.controller;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.util.List;

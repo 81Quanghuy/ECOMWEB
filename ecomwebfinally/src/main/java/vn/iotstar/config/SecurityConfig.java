@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 	@Autowired	
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customerUser);
+		auth.userDetailsService(customerUser).passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
@@ -69,11 +69,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             	.antMatchers("/seller/**").hasAnyRole("ADMIN", "USER")
             	.antMatchers("/", "/login", "/resgiter").permitAll()
             	.antMatchers("/product/**").permitAll()
-            	.antMatchers("/product/review").permitAll()
             	.antMatchers("/images/**").permitAll()
             	.antMatchers("/resources/**", "/assets/**").permitAll()//cai nay là tạm @@@
             	.antMatchers("/._darcs/**", "/.bzr/**", "/.hg/**", "/BitKeeper/**").hasRole("ADMIN")
-            	.antMatchers("/assets/**").permitAll()
             	.anyRequest().authenticated()
             	// Đường dẫn đến trang lỗi truy cập bị từ chối
             .and()
