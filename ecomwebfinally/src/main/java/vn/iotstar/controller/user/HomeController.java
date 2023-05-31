@@ -240,7 +240,7 @@ public class HomeController {
 
 		userService.save(entity);
 		session.setAttribute("message", "Cập nhật tài khoản thành công");
-		return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
+		return new ModelAndView("redirect:/user/profile");
 
 	}
 
@@ -252,17 +252,17 @@ public class HomeController {
 		User user = userService.getById(id);
 		if (!passwordEncoder.matches(password, user.getPassword())) {
 			session.setAttribute("message", "Mật khẩu không chính xác");
-			return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
+			return new ModelAndView("redirect:/user/profile");
 		} else {
 			if (!newpassword.equals(renewpassword)) {
 				session.setAttribute("message", "Mật khẩu mới khớp");
-				return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
+				return new ModelAndView("redirect:/user/profile");
 
 			} else {
 				user.setPassword(passwordEncoder.encode(newpassword));
 				userService.save(user);
 				session.setAttribute("message", "Mật khẩu đã được cập nhập");
-				return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
+				return new ModelAndView("redirect:/user/profile");
 
 			}
 		}

@@ -115,6 +115,10 @@ public class SellerProductController {
 	@GetMapping("edit/{id}")
 	public ModelAndView edit(ModelMap model, @PathVariable("id") int id) throws IOException {
 		Optional<Product> opt = productService.findById(id);
+		User nguoiban = (User) session.getAttribute("user");
+		List<Store> stores = storeService.findByUser(nguoiban);
+		if(opt.get().getStore().getId()==stores.get(0).getId())
+		{
 		ProductModel product = new ProductModel();
 		if (opt.isPresent()) {
 			Product entity = opt.get();
@@ -126,7 +130,12 @@ public class SellerProductController {
 			return new ModelAndView("seller/product/addOrEdit", model);
 		}
 		model.addAttribute("error", "Product không tồn tại");
-		return new ModelAndView("redirec:/seller/product", model);
+		return new ModelAndView("/seller/product/list", model);
+		}
+		
+		model.addAttribute("error", "Bạn không có quyền xem sản phẩm này");
+	
+		return new ModelAndView("/seller/product/list", model);
 
 	}
 
