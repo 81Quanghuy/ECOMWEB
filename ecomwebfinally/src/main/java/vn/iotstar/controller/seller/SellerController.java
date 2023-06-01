@@ -68,7 +68,7 @@ public class SellerController {
 
 		User seller = (User) session.getAttribute("user");
 		if(seller.getStores() == null) {
-			return "";
+			return "user/home";
 		}
 		model.addAttribute("admin", seller);
 		long millis = System.currentTimeMillis();
