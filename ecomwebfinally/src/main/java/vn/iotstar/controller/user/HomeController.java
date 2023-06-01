@@ -2,7 +2,6 @@
 package vn.iotstar.controller.user;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +9,6 @@ import java.util.Optional;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -193,15 +190,23 @@ public class HomeController {
 		model.addAttribute("products", products);
 		model.addAttribute("categories", categories);
 		Optional<User> opt = userService.findById(user.getId());
-		
-		if (opt.isPresent()) {
+		System.out.println(Integer.valueOf(opt.get().getId()));
+		System.out.println(usermodel.getId());
+		if( Integer.valueOf(opt.get().getId()).compareTo(Integer.valueOf(usermodel.getId()))==0 )// kiểm tra id truyền xuống server và id của user hiện tại có  trùng hay không
+		{// nếu là 1 user được phép xem
+			if (opt.isPresent()) {
 			User entity = opt.get();
 			BeanUtils.copyProperties(entity, usermodel);
 			model.addAttribute("user", usermodel);
 			return "user/profile";
-		}
+			}
 		model.addAttribute("message", "User không tồn tại");
 		return "user/home";
+		}
+		// Nếu không trùng, thông báo không có quyền truy cập
+		model.addAttribute("message", "Bạn không có quyền truy cập tài khoản này");
+		return "user/home";
+			
 
 	}
 
@@ -256,17 +261,17 @@ public class HomeController {
 		User user = userService.getById(id);
 		if (!passwordEncoder.matches(password, user.getPassword())) {
 			session.setAttribute("message", "Mật khẩu không chính xác");
-			return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
+			return new ModelAndView("redirect:/user/profile" );
 		} else {
 			if (!newpassword.equals(renewpassword)) {
 				session.setAttribute("message", "Mật khẩu mới khớp");
-				return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
+				return new ModelAndView("redirect:/user/profile" );
 
 			} else {
 				user.setPassword(passwordEncoder.encode(newpassword));
 				userService.save(user);
 				session.setAttribute("message", "Mật khẩu đã được cập nhập");
-				return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
+				return new ModelAndView("redirect:/user/profile");
 
 			}
 		}
