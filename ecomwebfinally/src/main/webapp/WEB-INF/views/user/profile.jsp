@@ -114,10 +114,7 @@
 										<input type="text" class="form-control" id="password"
 											name="password" value="${user.password}" hidden="true">
 									</div>
-									<div class="m-2">
-										<input type="text" class="form-control" id="role" name="role"
-											value="${user.role}" hidden="true">
-									</div>
+									
 									<div class="m-2">
 										<label for="phone" class="form-label">Số điện thoại</label> <input
 											type="text" class="form-control" id="text" name="phone"

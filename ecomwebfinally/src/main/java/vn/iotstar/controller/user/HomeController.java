@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
 
 import vn.iotstar.EcomwebfinallyApplication;
@@ -218,7 +219,8 @@ public class HomeController {
 			
 			try {
 				Map map = this.cloudinary.uploader().upload(user.getAvatarFile().getBytes(),
-						ObjectUtils.asMap("resource_type", "auto"));
+						ObjectUtils.asMap("resource_type", "auto",
+								"transformation", new Transformation().width(50).height(50).crop("fill")));
 				String img = (String) map.get("secure_url");
 				
 				user.setAvatar(img);
@@ -227,7 +229,9 @@ public class HomeController {
 				System.out.print(e);
 			}
 		}
+		String userRole = userService.findById(user.getId()).get().getRole();
 		BeanUtils.copyProperties(user, entity);
+		entity.setRole(userRole);
 		long millis = System.currentTimeMillis();
 		Date date = new Date(millis);
 
@@ -240,7 +244,7 @@ public class HomeController {
 
 		userService.save(entity);
 		session.setAttribute("message", "Cập nhật tài khoản thành công");
-		return new ModelAndView("redirect:/user/profile/" + user.getId(), model);
+		return new ModelAndView("redirect:/user/profile" , model);
 
 	}
 
