@@ -35,9 +35,8 @@ public class CustomerUserDetailService implements UserDetailsService {
 			return userDetail;
 		}
 		else {
-			new UsernameNotFoundException("Login fail");
+			throw new UsernameNotFoundException("Login fail");
 		}
-		return null;
 	}
 
 	

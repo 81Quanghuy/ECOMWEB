@@ -1,9 +1,11 @@
 
 package vn.iotstar.controller;
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
 
@@ -99,6 +101,23 @@ public class LoginController {
 	public String Resgiter(ModelMap model) {
 		return "common/resgiter";
 	}
+	
+	public boolean isStrongPassword(String input) {
+		if (input.length() < 8) {
+			return false;
+		}
+		boolean hasSpecialChar = Pattern.compile("[^a-zA-Z0-9]").matcher(input).find();
+        boolean hasUppercase = Pattern.compile("[A-Z]").matcher(input).find();
+        boolean hasDigit = Pattern.compile("[0-9]").matcher(input).find();
+
+        if (hasSpecialChar && hasUppercase && hasDigit) {
+            System.out.println("Chuỗi hợp lệ");
+            return true;
+        } else {
+            System.out.println("Chuỗi không hợp lệ");
+            return false;
+        }
+	}
 
 	@PostMapping("resgiter")
 	public ModelAndView resgiter(ModelMap model, @RequestParam(name = "username", required = false) String username,
@@ -115,6 +134,10 @@ public class LoginController {
 			model.addAttribute("message", "Tên đăng nhập đã tồn tại");
 			return new ModelAndView("common/resgiter", model);
 		} else {
+			if (isStrongPassword(password) == false) {
+				model.addAttribute("message", "Mật khẩu yếu, vui lòng chọn mật khẩu mạnh hơn!");
+				return new ModelAndView("common/resgiter", model);
+			}
 			// tao user moi
 			User user = new User();
 			user.setUsername(username);

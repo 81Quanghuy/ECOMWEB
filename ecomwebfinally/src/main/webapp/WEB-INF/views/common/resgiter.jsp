@@ -84,13 +84,9 @@
 
 
 									<form class="row g-3 needs-validation"
-										action="<c:url value="/resgiter"/>" method="post"
+										action="/resgiter" method="post"
 										enctype="multipart/form-data">
 										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-										<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-
-
 										<div class="col-12">
 											<label for="yourUsername" class="form-label">Tên đăng
 												nhập</label>
